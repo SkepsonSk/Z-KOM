@@ -1,0 +1,39 @@
+<aura:component description="ZK_ProductImagesUpload"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="productId" required="true" type="Id"/>
+    <aura:attribute name="images" type="String[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-grid_vertical">
+
+        <div>
+            <lightning:fileUpload label="{!$Label.c.ZK_Label_Images_Upload}"
+                                  multiple="true"
+                                  accept=".png,.jpg,.jpeg"
+                                  onuploadfinished="{!c.onImagesUploaded}"
+                                  recordId="{!v.productId}"/>
+        </div>
+
+        <aura:if isTrue="{!not(empty(v.images))}">
+
+            <div class="slds-grid slds-wrap slds-p-around_small slds-m-top_medium">
+                <aura:iteration items="{!v.images}" var="image">
+
+                    <div class="slds-col slds-m-right_medium">
+                        <div id="{!image}" onclick="{!c.deleteImage}">
+                            <lightning:icon iconName="utility:delete"
+                                            size="x-small"
+                                            class="slds-m-bottom_small pointer"/>
+                        </div>
+                        <lightning:fileCard fileId="{!image}"/>
+                    </div>
+
+                </aura:iteration>
+            </div>
+        </aura:if>
+
+    </div>
+
+</aura:component>

@@ -1,0 +1,14 @@
+<aura:component description="ZK_ProductsPanel"
+                implements="flexipage:availableForAllPageTypes">
+
+    <ltng:require styles="{!$Resource.No_TabHeader_CSS}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <aura:handler name="newProduct" event="c:ZK_NewProduct" action="{!c.onNewProduct}"/>
+    <aura:handler name="deleteProduct" event="c:ZK_DeleteProduct" action="{!c.onDeleteProduct}"/>
+
+    <c:ZK_ProductsTopBar/>
+    <c:ZK_ProductsPanelBody/>
+
+</aura:component>

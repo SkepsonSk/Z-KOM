@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <compactLayouts>
+        <fullName>Company_Lead_Info</fullName>
+        <fields>Name</fields>
+        <fields>Company</fields>
+        <fields>Email</fields>
+        <fields>Phone</fields>
+        <fields>Status</fields>
+        <label>Company Lead Info</label>
+    </compactLayouts>
+</CustomObject>

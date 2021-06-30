@@ -1,0 +1,36 @@
+<aura:component description="ZK_ProductDisplayImageSelector"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="productId" type="Id" required="true"/>
+    <aura:attribute name="product" type="Id"/>
+
+    <aura:attribute name="images" type="String[]"/>
+    <aura:attribute name="selectedId" type="Id"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-grid slds-gutters slds-wrap slds-m-top_medium">
+
+        <aura:iteration items="{!v.images}" var="image">
+            <div class="slds-col">
+
+                <div class="slds-grid slds-m-bottom_small">
+                    <aura:if isTrue="{!v.selectedId == image}">
+                        <lightning:icon class="slds-m-right_medium" size="x-small" variant="warning" iconName="utility:attach"/>
+                        <p style="color: rgb(254, 147, 57)"> {!$Label.c.ZK_Marking_Selected} </p>
+                    </aura:if>
+
+                    <aura:if isTrue="{!not(v.selectedId == image)}">
+                        <div id="{!image}" onclick="{!c.selectDisplayImage}">
+                            <lightning:icon size="x-small" iconName="utility:attach"/>
+                        </div>
+                    </aura:if>
+                </div>
+
+                <lightning:fileCard fileId="{!image}"/>
+            </div>
+        </aura:iteration>
+
+    </div>
+
+</aura:component>

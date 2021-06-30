@@ -1,0 +1,23 @@
+<aura:component description="ZK_ProductsSearch"
+                controller="ZK_ProductsController"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="products" type="Object[]"/>
+    <aura:attribute name="currency" type="String"/>
+    <aura:attribute name="loading" type="Boolean" default="{!true}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="searchFormSubmitted" event="c:ZK_ProductSearchFormSubmitted"
+                  action="{!c.onSearchFormSubmitted}"/>
+
+    <lightning:card>
+        <c:ZK_Spinner visible="{!v.loading}"/>
+        <c:ZK_ProductSearchForm/>
+    </lightning:card>
+
+    <lightning:card>
+        <c:ZK_Spinner visible="{!v.loading}"/>
+        <c:ZK_Products products="{!v.products}" currency="{!v.currency}"/>
+    </lightning:card>
+
+</aura:component>

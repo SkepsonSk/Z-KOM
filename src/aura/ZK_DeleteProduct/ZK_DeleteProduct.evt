@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="ZK_DeleteProduct">
+    <aura:attribute name="productId" type="Id"/>
+    <aura:attribute name="productName" type="String"/>
+</aura:event>

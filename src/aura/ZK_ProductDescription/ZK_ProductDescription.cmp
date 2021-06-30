@@ -1,0 +1,17 @@
+<aura:component description="ZK_ProductDescription"
+                implements="force:hasRecordId,flexipage:availableForRecordHome">
+
+    <aura:attribute name="product" type="Object"/>
+    <aura:attribute name="simpleProduct" type="Object"/>
+
+    <force:recordData recordId="{!v.recordId}"
+                      targetRecord="{!v.product}"
+                      fields="Rich_Description__c"
+                      mode="VIEW"
+                      targetFields="{!v.simpleProduct}"/>
+
+    <div>
+        <lightning:formattedRichText value="{!v.simpleProduct.Rich_Description__c}"/>
+    </div>
+
+</aura:component>

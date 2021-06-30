@@ -1,0 +1,67 @@
+<aura:component description="ZK_ProductImages"
+                implements="force:hasRecordId,flexipage:availableForRecordHome"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="images" type="String[]"/>
+    <aura:attribute name="currentImage" type="String"/>
+    <aura:attribute name="currentIndex" type="Integer" default="0"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <lightning:card>
+
+        <h2 class="slds-text-heading_small slds-m-left_medium slds-m-bottom_medium">
+        {!$Label.c.ZK_Message_Selected} ({!v.images.length})
+        </h2>
+
+        <aura:if isTrue="{!not(empty(v.images))}">
+            <div style="{!'background-image: url(\'/sfc/servlet.shepherd/document/download/' + v.currentImage + '\');height: 300px;'}"
+                 onclick="{!c.displayImage}"
+                 class="bg-image slds-is-relative slds-grid slds-grid_vertical-align-center">
+
+                <div class="slds-grid slds-is-absolute slds-size_1-of-1 slds-p-around_medium">
+
+                    <div class="slds-col slds-text-align_left">
+                        <div class="pointer" onclick="{!c.previousImage}" style="display:inline-block">
+                            <lightning:icon iconName="utility:chevronleft" size="small"/>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-text-align_right">
+                        <div class="pointer" onclick="{!c.nextImage}" style="display:inline-block">
+                            <lightning:icon iconName="utility:chevronright" size="small"/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </aura:if>
+
+        <aura:if isTrue="{!empty(v.images)}">
+            <div style="height: 300px;background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/401px-No_picture_available.png')"
+                 class="bg-image">
+            </div>
+        </aura:if>
+
+        <div class="slds-grid slds-grid_align-center slds-wrap slds-m-around_small slds-m-top_medium">
+
+            <aura:iteration items="{!v.images}" var="image">
+                <div id="{!image}"
+                     style="{!'background-image: url(\'/sfc/servlet.shepherd/document/download/' + image + '\');height: 50px;'}"
+                     class="bg-image slds-size_2-of-12 pointer slds-m-right_x-small"
+                     onclick="{!c.selectImage}">
+
+                    <aura:if isTrue="{!v.currentImage == image}">
+                        <div style="width: 100%;height:100%; background-color: rgba(255, 255, 255, 0.8)"></div>
+                    </aura:if>
+
+                </div>
+            </aura:iteration>
+
+        </div>
+
+    </lightning:card>
+
+</aura:component>

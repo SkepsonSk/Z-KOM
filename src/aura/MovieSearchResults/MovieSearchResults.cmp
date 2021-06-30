@@ -1,0 +1,92 @@
+<aura:component controller="FM_MediaController"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="searchResponse" type="FM_Wrappers.SearchResponse"/>
+    <aura:attribute name="flags" type="Flag__c[]"/>
+
+    <aura:attribute name="page" type="Integer" default="0"/>
+    <aura:attribute name="searchQuery" type="String" default=""/>
+    <aura:attribute name="searchMode" type="String"/>
+    <aura:attribute name="searchType" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="mediaFlagged" event="c:MediaFlagged" action="{!c.handleFlagged}"/>
+
+    <aura:method name="updateSearchQuery" action="{!c.updateSearchQuery}">
+        <aura:attribute name="searchQuery" type="String"/>
+        <aura:attribute name="searchMode" type="String"/>
+        <aura:attribute name="searchType" type="String"/>
+    </aura:method>
+
+    <div aura:id="spinner"
+         style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:1000;background-color:rgba(255,255,255,0.75);">
+        <lightning:spinner class="spinner-full" variant="brand" size="large"/>
+    </div>
+
+    <aura:if isTrue="{!v.searchResponse != null}">
+
+        <div class="slds-p-around_medium">
+
+            <h1 class="slds-text-heading_large slds-text-align_center slds-m-bottom_x-large">
+            {!v.searchQuery == '' ? 'Trending this week ' : 'Results'}
+                ({!v.searchResponse.total_results})
+            </h1>
+
+            <aura:if isTrue="{!empty(v.searchResponse.results)}">
+                <div class="slds-text-align_center slds-grid_vertical slds-grid_vertical-align-center">
+                    <lightning:icon iconName="action:close" alternativeText=":("/>
+                    <h2>No results.</h2>
+                </div>
+            </aura:if>
+
+            <div class="slds-grid slds-gutters slds-wrap">
+                <aura:iteration items="{!v.searchResponse.results}" var="result">
+
+                    <aura:if isTrue="{!result.media_type=='movie'}">
+                        <c:MovieTile movie="{!result}" flags="{!v.flags}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!result.media_type=='tv'}">
+                        <c:TVShowTile show="{!result}" flags="{!v.flags}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!result.media_type=='person'}">
+                        <c:ActorTile actor="{!result}" flags="{!v.flags}"/>
+                    </aura:if>
+
+                </aura:iteration>
+            </div>
+
+            <aura:if isTrue="{!not(empty(v.searchResponse.results))}">
+
+                <div class="slds-grid">
+
+                    <div class="slds-col">
+                        <p class="slds-text-body_regular"> Page {!v.searchResponse.page}
+                            of {!v.searchResponse.total_pages} </p>
+                    </div>
+
+                    <div class="slds-col slds-grid">
+                        <lightning:button onclick="{!c.firstPage}"
+                                          disabled="{!v.searchResponse.page == 1}">
+                            &lt;&lt; First
+                        </lightning:button>
+                        <lightning:button onclick="{!c.previousPage}"
+                                          disabled="{!v.searchResponse.page == 1}">
+                            &lt; Previous
+                        </lightning:button>
+                        <lightning:button onclick="{!c.nextPage}"
+                                          disabled="{!v.searchResponse.page == v.searchResponse.total_pages}">
+                            Next &gt;
+                        </lightning:button>
+                        <lightning:button onclick="{!c.lastPage}"
+                                          disabled="{!v.searchResponse.page == v.searchResponse.total_pages}">
+                            Last &gt;&gt;
+                        </lightning:button>
+                    </div>
+
+                </div>
+            </aura:if>
+        </div>
+
+    </aura:if>
+
+</aura:component>

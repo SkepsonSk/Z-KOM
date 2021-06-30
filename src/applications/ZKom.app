@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#76C2AF</headerColor>
+        <logo>computerlogopng94imagesincollection</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Z-Kom</label>
+    <navType>Console</navType>
+    <tabs>standard-Lead</tabs>
+    <tabs>Products_Panel</tabs>
+    <tabs>Explore_Products</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Z_Kom_UtilityBar</utilityBar>
+    <workspaceConfig>
+        <mappings>
+            <tab>Explore_Products</tab>
+        </mappings>
+        <mappings>
+            <tab>Products_Panel</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Lead</tab>
+        </mappings>
+    </workspaceConfig>
+</CustomApplication>

@@ -1,0 +1,87 @@
+<aura:component description="ZK_ProductInformationForm"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="categories" type="String[]"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="product"
+                    type="Product2"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:registerEvent name="productSaved" type="c:ZK_ProductSaved"/>
+    <aura:registerEvent name="ZK_ProductChanged" type="c:ZK_ProductChanged"/>
+
+    <aura:method name="save" action="{!c.doSaveRecord}">
+    </aura:method>
+
+    <force:recordData aura:id="recordEditor"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetFields="{!v.simpleRecord}"
+                      targetRecord="{!v.record}"
+                      mode="EDIT"
+                      fields="Name,IsActive,ProductCode,Category__c,Warranty_in_Months__c,Rich_Description__c"/>
+
+    <aura:if isTrue="{!v.recordError != null}">
+        <lightning:layoutItem size="12" class="slds-p-around_small">
+            {!v.recordError}
+        </lightning:layoutItem>
+    </aura:if>
+
+    <aura:if isTrue="{!v.recordError != null}">
+        <lightning:layoutItem size="12" class="slds-p-around_small">
+                {!v.recordError}
+        </lightning:layoutItem>
+    </aura:if>
+
+    <lightning:layoutItem size="6" class="slds-p-around_small">
+        <lightning:input label="{!$Label.c.ZK_Field_Product_Name}"
+                         aura:id="name"
+                         name="name"
+                         value="{!v.simpleRecord.Name}"
+                         required="true"/>
+    </lightning:layoutItem>
+    <lightning:layoutItem size="6" class="slds-p-around_small">
+        <label for="active">{!$Label.c.ZK_Field_Active}</label>
+        <lightning:input label=""
+                         aura:id="active"
+                         name="active"
+                         type="checkbox"
+                         checked="{!v.simpleRecord.IsActive}"
+                         value="{!v.simpleRecord.IsActive}"/>
+    </lightning:layoutItem>
+
+    <lightning:layoutItem size="6" class="slds-p-around_small">
+        <lightning:input label="{!$Label.c.ZK_Field_Product_Code}"
+                         aura:id="code"
+                         name="code"
+                         value="{!v.simpleRecord.ProductCode}"
+                         required="true"/>
+    </lightning:layoutItem>
+
+    <lightning:layoutItem size="6" class="slds-p-around_small">
+        <lightning:select aura:id="category" label="{!$Label.c.ZK_Field_Category}" value="{!v.simpleRecord.Category__c}" required="true">
+            <option value="">--None--</option>
+            <aura:iteration items="{!v.categories}" var="category">
+                <option value="{!category}"> {!category} </option>
+            </aura:iteration>
+        </lightning:select>
+    </lightning:layoutItem>
+
+    <lightning:layoutItem size="6" class="slds-p-around_small">
+        <lightning:input label="{!$Label.c.ZK_Field_Warranty}"
+                         aura:id="warranty"
+                         name="code"
+                         type="number"
+                         messageWhenBadInput="{!$Label.c.ZK_Error_Wrong_Warranty}"
+                         value="{!v.simpleRecord.Warranty_in_Months__c}"/>
+    </lightning:layoutItem>
+
+    <lightning:layoutItem size="12" class="slds-p-around_medium">
+        <lightning:inputRichText value="{!v.simpleRecord.Rich_Description__c}" label="{!$Label.c.ZK_Field_Description}"/>
+    </lightning:layoutItem>
+
+</aura:component>

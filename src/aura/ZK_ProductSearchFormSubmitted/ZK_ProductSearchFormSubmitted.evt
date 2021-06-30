@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="ZK_ProductSearchFormSubmitted">
+    <aura:attribute name="productName" type="String"/>
+    <aura:attribute name="categoryName" type="String"/>
+    <aura:attribute name="mode" type="String"/>
+</aura:event>

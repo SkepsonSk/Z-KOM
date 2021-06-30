@@ -1,0 +1,23 @@
+<aura:component description="ZK_ProductsTopBar">
+
+    <aura:registerEvent name="newProduct" type="c:ZK_NewProduct"/>
+
+    <lightning:layout class="slds-page-header no-b-rounded slds-page-header_object-home slds-m-around_none">
+        <lightning:layoutItem>
+            <lightning:icon iconName="standard:product" alternativeText="{!$Label.c.ZK_Title_Products}"/>
+        </lightning:layoutItem>
+
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading_label">{!$Label.c.ZK_Title_Products}</h1>
+                <h2 class="slds-text-heading_medium">{!$Label.c.ZK_Title_All_Products}</h2>
+            </div>
+        </lightning:layoutItem>
+
+        <lightning:layoutItem class="zk-align-right">
+            <lightning:button variant="neutral" onclick="{!c.onNewProduct}"> {!$Label.c.ZK_Button_New} </lightning:button>
+        </lightning:layoutItem>
+
+    </lightning:layout>
+
+</aura:component>

@@ -1,0 +1,72 @@
+<aura:component description="ZK_ProductCreatorModal"
+                access="global"
+                implements="lightning:actionOverride,force:hasRecordId">
+
+    <aura:attribute name="currentStep" default="1" type="String"/>
+    <aura:attribute name="productId" type="Id"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="productSaved" event="c:ZK_ProductSaved" action="{!c.onProductSaved}"/>
+
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:overlayLibrary aura:id="overlayLibraryInside"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-modal__content">
+        <lightning:layout verticalAlign="center" class="slds-wrap slds-p-around_medium">
+
+            <lightning:layoutItem size="12" class="slds-m-bottom_small">
+                <lightning:progressIndicator currentStep="{!v.currentStep}" type="path" variant="base">
+                    <lightning:progressStep label="{!$Label.c.ZK_Step_Basic_Info}" value="1"/>
+                    <lightning:progressStep label="{!$Label.c.ZK_Step_Images}" value="2"/>
+                    <lightning:progressStep label="{!$Label.c.ZK_Step_Product_Profile_Image}" value="3"/>
+                </lightning:progressIndicator>
+            </lightning:layoutItem>
+
+            <aura:if isTrue="{!v.currentStep == '1'}">
+                <c:ZK_ProductInformationForm aura:id="productInformationForm"
+                                             recordId="{!v.recordId != null ? v.recordId : v.productId}"/>
+            </aura:if>
+
+            <aura:if isTrue="{!v.currentStep == '2'}">
+                <c:ZK_ProductImagesUpload productId="{!v.productId}"/>
+            </aura:if>
+
+            <aura:if isTrue="{!v.currentStep == '3'}">
+                <c:ZK_ProductDisplayImageSelector productId="{!v.productId}"/>
+            </aura:if>
+
+        </lightning:layout>
+    </div>
+
+    <footer class="slds-modal__footer">
+
+        <aura:if isTrue="{!v.currentStep == '2' || v.currentStep == '3'}">
+            <lightning:button label="{!$Label.c.ZK_Button_Previous}" onclick="{!c.goBack}"/>
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentStep == '1'}">
+            <lightning:button label="{!$Label.c.ZK_Button_Save_And_Next}" variant="brand" type="submit" onclick="{!c.requestRecordSave}"/>
+        </aura:if>
+        <aura:if isTrue="{!v.currentStep == '2'}">
+            <lightning:button label="{!$Label.c.ZK_Button_Next}" variant="brand" type="submit" onclick="{!c.requestSelectDisplayImage}"/>
+        </aura:if>
+        <aura:if isTrue="{!v.currentStep == '3'}">
+            <lightning:button label="{!$Label.c.ZK_Button_Finish}" variant="brand" type="submit" onclick="{!c.finish}"/>
+        </aura:if>
+
+    </footer>
+
+</aura:component>

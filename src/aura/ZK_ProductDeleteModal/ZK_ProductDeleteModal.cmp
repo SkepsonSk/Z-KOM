@@ -1,0 +1,35 @@
+<aura:component description="ZK_ProductDeleteModal"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="productId" type="Id" required="true"/>
+    <aura:attribute name="productName" type="String" required="true"/>
+
+    <aura:registerEvent name="ZK_ProductDeleted" type="c:ZK_ProductDeleted"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibraryInner"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <div>
+        <p class="slds-text-heading_small slds-m-around_small slds-text-align_center">
+            {!$Label.c.ZK_Delete_Assurance} <span style="font-weight: bold">{!v.productName}</span>?
+        </p>
+    </div>
+
+    <footer class="slds-modal__footer">
+        <lightning:button label="{!$Label.c.ZK_Button_Cancel}" onclick="{!c.cancelDelete}"/>
+        <lightning:button label="{!$Label.c.ZK_Button_Delete}" variant="brand" onclick="{!c.confirmDelete}" />
+    </footer>
+
+</aura:component>

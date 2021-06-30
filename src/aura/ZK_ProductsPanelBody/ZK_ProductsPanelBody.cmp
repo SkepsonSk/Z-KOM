@@ -1,0 +1,20 @@
+<aura:component description="ZK_ProductsPanelBody"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="products" type="Product2[]"/>
+    <aura:attribute name="columns" type="List"/>
+
+    <aura:registerEvent name="newProduct" type="c:ZK_NewProduct"/>
+    <aura:registerEvent name="deleteProduct" type="c:ZK_DeleteProduct"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:ZK_ProductDeleted" action="{!c.handleProductDeleted}"/>
+    <aura:handler event="c:ZK_ProductChanged" action="{!c.handleProductChanged}"/>
+
+    <lightning:datatable data="{!v.products}"
+                         keyField="id"
+                         onrowaction="{!c.onRowAction}"
+                         showRowNumberColumn="true"
+                         columns="{!v.columns}"/>
+
+</aura:component>

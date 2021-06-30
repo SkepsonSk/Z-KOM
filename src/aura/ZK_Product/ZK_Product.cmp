@@ -1,0 +1,56 @@
+<aura:component description="ZK_Product">
+
+    <aura:attribute name="product" type="Product2" required="true"/>
+    <aura:attribute name="unitPrice" type="Decimal" required="true"/>
+    <aura:attribute name="images" type="String[]" required="true"/>
+    <aura:attribute name="currency" type="String" required="true"/>
+
+    <aura:attribute name="image" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-size_1-of-1 slds-p-around_small">
+        <div class="rounded shadow">
+            <div style="{!'background-image: url(\'' + (v.image != null ? v.image : $Resource.ZK_NoPhotoAvailable) + '\');height: 300px'}"
+                 class="bg-image slds-is-relative">
+                <div style="background-color: rgba(0, 0, 0, 0.8)"
+                     class="bg-details rounded-top slds-grid_vertical slds-grid_vertical-align-center">
+
+                    <h3 class="slds-p-top_large color-white slds-text-heading_small slds-text-align_center">
+                        Warranty:
+                        <span class="text-bold">
+                        {!v.product.Warranty_in_Months__c != null ? v.product.Warranty_in_Months__c + ' months' : 'no warranty'}
+                        </span>
+                    </h3>
+                    <h3 class="slds-p-top_x-small color-white slds-text-heading_small slds-text-align_center">
+                        Category:
+                        <span class="text-bold">
+                                {!v.product.Category__c != null ? v.product.Category__c : 'Everything'}
+                        </span>
+                    </h3>
+                    <h3 class="slds-p-top_x-small color-white slds-text-heading_small slds-text-align_center">
+                        Code:
+                        <span class="text-bold">
+                                {!v.product.ProductCode}
+                        </span>
+                    </h3>
+
+                </div>
+            </div>
+
+            <div class="slds-grid slds-grid_vertical-align-end slds-p-around_medium">
+
+                <div class="slds-grid_vertical slds-text-heading_small">
+                    <h2 class="slds-m-bottom_x-small"> <a onclick="{!c.goToProduct}"> {!v.product.Name} </a> </h2>
+                    <lightning:formattedNumber style="currency" value="{!v.unitPrice}" currencyCode="{!v.currency}"/>
+                </div>
+                <div class="slds-col_bump-left">
+                    <lightning:buttonIcon iconName="utility:cart" size="large" variant="brand" alternativeText="Add to Cart"/>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</aura:component>

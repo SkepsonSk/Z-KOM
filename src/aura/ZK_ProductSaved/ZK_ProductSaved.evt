@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="ZK_ProductSaved">
+    <aura:attribute name="productId" type="Id"/>
+</aura:event>

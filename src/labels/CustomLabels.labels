@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>DH_API_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>API Error</shortDescription>
+        <value>An unknown API error has occurred.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Clear</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Clear</shortDescription>
+        <value>Clear</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Clone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Delete_Image</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Delete Image</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Hire</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Hire</shortDescription>
+        <value>Hire</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Hire_Doctor</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Hire Doctor</shortDescription>
+        <value>Hire a Doctor</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Save_And_New</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Save And New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Send</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Send</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Sharing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Sharing</shortDescription>
+        <value>Sharing</value>
+    </labels>
+    <labels>
+        <fullName>DH_Button_Upload_Image</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Upload Image</shortDescription>
+        <value>Upload</value>
+    </labels>
+    <labels>
+        <fullName>DH_City</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>DH_Close</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>DH_Contract_Created_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contract Created Success</shortDescription>
+        <value>Contract created successfully.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Contract_Overlapping</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contract Overlapping</shortDescription>
+        <value>Cannot create contract due to date overlapping:</value>
+    </labels>
+    <labels>
+        <fullName>DH_Country</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>DH_Delete_Hospital_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete Hospital Confirmation</shortDescription>
+        <value>Are You sure You want to delete hospital %hospital%?</value>
+    </labels>
+    <labels>
+        <fullName>DH_Deleted_Doctor_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Deleted Doctor Success</shortDescription>
+        <value>Doctor has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Deletion_Confirmation_Question</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Deletion Confirmation Question</shortDescription>
+        <value>Are you sure you want to delete dr. %doctor%?</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctor_Detail</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctor Detail</shortDescription>
+        <value>Doctor Detail</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctor_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctor Edit</shortDescription>
+        <value>Doctor Edit</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctor_Editor_Edit_Doctor</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctor Editor Edit Doctor</shortDescription>
+        <value>Edit the Doctor</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctor_Editor_New_Doctor</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctor Editor New Doctor</shortDescription>
+        <value>New Doctor</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctor_Search_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctor Search Title</shortDescription>
+        <value>Search for a doctor</value>
+    </labels>
+    <labels>
+        <fullName>DH_Doctors_Found_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Doctors Found Title</shortDescription>
+        <value>Doctors Found</value>
+    </labels>
+    <labels>
+        <fullName>DH_Edit_Hospital</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit Hospital</shortDescription>
+        <value>Edit the Hospital</value>
+    </labels>
+    <labels>
+        <fullName>DH_Email_Field_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Field Name</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Export_To_CSV</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Export To CSV</shortDescription>
+        <value>Export to CSV</value>
+    </labels>
+    <labels>
+        <fullName>DH_Export_To_XLS</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Export To XLS</shortDescription>
+        <value>Export to XLS</value>
+    </labels>
+    <labels>
+        <fullName>DH_First_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>First Page</shortDescription>
+        <value>&lt;&lt; First</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hire_Doctor_For</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hire Doctor For</shortDescription>
+        <value>Hire a Doctor for:</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hospital_Detail</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hospital Detail</shortDescription>
+        <value>Hospital Detail</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hospital_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hospital Edit</shortDescription>
+        <value>Hospital Edit</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hospital_Map_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hospital Map Error</shortDescription>
+        <value>We are sorry, but the address of the hospital could not be found on our maps.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hospital_Map_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hospital Map Title</shortDescription>
+        <value>Where is the Hospital?</value>
+    </labels>
+    <labels>
+        <fullName>DH_Hospital_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hospital Name</shortDescription>
+        <value>Hospital Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Image_Remove_Confirm</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image Remove Confirm</shortDescription>
+        <value>Are You sure You want to delete the profile image?</value>
+    </labels>
+    <labels>
+        <fullName>DH_Image_Too_Big</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image Too Big</shortDescription>
+        <value>Image is too big.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Image_Upload</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image Upload</shortDescription>
+        <value>Upload Image</value>
+    </labels>
+    <labels>
+        <fullName>DH_Image_Upload_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image Upload Title</shortDescription>
+        <value>Image Uploading</value>
+    </labels>
+    <labels>
+        <fullName>DH_Image_Wrong_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image Wrong Type</shortDescription>
+        <value>Wrong image type.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Import_CSV_Doctors_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Import CSV Doctors Title</shortDescription>
+        <value>Select Doctors to import</value>
+    </labels>
+    <labels>
+        <fullName>DH_Import_CSV_Separator</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Import CSV Separator</shortDescription>
+        <value>Select CSV Separator</value>
+    </labels>
+    <labels>
+        <fullName>DH_Import_Load_CSV</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Import Load CSV</shortDescription>
+        <value>Load CSV</value>
+    </labels>
+    <labels>
+        <fullName>DH_Import_Upload_CSV</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Import Upload CSV</shortDescription>
+        <value>Upload CSV</value>
+    </labels>
+    <labels>
+        <fullName>DH_Input_Country</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Input Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>DH_Input_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Input Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Input_First_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Input First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Input_Last_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Input Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Invalid_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid Email</shortDescription>
+        <value>Please, provide us with an email.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Items_Per_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Items Per Page</shortDescription>
+        <value>Items per page:</value>
+    </labels>
+    <labels>
+        <fullName>DH_Label_From</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label From</shortDescription>
+        <value>From</value>
+    </labels>
+    <labels>
+        <fullName>DH_Label_To</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label To</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>DH_Last_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Last Page</shortDescription>
+        <value>Last &gt;&gt;</value>
+    </labels>
+    <labels>
+        <fullName>DH_New_Hospital</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>New Hospital</shortDescription>
+        <value>New Hospital</value>
+    </labels>
+    <labels>
+        <fullName>DH_Next_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next &gt;</value>
+    </labels>
+    <labels>
+        <fullName>DH_No_Results</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No Results</shortDescription>
+        <value>No Results</value>
+    </labels>
+    <labels>
+        <fullName>DH_No_Results_Found</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No Results Found</shortDescription>
+        <value>No results found for entered criteria. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Number_Of_Ambulances</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Number Of Ambulances</shortDescription>
+        <value>No. Ambulances</value>
+    </labels>
+    <labels>
+        <fullName>DH_Of</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Of</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>DH_Operation_Successful</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Operation Successful</shortDescription>
+        <value>Operation Successful</value>
+    </labels>
+    <labels>
+        <fullName>DH_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Page</shortDescription>
+        <value>Page</value>
+    </labels>
+    <labels>
+        <fullName>DH_Placeholder_Body</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder Body</shortDescription>
+        <value>Body</value>
+    </labels>
+    <labels>
+        <fullName>DH_Placeholder_Names</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder Names</shortDescription>
+        <value>Doctor Name (First + Last)</value>
+    </labels>
+    <labels>
+        <fullName>DH_Placeholder_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>DH_Postal_Code</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>DH_Previous_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>&lt; Previous</value>
+    </labels>
+    <labels>
+        <fullName>DH_Profile_Image_Preview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Profile Image Preview</shortDescription>
+        <value>Crop Preview</value>
+    </labels>
+    <labels>
+        <fullName>DH_Profile_Image_Source</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Profile Image Source</shortDescription>
+        <value>Source Image</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Actions</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Address</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Ambulances</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Ambulances</shortDescription>
+        <value>Number of ambulances</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Fax</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Fax</shortDescription>
+        <value>Fax</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Helicopter_Access</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Helicopter Access</shortDescription>
+        <value>Helicopter access</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_License_Number</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column License Number</shortDescription>
+        <value>License Number</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Parent_Unit_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Parent Unit Name</shortDescription>
+        <value>Parent Unit Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Column_Speciality</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Column Speciality</shortDescription>
+        <value>Speciality</value>
+    </labels>
+    <labels>
+        <fullName>DH_Public_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Public Title</shortDescription>
+        <value>DocHire&apos;s Hospitals</value>
+    </labels>
+    <labels>
+        <fullName>DH_Related_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Related Title</shortDescription>
+        <value>Related</value>
+    </labels>
+    <labels>
+        <fullName>DH_Result_Address</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>DH_Result_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Result_License_Number</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result License Number</shortDescription>
+        <value>License Number</value>
+    </labels>
+    <labels>
+        <fullName>DH_Result_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>DH_Result_Speciality</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Result Speciality</shortDescription>
+        <value>Speciality</value>
+    </labels>
+    <labels>
+        <fullName>DH_Search_For_External_Doctors</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search For External Doctors</shortDescription>
+        <value>Search For External Doctors</value>
+    </labels>
+    <labels>
+        <fullName>DH_Search_For_External_Hospitals</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search For External Hospitals</shortDescription>
+        <value>Search For External Hospitals</value>
+    </labels>
+    <labels>
+        <fullName>DH_Search_Result_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search Result Title</shortDescription>
+        <value>Search Results</value>
+    </labels>
+    <labels>
+        <fullName>DH_Section_Address</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>DH_Section_Contact_Details</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section Contact Details</shortDescription>
+        <value>Contact Details</value>
+    </labels>
+    <labels>
+        <fullName>DH_Section_Details</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section Details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>DH_Section_General</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section General</shortDescription>
+        <value>General</value>
+    </labels>
+    <labels>
+        <fullName>DH_Selected_Doctor_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Selected Doctor Title</shortDescription>
+        <value>You selected dr.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Send_Email_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Send Email Title</shortDescription>
+        <value>Send Email</value>
+    </labels>
+    <labels>
+        <fullName>DH_Spinner_Loading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Spinner Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>DH_Street</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>DH_Success_Email_Sent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success Email Sent</shortDescription>
+        <value>Email was sent!</value>
+    </labels>
+    <labels>
+        <fullName>DH_Success_Hospital_Deleted</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success Hospital Deleted</shortDescription>
+        <value>Hospital has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>DH_Success_Image_Changed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success Image Changed</shortDescription>
+        <value>Profile Image has been changed.</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Doctor_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete Doctor Confirmation</shortDescription>
+        <value>Delete Doctor Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>Success_Image_Removed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success Image Removed</shortDescription>
+        <value>Image has been removed.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Finish</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Finish</shortDescription>
+        <value>Finish</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_New</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Next</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Previous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Save_And_Next</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Save And Next</shortDescription>
+        <value>Save and Next</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Delete_Assurance</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete Assurance</shortDescription>
+        <value>Are you sure you want to delete</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Error_Wrong_Warranty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Wrong Warranty</shortDescription>
+        <value>Warranty must be a number</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Active</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Category</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Product_Code</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Product Code</shortDescription>
+        <value>Product Code</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Product_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Product Name</shortDescription>
+        <value>Product Name</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Field_Warranty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field Warranty</shortDescription>
+        <value>Warranty in Months</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Label_Images_Upload</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label Images Upload</shortDescription>
+        <value>Upload Images for the product</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Loading</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Marking_Selected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Marking Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_No_Products_Found</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message No Products Found</shortDescription>
+        <value>No products found.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_Selected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Selected</shortDescription>
+        <value>Images</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Option_Everywhere</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Option Everywhere</shortDescription>
+        <value>Everywhere</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Placeholder_Product_Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placeholder Product Search</shortDescription>
+        <value>What product are you looking for?</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Step_Basic_Info</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step Basic Info</shortDescription>
+        <value>Basic Information</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Step_Display_Image</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step Display Image</shortDescription>
+        <value>Select Profile Image</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Step_Images</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step Images</shortDescription>
+        <value>Images</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Step_Product_Profile_Image</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step Product Profile Image</shortDescription>
+        <value>Select Profile Image</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_All_Products</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title All Products</shortDescription>
+        <value>All Products</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Explore_Product</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Explore Product</shortDescription>
+        <value>Explore products in category</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Products</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Search_Product</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Search Product</shortDescription>
+        <value>Search for a specific product</value>
+    </labels>
+</CustomLabels>
