@@ -8,9 +8,11 @@
 
         <aura:if isTrue="{!not(empty(v.products))}">
             <div class="slds-size_1-of-1">
+
                 <h3 class="slds-text-align_center slds-text-heading_medium slds-p-bottom_large">
                     {!$Label.c.ZK_Title_Products} ({!v.products.length})
                 </h3>
+
             </div>
         </aura:if>
 

@@ -11,43 +11,46 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <h2 class="slds-text-heading_medium slds-text-align_center slds-m-around_medium">
-        {!$Label.c.ZK_Title_Search_Product}
+            {!$Label.c.ZK_Title_Search_Product}
     </h2>
 
-    <lightning:layout horizontalAlign="center">
+    <form>
+        <lightning:layout horizontalAlign="center">
 
-        <lightning:layoutItem size="7" class="slds-p-around_xx-small">
-            <lightning:input label="Product Name"
-                             class="slds-text-heading_small"
-                             placeholder="{!$Label.c.ZK_Placeholder_Product_Search}"
-                             variant="label-hidden"
-                             value="{!v.productName}"/>
-        </lightning:layoutItem>
+            <lightning:layoutItem size="7" class="slds-p-around_xx-small">
+                <lightning:input label="Product Name"
+                                 class="slds-text-heading_small"
+                                 placeholder="{!$Label.c.ZK_Placeholder_Product_Search}"
+                                 variant="label-hidden"
+                                 value="{!v.productName}"/>
+            </lightning:layoutItem>
 
-        <lightning:layoutItem size="2" class="slds-p-around_xx-small">
-            <lightning:select label="Category"
-                              value="{!v.categoryName}"
-                              class="slds-text-heading_small"
-                              variant="label-hidden">
-                <option value="Everywhere"> {!$Label.c.ZK_Option_Everywhere} </option>
-                <aura:iteration items="{!v.categories}"
-                                var="category">
-                    <option value="{!category}"> {!category} </option>
-                </aura:iteration>
-            </lightning:select>
-        </lightning:layoutItem>
+            <lightning:layoutItem size="2" class="slds-p-around_xx-small">
+                <lightning:select label="Category"
+                                  value="{!v.categoryName}"
+                                  class="slds-text-heading_small"
+                                  variant="label-hidden">
+                    <option value="Everywhere"> {!$Label.c.ZK_Option_Everywhere} </option>
+                    <aura:iteration items="{!v.categories}"
+                                    var="category">
+                        <option value="{!category}"> {!category} </option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
 
-        <lightning:layoutItem size="1" class="slds-p-around_xx-small">
-            <lightning:button class="slds-size_1-of-1 slds-text-heading_small height-full"
-                              label="{!$Label.c.ZK_Button_Search}"
-                              variant="brand"
-                              onclick="{!c.onSearchClick}"/>
-        </lightning:layoutItem>
+            <lightning:layoutItem size="1" class="slds-p-around_xx-small">
+                <lightning:button class="slds-size_1-of-1 slds-text-heading_small height-full"
+                                  label="{!$Label.c.ZK_Button_Search}"
+                                  variant="brand"
+                                  onclick="{!c.onSearchClick}"/>
+            </lightning:layoutItem>
 
-    </lightning:layout>
+        </lightning:layout>
+
+    </form>
 
     <h2 class="slds-text-heading_small slds-text-align_center slds-m-around_medium">
-        {!$Label.c.ZK_Title_Explore_Product}
+            {!$Label.c.ZK_Title_Explore_Product}
     </h2>
 
     <div class="slds-grid bg-gray">

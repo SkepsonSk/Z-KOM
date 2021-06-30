@@ -11,7 +11,7 @@
                component.set('v.image', '/sfc/servlet.shepherd/document/download/' + product.Display_Image__c);
            }
            else{
-               component.set('v.image', '/sfc/servlet.shepherd/document/download/' + images[0]);
+               component.set('v.image', '/sfc/servlet.shepherd/document/download/' + images[0].ContentDocumentId);
            }
 
         }

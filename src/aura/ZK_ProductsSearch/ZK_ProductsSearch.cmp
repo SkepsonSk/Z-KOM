@@ -1,6 +1,7 @@
 <aura:component description="ZK_ProductsSearch"
                 controller="ZK_ProductsController"
-                implements="flexipage:availableForAllPageTypes">
+                access="global"
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
 
     <aura:attribute name="products" type="Object[]"/>
     <aura:attribute name="currency" type="String"/>
