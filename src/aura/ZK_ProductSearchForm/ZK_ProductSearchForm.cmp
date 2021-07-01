@@ -10,6 +10,8 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+    <aura:method name="resetValidity" action="{!c.resetValidity}"/>
+
     <h2 class="slds-text-heading_medium slds-text-align_center slds-m-around_medium">
             {!$Label.c.ZK_Title_Search_Product}
     </h2>
@@ -17,11 +19,13 @@
     <form>
         <lightning:layout horizontalAlign="center">
 
-            <lightning:layoutItem size="7" class="slds-p-around_xx-small">
-                <lightning:input label="Product Name"
+            <lightning:layoutItem size="6" class="slds-p-around_xx-small">
+                <lightning:input aura:id="productNameInput"
+                                 label="Product Name"
                                  class="slds-text-heading_small"
                                  placeholder="{!$Label.c.ZK_Placeholder_Product_Search}"
                                  variant="label-hidden"
+                                 messageWhenBadInput="Name cannot be empty."
                                  value="{!v.productName}"/>
             </lightning:layoutItem>
 
@@ -43,6 +47,13 @@
                                   label="{!$Label.c.ZK_Button_Search}"
                                   variant="brand"
                                   onclick="{!c.onSearchClick}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="1" class="slds-p-around_xx-small">
+                <lightning:button class="slds-size_1-of-1 slds-text-heading_small height-full"
+                                  label="All"
+                                  variant="neutral"
+                                  onclick="{!c.onAllClick}"/>
             </lightning:layoutItem>
 
         </lightning:layout>

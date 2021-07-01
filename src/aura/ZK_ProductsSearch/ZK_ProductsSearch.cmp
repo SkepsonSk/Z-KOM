@@ -3,6 +3,9 @@
                 access="global"
                 implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
 
+    <aura:attribute name="size" access="global" type="String" default="normal" required="true"/>
+    <aura:attribute name="destination" access="global" type="String" default="normal" required="true"/>
+
     <aura:attribute name="products" type="Object[]"/>
     <aura:attribute name="currency" type="String"/>
     <aura:attribute name="loading" type="Boolean" default="{!true}"/>
@@ -13,12 +16,12 @@
 
     <lightning:card>
         <c:ZK_Spinner visible="{!v.loading}"/>
-        <c:ZK_ProductSearchForm/>
+        <c:ZK_ProductSearchForm aura:id="productSearchForm"/>
     </lightning:card>
 
     <lightning:card>
         <c:ZK_Spinner visible="{!v.loading}"/>
-        <c:ZK_Products products="{!v.products}" currency="{!v.currency}"/>
+        <c:ZK_Products size="{!v.size}" destination="{!v.destination}" products="{!v.products}" currency="{!v.currency}"/>
     </lightning:card>
 
 </aura:component>
