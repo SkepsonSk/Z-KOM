@@ -17,6 +17,9 @@
         productNameInput.setCustomValidity('');
         productNameInput.reportValidity();
 
+        component.set('v.productName', '');
+        component.set('v.categoryName', 'Everywhere');
+
         const categoryName = component.get('v.categoryName');
         const mode = helper.defineMode(productName, categoryName);
 
@@ -31,12 +34,16 @@
     },
 
     onAllClick: function(component, event, helper) {
+        component.set('v.productName', '');
+        component.set('v.categoryName', 'Everywhere');
+
         const searchFormSubmitted = component.getEvent('searchFormSubmitted');
         searchFormSubmitted.setParams({
             productName: '',
             categoryName: '',
             mode: 'all'
         });
+        searchFormSubmitted.fire();
     },
 
     resetValidity: function(component, event, helper) {
