@@ -1,0 +1,52 @@
+<aura:component description="ZK_ProductCreateReview">
+
+    <aura:attribute name="reviewId" type="Id"/>
+    <aura:attribute name="productId" type="Id" required="true"/>
+
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="Object"/>
+
+    <aura:registerEvent name="ZK_ReviewsUpdated" type="c:ZK_ReviewsUpdated"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibInner"/>
+
+    <force:recordData aura:id="recordEditor"
+                      recordId="{!v.reviewId}"
+                      targetError="{!v.recordError}"
+                      targetFields="{!v.simpleRecord}"
+                      targetRecord="{!v.record}"
+                      mode="EDIT"
+                      fields="Rating__c,Text_Review__c,Product__c"/>
+
+    <div class="slds-grid_vertical slds-size_1-of-1">
+
+        <div style="display: none">
+            <lightning:input aura:id="productIdInput"
+                             value="{!v.simpleRecord.Product__c}"
+                             label=""/>
+        </div>
+
+        <div>
+            <p> Rating </p>
+            <c:ZK_RatingInput rating="{!v.simpleRecord.Rating__c}"
+                              readOnly="false"/>
+        </div>
+
+        <div class="slds-m-top_small">
+            <p> Text Review </p>
+            <lightning:inputRichText  value="{!v.simpleRecord.Text_Review__c}" label="Text Review"/>
+        </div>
+
+        <div class="slds-grid slds-m-top_small">
+            <div class="slds-col_bump-left">
+                <lightning:button variant="brand" onclick="{!c.onPostClick}"> Post </lightning:button>
+            </div>
+        </div>
+
+    </div>
+
+
+</aura:component>

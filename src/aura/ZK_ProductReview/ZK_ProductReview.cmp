@@ -1,0 +1,22 @@
+<aura:component description="ZK_ProductReview">
+
+    <aura:attribute name="review" type="Object"/>
+
+    <div class="slds-box">
+
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <lightning:avatar src="{!v.review.CreatedBy.SmallPhotoUrl}" alternativeText="{!v.review.CreateBy.Name + ' photo'}"/>
+            <h2 class="slds-m-left_medium"> {!v.review.CreatedBy.Name} </h2>
+
+            <div class="slds-col_bump-left">
+                <c:ZK_RatingInput readOnly="true" rating="{!v.review.Rating__c}"/>
+            </div>
+        </div>
+
+        <div class="slds-m-top_medium">
+            <lightning:formattedRichText value="{!v.review.Text_Review__c}"/>
+        </div>
+
+    </div>
+
+</aura:component>

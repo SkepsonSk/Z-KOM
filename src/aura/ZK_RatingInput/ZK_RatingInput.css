@@ -1,0 +1,7 @@
+.THIS .cursor-pointer {
+    cursor: pointer;
+}
+
+.THIS .cursor-normal {
+    cursor: default;
+}

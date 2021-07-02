@@ -1,0 +1,39 @@
+<aura:component description="ZK_ProductReviews"
+                controller="ZK_ProductReviewsController"
+                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId">
+
+    <aura:attribute name="currentProfile" type="Object"/>
+    <aura:attribute name="reviews" type="Object[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:handler event="c:ZK_ReviewsUpdated" action="{!c.onReviewUpdated}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <lightning:card>
+        <div class="slds-grid slds-size_1-of-1 slds-p-horizontal_medium slds-grid_vertical-align-center">
+
+            <div>
+                <h2> Reviews ({!v.reviews.length}) </h2>
+            </div>
+
+            <aura:if isTrue="{!v.currentProfile.Name == 'Custom Customer Community User'}">
+                <div class="slds-col_bump-left">
+                    <lightning:button variant="neutral" onclick="{!c.onNewReviewClick}"> New Review</lightning:button>
+                </div>
+            </aura:if>
+
+        </div>
+
+        <div class="slds-p-horizontal_medium slds-size_1-of-1  slds-m-top_medium">
+            <aura:iteration items="{!v.reviews}" var="review">
+                <div class="slds-m-top_small">
+                    <c:ZK_ProductReview review="{!review}"/>
+                </div>
+            </aura:iteration>
+        </div>
+
+    </lightning:card>
+
+</aura:component>
