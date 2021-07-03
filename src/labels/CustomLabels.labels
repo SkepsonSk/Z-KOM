@@ -757,6 +757,13 @@
         <value>Image has been removed.</value>
     </labels>
     <labels>
+        <fullName>ZK_Alternative_Close_Icon</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alternative Close Icon</shortDescription>
+        <value>X</value>
+    </labels>
+    <labels>
         <fullName>ZK_Button_Cancel</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -890,6 +897,27 @@
         <value>Selected</value>
     </labels>
     <labels>
+        <fullName>ZK_Message_Added_To_Cart</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Added To Cart</shortDescription>
+        <value>Product has been added to cart</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_Cart_Empty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Cart Empty</shortDescription>
+        <value>Your cart is empty.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_Contact_Admin</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Contact Admin</shortDescription>
+        <value>Please, contact the administrator.</value>
+    </labels>
+    <labels>
         <fullName>ZK_Message_No_Products_Found</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -897,11 +925,32 @@
         <value>No products found.</value>
     </labels>
     <labels>
+        <fullName>ZK_Message_Proceed_to_Cash</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Proceed to Cash</shortDescription>
+        <value>Proceed to Cash</value>
+    </labels>
+    <labels>
         <fullName>ZK_Message_Selected</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Message Selected</shortDescription>
         <value>Images</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_Title_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Title Error</shortDescription>
+        <value>An error has occurred.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_Total_Cart_Price</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Total Cart Price</shortDescription>
+        <value>Total Cart Price:</value>
     </labels>
     <labels>
         <fullName>ZK_Option_Everywhere</fullName>
@@ -972,5 +1021,12 @@
         <protected>true</protected>
         <shortDescription>Title Search Product</shortDescription>
         <value>Search for a specific product</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Your_Cart</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Your Cart</shortDescription>
+        <value>Your Cart</value>
     </labels>
 </CustomLabels>
