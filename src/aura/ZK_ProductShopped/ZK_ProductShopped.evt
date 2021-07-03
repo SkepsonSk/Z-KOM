@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="ZK_ProductShopped">
+    <aura:attribute name="product" type="Object"/>
+</aura:event>

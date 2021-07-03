@@ -1,21 +1,10 @@
 ({
 
     doInit: function (component, event, helper) {
-
         const images = component.get('v.images');
         const product = component.get('v.product');
 
-        if (images.length > 0) {
-
-           if (product.Display_Image__c != null){
-               component.set('v.image', '/sfc/servlet.shepherd/document/download/' + product.Display_Image__c);
-           }
-           else{
-               component.set('v.image', '/sfc/servlet.shepherd/document/download/' + images[0].ContentDocumentId);
-           }
-
-        }
-
+        helper.determineDisplayImage(component, images, product);
     },
 
     goToProduct: function(component, event, helper) {
@@ -28,7 +17,16 @@
             'slideDevName': 'related'
         });
         navEvt.fire();
+    },
 
+    onProductShop: function (component, event, helper) {
+        const product = component.get('v.product');
+
+        const productShopped = $A.get('e.c:ZK_ProductShopped');
+        productShopped.setParams({
+            product: product
+        });
+        productShopped.fire();
     }
 
 });
