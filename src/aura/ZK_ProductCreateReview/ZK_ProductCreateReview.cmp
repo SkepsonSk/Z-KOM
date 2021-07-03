@@ -30,19 +30,22 @@
         </div>
 
         <div>
-            <p> Rating </p>
+            <p class="slds-text-heading_small slds-m-bottom_x-small"> {!$Label.c.ZK_Label_Rating} </p>
             <c:ZK_RatingInput rating="{!v.simpleRecord.Rating__c}"
                               readOnly="false"/>
         </div>
 
         <div class="slds-m-top_small">
-            <p> Text Review </p>
-            <lightning:inputRichText  value="{!v.simpleRecord.Text_Review__c}" label="Text Review"/>
+            <p class="slds-text-heading_small slds-m-bottom_x-small"> {!$Label.c.ZK_Label_Text_Review} </p>
+            <lightning:inputRichText value="{!v.simpleRecord.Text_Review__c}"
+                                     label="{!$Label.c.ZK_Label_Text_Review}"/>
         </div>
 
         <div class="slds-grid slds-m-top_small">
             <div class="slds-col_bump-left">
-                <lightning:button variant="brand" onclick="{!c.onPostClick}"> Post </lightning:button>
+                <lightning:button variant="brand" onclick="{!c.onPostClick}">
+                    {!$Label.c.ZK_Button_Post_Review}
+                </lightning:button>
             </div>
         </div>
 

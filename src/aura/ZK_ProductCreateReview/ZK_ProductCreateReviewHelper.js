@@ -35,10 +35,13 @@
                 const reviewsUpdated = $A.get('e.c:ZK_ReviewsUpdated');
                 reviewsUpdated.fire();
 
+                const titleLabel = $A.get('$Label.c.ZK_Toast_Review_Posted');
+                const messageLabel = $A.get('$Label.c.ZK_Toast_Thanks_For_Review');
+
                 const toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
-                    title: 'Success!',
-                    message: 'The review has been posted.',
+                    title: titleLabel,
+                    message: messageLabel,
                     type: 'success'
                 });
                 toastEvent.fire();

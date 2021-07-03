@@ -1,33 +1,16 @@
 ({
-
-
     onRate: function (component, event, helper) {
-        const readOnly = component.get('v.readOnly');
-        if (readOnly){
-            return;
-        }
-
         const rate = event.target.id;
-        component.set('v.rating', rate);
+        helper.setRating(component, rate, false);
     },
 
     setTempRate: function(component, event, helper) {
-        const readOnly = component.get('v.readOnly');
-        if (readOnly){
-            return;
-        }
-
         const rate = event.target.id;
-        component.set('v.tempRating', rate);
+        helper.setRating(component, rate, true);
     },
 
     resetTempRate: function(component, event, helper) {
-        const readOnly = component.get('v.readOnly');
-        if (readOnly){
-            return;
-        }
-
-        component.set('v.tempRating', 0);
+        helper.setRating(component, 0, true);
     }
 
 });

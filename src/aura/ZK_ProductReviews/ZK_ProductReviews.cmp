@@ -15,18 +15,26 @@
         <div class="slds-grid slds-size_1-of-1 slds-p-horizontal_medium slds-grid_vertical-align-center">
 
             <div>
-                <h2> Reviews ({!v.reviews.length}) </h2>
+                <h2> {!$Label.c.ZK_Title_Reviews} ({!v.reviews.length}) </h2>
             </div>
 
             <aura:if isTrue="{!v.currentProfile.Name == 'Custom Customer Community User'}">
                 <div class="slds-col_bump-left">
-                    <lightning:button variant="neutral" onclick="{!c.onNewReviewClick}"> New Review</lightning:button>
+                    <lightning:button variant="neutral"
+                                      onclick="{!c.onNewReviewClick}">
+                            {!$Label.c.ZK_Button_Add_Review}
+                    </lightning:button>
                 </div>
             </aura:if>
 
         </div>
 
         <div class="slds-p-horizontal_medium slds-size_1-of-1  slds-m-top_medium">
+
+            <aura:if isTrue="{!v.reviews.length == 0}">
+                <p> {!$Label.c.ZK_Message_No_Reviews} </p>
+            </aura:if>
+
             <aura:iteration items="{!v.reviews}" var="review">
                 <div class="slds-m-top_small">
                     <c:ZK_ProductReview review="{!review}"/>

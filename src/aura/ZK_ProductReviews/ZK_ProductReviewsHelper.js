@@ -27,7 +27,8 @@
             if (state === 'SUCCESS') {
                 component.set('v.reviews', res.getReturnValue());
             }
-            else{
+            else {
+                alert(state);
                 alert(JSON.stringify(res.getError()));
             }
         });
