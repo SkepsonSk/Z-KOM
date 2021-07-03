@@ -22,11 +22,13 @@
     onProductShop: function (component, event, helper) {
         const product = component.get('v.product');
         const image = component.get('v.image');
+        const unitPrice = component.get('v.unitPrice');
 
         const productShopped = $A.get('e.c:ZK_ProductShopped');
         productShopped.setParams({
             product: product,
-            image: image
+            image: image,
+            unitPrice: unitPrice
         });
         productShopped.fire();
     }

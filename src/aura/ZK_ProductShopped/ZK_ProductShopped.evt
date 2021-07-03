@@ -1,4 +1,5 @@
 <aura:event type="APPLICATION" description="ZK_ProductShopped">
     <aura:attribute name="product" type="Object"/>
     <aura:attribute name="image" type="String"/>
+    <aura:attribute name="unitPrice" type="Decimal"/>
 </aura:event>
