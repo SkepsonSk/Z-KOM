@@ -37,6 +37,15 @@
                 component.set('v.products', products);
 
                 this.determineTotalPrice(component);
+
+                if (products.length === 0) {
+                    component.set('v.cartVisible', false);
+                }
+            }
+            else {
+                this.sendErrorMessage();
+                console.log(state);
+                console.log(res.getError());
             }
 
             component.set('v.loading', false);
@@ -83,6 +92,15 @@
                     component.set('v.cartSize', cartSize-productAmount);
 
                     this.determineTotalPrice(component);
+
+                    if (products.length === 0) {
+                        component.set('v.cartVisible', false);
+                    }
+                }
+                else {
+                    this.sendErrorMessage();
+                    console.log(state);
+                    console.log(res.getError());
                 }
 
                 component.set('v.loading', false);
@@ -104,6 +122,19 @@
         }
 
         component.set('v.totalPrice', totalPrice);
+    },
+
+    sendErrorMessage: function () {
+        const titleLabel = $A.get("$Label.c.ZK_Message_Title_Error");
+        const messageLabel = $A.get("$Label.c.ZK_Message_Contact_Admin");
+
+        const toastEvent = $A.get('e.force:showToast');
+        toastEvent.setParams({
+            title: titleLabel,
+            message: messageLabel,
+            type: 'error'
+        });
+        toastEvent.fire();
     }
 
 });

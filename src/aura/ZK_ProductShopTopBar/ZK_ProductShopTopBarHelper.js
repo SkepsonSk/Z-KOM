@@ -90,20 +90,25 @@
     },
 
     sendCartAddedMessage: function (product, amount) {
+        const messageLabel = $A.get("$Label.c.ZK_Message_Added_To_Cart");
+
         const toastEvent = $A.get('e.force:showToast');
         toastEvent.setParams({
             title: product.Name + ' x' + amount,
-            message: 'Product has been added to cart',
+            message: messageLabel,
             type: 'success'
         });
         toastEvent.fire();
     },
 
     sendErrorMessage: function () {
+        const titleLabel = $A.get("$Label.c.ZK_Message_Title_Error");
+        const messageLabel = $A.get("$Label.c.ZK_Message_Contact_Admin");
+
         const toastEvent = $A.get('e.force:showToast');
         toastEvent.setParams({
-            title: 'An error has occurred.',
-            message: 'Please, contact the administrator.',
+            title: titleLabel,
+            message: messageLabel,
             type: 'error'
         });
         toastEvent.fire();
