@@ -1,0 +1,29 @@
+<aura:component description="ZK_ProductShopTopBar">
+
+    <aura:attribute name="cartSize" type="Integer" default="0"/>
+    <aura:attribute name="productsInCart" type="Object[]" default="[]"/>
+    <aura:attribute name="cartVisible" type="Boolean" default="false"/>
+
+    <aura:handler event="c:ZK_ProductShopped" action="{!c.onProductShopped}"/>
+
+    <div class="slds-size_1-of-1 slds-box slds-is-relative">
+
+        <c:ZK_ProductCart aura:id="productCart"
+                          cartVisible="{!v.cartVisible}"
+                          cartSize="{!v.cartSize}"
+                          products="{!v.productsInCart}"/>
+
+        <div class="slds-grid slds-p-horizontal_medium">
+
+            <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center cursor-pointer"
+                 onclick="{!c.onCartClick}">
+                <lightning:icon iconName="utility:cart" size="medium"/>
+                <p class="slds-m-left_medium slds-text-heading_small cart-items-indicator">
+                        {!greaterthanorequal(v.cartSize, 10) ? '9+' : v.cartSize}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</aura:component>

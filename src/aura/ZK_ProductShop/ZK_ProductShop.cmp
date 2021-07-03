@@ -1,0 +1,13 @@
+<aura:component description="ZK_ProductShop"
+                implements="forceCommunity:availableForAllPageTypes">
+
+    <div>
+        <c:ZK_ProductShopTopBar/>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <c:ZK_ProductsSearch destination="client"
+                             size="small"/>
+    </div>
+
+</aura:component>
