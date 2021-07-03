@@ -1,4 +1,8 @@
 ({
+    doInit: function(component, event, helper) {
+        helper.fetchCart(component);
+    },
+
     onCartClick: function(component, event, helper){
         component.set('v.cartVisible', true);
     },

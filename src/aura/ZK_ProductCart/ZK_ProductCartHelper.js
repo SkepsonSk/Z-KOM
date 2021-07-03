@@ -1,6 +1,8 @@
 ({
 
     changeProductQuantity: function(component, productId, byQuantity) {
+        component.set('v.loading', true);
+
         const products = component.get('v.products');
         let finalAmount = 0;
         let productIndex;
@@ -21,15 +23,32 @@
             products.splice(productIndex, 1);
         }
 
-        const cartSize = component.get('v.cartSize');
-        component.set('v.cartSize', cartSize+byQuantity);
+        const action = component.get('c.setProductsCart');
+        action.setParams({
+            cart: products
+        });
 
-        component.set('v.products', products);
+        action.setCallback(this, res => {
 
-        this.determineTotalPrice(component);
+            const state = res.getState();
+            if (state === 'SUCCESS') {
+                const cartSize = component.get('v.cartSize');
+                component.set('v.cartSize', cartSize+byQuantity);
+                component.set('v.products', products);
+
+                this.determineTotalPrice(component);
+            }
+
+            component.set('v.loading', false);
+
+        });
+
+        $A.enqueueAction(action);
     },
 
     removeProduct: function(component, productId) {
+        component.set('v.loading', true);
+
         const products = component.get('v.products');
         let productIndex = -1;
         let productAmount = 0;
@@ -47,12 +66,30 @@
 
         if (productIndex !== -1) {
             products.splice(productIndex, 1);
-            component.set('v.products', products);
 
-            const cartSize = component.get('v.cartSize');
-            component.set('v.cartSize', cartSize-productAmount);
+            const action = component.get('c.setProductsCart');
+            action.setParams({
+                cart: products
+            });
 
-            this.determineTotalPrice(component);
+            action.setCallback(this, res => {
+
+                const state = res.getState();
+
+                if (state === 'SUCCESS') {
+                    component.set('v.products', products);
+
+                    const cartSize = component.get('v.cartSize');
+                    component.set('v.cartSize', cartSize-productAmount);
+
+                    this.determineTotalPrice(component);
+                }
+
+                component.set('v.loading', false);
+
+            });
+
+            $A.enqueueAction(action);
         }
     },
 

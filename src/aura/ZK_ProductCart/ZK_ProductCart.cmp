@@ -1,15 +1,18 @@
-<aura:component description="ZK_ProductCart">
+<aura:component description="ZK_ProductCart"
+                controller="ZK_ProductCartController">
 
     <aura:attribute name="cartVisible" type="Boolean" required="true"/>
     <aura:attribute name="products" type="Object[]" required="true"/>
     <aura:attribute name="cartSize" type="Integer" required="true"/>
-
     <aura:attribute name="totalPrice" type="Decimal"/>
+    <aura:attribute name="loading" type="Boolean" default="false"/>
 
     <aura:method name="recalculateTotalPrice" action="{!c.recalculateTotalPrice}"/>
 
     <aura:if isTrue="{!v.cartVisible}">
         <div class="slds-is-absolute cart-box slds-box">
+
+            <c:ZK_Spinner visible="{!v.loading}"/>
 
             <div class="slds-grid slds-grid_vertical-align-center">
                 <div>
@@ -73,7 +76,9 @@
                         </div>
 
                         <div class="slds-col_bump-left">
-                            <lightning:button variant="brand"> Proceed to Cash </lightning:button>
+                            <lightning:button variant="brand" class="slds-text-heading_small slds-p-around_small">
+                                Proceed to Cash
+                            </lightning:button>
                         </div>
 
                     </div>

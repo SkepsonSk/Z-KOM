@@ -1,9 +1,11 @@
-<aura:component description="ZK_ProductShopTopBar">
+<aura:component description="ZK_ProductShopTopBar"
+                controller="ZK_ProductCartController">
 
     <aura:attribute name="cartSize" type="Integer" default="0"/>
     <aura:attribute name="productsInCart" type="Object[]" default="[]"/>
     <aura:attribute name="cartVisible" type="Boolean" default="false"/>
 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_ProductShopped" action="{!c.onProductShopped}"/>
 
     <div class="slds-size_1-of-1 slds-box slds-is-relative">
