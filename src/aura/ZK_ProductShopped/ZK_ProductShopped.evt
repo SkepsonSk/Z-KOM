@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="ZK_ProductShopped">
     <aura:attribute name="product" type="Object"/>
+    <aura:attribute name="image" type="String"/>
 </aura:event>

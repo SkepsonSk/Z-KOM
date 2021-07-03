@@ -21,10 +21,12 @@
 
     onProductShop: function (component, event, helper) {
         const product = component.get('v.product');
+        const image = component.get('v.image');
 
         const productShopped = $A.get('e.c:ZK_ProductShopped');
         productShopped.setParams({
-            product: product
+            product: product,
+            image: image
         });
         productShopped.fire();
     }
