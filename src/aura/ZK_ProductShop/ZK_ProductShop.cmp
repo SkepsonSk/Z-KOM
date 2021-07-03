@@ -1,12 +1,19 @@
 <aura:component description="ZK_ProductShop"
+                controller="ZK_ProductCartController"
                 implements="forceCommunity:availableForAllPageTypes">
 
-    <div>
-        <c:ZK_ProductShopTopBar/>
-    </div>
+    <aura:attribute name="userProfile" type="Object"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.userProfile.Name != 'ZKOM Service Profile'}">
+        <div>
+            <c:ZK_ProductShopTopBar/>
+        </div>
+    </aura:if>
 
     <div class="slds-m-top_medium">
-        <c:ZK_ProductsSearch destination="client"
+        <c:ZK_ProductsSearch destination="{!v.userProfile.Name != 'ZKOM Service Profile' ? 'client' : 'guest'}"
                              size="small"/>
     </div>
 

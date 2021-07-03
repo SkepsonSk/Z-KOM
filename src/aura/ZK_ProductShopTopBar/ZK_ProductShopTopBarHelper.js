@@ -7,6 +7,10 @@
 
             if (state === 'SUCCESS') {
                 const products = res.getReturnValue();
+                if (products === null) {
+                    return;
+                }
+
                 component.set('v.productsInCart', products);
 
                 const productCart = component.find('productCart');
@@ -19,10 +23,6 @@
                 }
 
                 component.set('v.cartSize', cartSize);
-            }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
             }
 
         });
@@ -78,8 +78,9 @@
                 this.sendCartAddedMessage(product, productsAmount);
             }
             else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                this.sendErrorMessage();
+                console.log(state);
+                console.log(res.getError());
             }
 
         });
@@ -94,6 +95,16 @@
             title: product.Name + ' x' + amount,
             message: 'Product has been added to cart',
             type: 'success'
+        });
+        toastEvent.fire();
+    },
+
+    sendErrorMessage: function () {
+        const toastEvent = $A.get('e.force:showToast');
+        toastEvent.setParams({
+            title: 'An error has occurred.',
+            message: 'Please, contact the administrator.',
+            type: 'error'
         });
         toastEvent.fire();
     }
