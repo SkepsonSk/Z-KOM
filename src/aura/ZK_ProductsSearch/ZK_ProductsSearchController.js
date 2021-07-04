@@ -19,7 +19,6 @@
         else if (mode === 'name-only'){
             helper.fetchProductsByName(component, productName);
         }
-        //TODO remove
         else if (mode === 'all-in-category') {
             helper.fetchProductsByCategory(component, categoryName);
         }
