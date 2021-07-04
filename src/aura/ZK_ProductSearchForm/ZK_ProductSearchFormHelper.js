@@ -1,10 +1,8 @@
 ({
 
     fetchCategories: function(component) {
-
         const action = component.get('c.getCategoriesPickList');
         action.setCallback(this, res => {
-
            const state = res.getState();
 
             if (state === 'SUCCESS') {
@@ -13,11 +11,9 @@
             else {
                 console.log(res.getError());
             }
-
         });
 
         $A.enqueueAction(action);
-
     },
 
     defineMode: function(name, category) {

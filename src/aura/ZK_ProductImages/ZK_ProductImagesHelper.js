@@ -1,5 +1,4 @@
 ({
-
     fetchImages: function(component, productId) {
 
         const action = component.get('c.getProductData');
@@ -77,6 +76,28 @@
 
             }
         });
+    },
+
+    nextImage: function (component, images, index) {
+        if (index === images.length-1) {
+            component.set('v.currentIndex', 0);
+            component.set('v.currentImage', images[0]);
+        }
+        else {
+            component.set('v.currentIndex', index+1);
+            component.set('v.currentImage', images[index+1]);
+        }
+    },
+
+    previousImage: function (component, images, index) {
+        if (index === 0) {
+            component.set('v.currentIndex', images.length-1);
+            component.set('v.currentImage', images[images.length-1]);
+        }
+        else {
+            component.set('v.currentIndex', index-1);
+            component.set('v.currentImage', images[index-1]);
+        }
     }
 
 })

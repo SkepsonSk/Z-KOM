@@ -8,7 +8,7 @@ public with sharing class ZK_ProductsController {
 
     @AuraEnabled
     public static List<Product2> getProducts() {
-        return [SELECT Id,ProductCode,Category__c,Name FROM Product2];
+        return [SELECT Id,ProductCode,Category__c,Name,Warranty_in_Months__c FROM Product2];
     }
 
     @AuraEnabled
@@ -71,9 +71,11 @@ public with sharing class ZK_ProductsController {
     @AuraEnabled
     public static List<String> getCategoriesPickList(){
         List<String> optionList = new List<String>();
-        Map<String,Schema.SObjectType> gd = Schema.getGlobalDescribe();
 
-        Map<String, Schema.SObjectField> field_map = gd.get('Product2').getDescribe().fields.getMap();
+        Schema.DescribeSObjectResult describe = ((SObject)Type.forName('Product2').newInstance())
+                .getSObjectType().getDescribe();
+
+        Map<String, Schema.SObjectField> field_map = describe.fields.getMap();
         List<Schema.PicklistEntry> picklistValues = field_map.get('Category__c').getDescribe().getPickListValues();
 
         for (Schema.PicklistEntry pv : picklistValues) {

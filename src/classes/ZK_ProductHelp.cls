@@ -12,8 +12,9 @@ public with sharing class ZK_ProductHelp {
             return productDataList;
         }
 
+
         List<ContentDocumentLink> documents
-                = [SELECT ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId IN :ids];
+                = [SELECT ContentDocumentId, LinkedEntityId,Visibility FROM ContentDocumentLink WHERE LinkedEntityId IN :ids];
 
         for (PricebookEntry entry : entries) {
 

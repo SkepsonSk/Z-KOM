@@ -1,5 +1,5 @@
 <aura:component description="ZK_ProductDescription"
-                implements="force:hasRecordId,flexipage:availableForRecordHome">
+                implements="force:hasRecordId,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes">
 
     <aura:attribute name="product" type="Object"/>
     <aura:attribute name="simpleProduct" type="Object"/>

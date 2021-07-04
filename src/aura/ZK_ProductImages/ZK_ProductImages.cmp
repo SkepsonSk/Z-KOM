@@ -1,5 +1,5 @@
 <aura:component description="ZK_ProductImages"
-                implements="force:hasRecordId,flexipage:availableForRecordHome"
+                implements="force:hasRecordId,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes"
                 controller="ZK_ProductsController">
 
     <aura:attribute name="images" type="String[]"/>

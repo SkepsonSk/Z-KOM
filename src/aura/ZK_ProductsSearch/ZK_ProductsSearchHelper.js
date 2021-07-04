@@ -5,7 +5,6 @@
 
         const action = component.get('c.listProducts');
         action.setCallback(this, res => {
-
             const state = res.getState();
 
             if (state === 'SUCCESS') {
@@ -14,11 +13,9 @@
             }
 
             component.set('v.loading', false);
-
         });
 
         $A.enqueueAction(action);
-
     },
 
     fetchProductsByName: function (component, productName) {
@@ -30,7 +27,6 @@
         });
 
         action.setCallback(this, res => {
-
             const state = res.getState();
 
             if (state === 'SUCCESS') {
@@ -39,7 +35,6 @@
             }
 
             component.set('v.loading', false);
-
         });
 
         $A.enqueueAction(action);
@@ -55,7 +50,6 @@
         });
 
         action.setCallback(this, res => {
-
             const state = res.getState();
 
             if (state === 'SUCCESS') {
@@ -63,7 +57,6 @@
             }
 
             component.set('v.loading', false);
-
         });
 
         $A.enqueueAction(action);
@@ -80,7 +73,6 @@
         });
 
         action.setCallback(this, res => {
-
             const state = res.getState();
 
             if (state === 'SUCCESS') {
@@ -88,12 +80,9 @@
             }
 
             component.set('v.loading', false);
-
         });
 
         $A.enqueueAction(action);
-
     }
-
 
 });
