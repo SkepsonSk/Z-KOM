@@ -2,7 +2,7 @@ global with sharing class ZK_GoogleRegistrationHandler implements Auth.Registrat
 
     private static final String ORG_SUFFIX = '.sso.britenet.com.pl';
     private static final String DEFAULT_ACCOUNTNAME = 'Customers';
-    private static final String EXTERNAL_USER_PROFILE = 'Customer Community User'; // 'Customers';
+    private static final String EXTERNAL_USER_PROFILE = 'Custom Customer Community User'; //TODO Add Custom Setting
     private static final String INTERNAL_USER_PROFILE = 'Standard User';
 
     global boolean canCreateUser(Auth.UserData data) {
