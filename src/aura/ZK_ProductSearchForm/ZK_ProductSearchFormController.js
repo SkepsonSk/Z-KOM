@@ -17,11 +17,11 @@
         productNameInput.setCustomValidity('');
         productNameInput.reportValidity();
 
-        component.set('v.productName', '');
-        component.set('v.categoryName', 'Everywhere');
-
         const categoryName = component.get('v.categoryName');
         const mode = helper.defineMode(productName, categoryName);
+
+        component.set('v.productName', '');
+        component.set('v.categoryName', 'Everywhere');
 
         const searchFormSubmitted = component.getEvent('searchFormSubmitted');
         searchFormSubmitted.setParams({
@@ -63,6 +63,6 @@
         });
 
         searchFormSubmitted.fire();
-    }
+    },
 
-})
+});
