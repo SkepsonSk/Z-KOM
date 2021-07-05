@@ -9,7 +9,9 @@
 
     onNewReviewClick: function (component, event, helper) {
         const productId = component.get('v.recordId');
-        helper.openNewReviewModal(component, productId, null);
+        const reviewId = event.getParam('reviewId');
+
+        helper.openNewReviewModal(component, productId, reviewId);
     },
 
     onReviewUpdated: function (component, event, helper) {

@@ -1,13 +1,14 @@
 <aura:component description="ZK_ProductReviews"
                 controller="ZK_ProductReviewsController"
-                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId">
+                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId,flexipage:availableForAllPageTypes">
 
     <aura:attribute name="currentProfile" type="Object"/>
+    <aura:attribute name="currentUser" type="Object"/>
     <aura:attribute name="reviews" type="Object[]"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
     <aura:handler event="c:ZK_ReviewsUpdated" action="{!c.onReviewUpdated}"/>
+    <aura:handler name="reviewEdited" event="c:ZK_ReviewEdited" action="{!c.onNewReviewClick}"/>
 
     <lightning:overlayLibrary aura:id="overlayLib"/>
 
@@ -37,7 +38,8 @@
 
             <aura:iteration items="{!v.reviews}" var="review">
                 <div class="slds-m-top_small">
-                    <c:ZK_ProductReview review="{!review}"/>
+                    <c:ZK_ProductReview review="{!review}"
+                                        currentProfile="{!v.currentProfile}"/>
                 </div>
             </aura:iteration>
         </div>

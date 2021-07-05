@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="ZK_ReviewEdited">
+    <aura:attribute name="reviewId" type="Id"/>
+</aura:event>

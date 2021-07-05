@@ -1,15 +1,12 @@
 ({
-
     fetchCurrentProfile: function(component) {
         const action = component.get('c.getCurrentProfile');
         action.setCallback(this, function (res) {
-
             const state = res.getState();
 
             if (state === 'SUCCESS') {
                 component.set('v.currentProfile', res.getReturnValue());
             }
-
         });
 
         $A.enqueueAction(action);
@@ -41,10 +38,11 @@
 
         $A.createComponent('c:ZK_ProductCreateReview', {productId: productId, reviewId: reviewId}, function(component, status) {
 
+            const titleLabel = $A.get('$Label.c.ZK_Title_Review_Creator');
+
             if (status === 'SUCCESS') {
                 overlay.showCustomModal({
-                    // TODO Labelka here
-                    header: 'Create a Review',
+                    header: titleLabel,
                     body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
