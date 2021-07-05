@@ -5,6 +5,7 @@
 
         helper.fetchCurrentProfile(component);
         helper.fetchCurrentUserId(component);
+        helper.fetchProfilesSetting(component);
         helper.fetchReviews(component, productId);
     },
 

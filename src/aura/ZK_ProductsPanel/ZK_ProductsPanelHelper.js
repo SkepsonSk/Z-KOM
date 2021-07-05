@@ -4,12 +4,12 @@
         const overlay = component.find('overlayLib');
 
         $A.createComponent('c:ZK_ProductCreatorModal', {productId: productId}, function(component, status) {
+            const titleLabel = $A.get('$Label.c.ZK_Product_Creator');
 
             if (status === 'SUCCESS') {
-                const modalBody = component;
                 overlay.showCustomModal({
-                    header: 'Add Product',
-                    body: modalBody,
+                    header: titleLabel,
+                    body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
                     closeCallback: function() {}
@@ -26,12 +26,12 @@
             productId: productId,
             productName: productName
         }, function(component, status) {
+            const titleLabel = $A.get('$Label.c.ZK_Title_Delete_Product') + ' ' + productName + '?';
 
             if (status === 'SUCCESS') {
-                const modalBody = component;
                 overlay.showCustomModal({
-                    header: 'Delete Product ' + productName + '?',
-                    body: modalBody,
+                    header: titleLabel,
+                    body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
                     closeCallback: function() {}

@@ -1,4 +1,17 @@
 ({
+    fetchProfilesSetting: function(component) {
+        const action = component.get('c.getProfilesSetting');
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+                component.set('v.profilesSetting', res.getReturnValue());
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
     fetchCurrentUserId: function(component) {
         const action = component.get('c.getCurrentUserId');
         action.setCallback(this, function (res) {
@@ -66,4 +79,4 @@
         });
     }
 
-})
+});

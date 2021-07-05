@@ -25,14 +25,7 @@
         const index = component.get('v.currentIndex');
         const images = component.get('v.images');
 
-        if (index === images.length-1) {
-            component.set('v.currentIndex', 0);
-            component.set('v.currentImage', images[0]);
-        }
-        else {
-            component.set('v.currentIndex', index+1);
-            component.set('v.currentImage', images[index+1]);
-        }
+        helper.nextImage(component, images, index);
     },
     previousImage: function(component, event, helper) {
         event.stopPropagation();
@@ -40,14 +33,7 @@
         const index = component.get('v.currentIndex');
         const images = component.get('v.images');
 
-        if (index === 0) {
-            component.set('v.currentIndex', images.length-1);
-            component.set('v.currentImage', images[images.length-1]);
-        }
-        else {
-            component.set('v.currentIndex', index-1);
-            component.set('v.currentImage', images[index-1]);
-        }
+        helper.previousImage(component, images, index);
     },
 
     displayImage: function(component, event, helper) {

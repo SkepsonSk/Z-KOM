@@ -6,8 +6,22 @@
 
     onSearchClick: function(component, event, helper) {
         const productName = component.get('v.productName');
+        const productNameInput = component.find('productNameInput');
+
+        if (!productName) {
+            productNameInput.setCustomValidity("Name cannot be blank.");
+            productNameInput.reportValidity();
+            return;
+        }
+
+        productNameInput.setCustomValidity('');
+        productNameInput.reportValidity();
+
         const categoryName = component.get('v.categoryName');
         const mode = helper.defineMode(productName, categoryName);
+
+        component.set('v.productName', '');
+        component.set('v.categoryName', 'Everywhere');
 
         const searchFormSubmitted = component.getEvent('searchFormSubmitted');
         searchFormSubmitted.setParams({
@@ -17,6 +31,25 @@
         });
 
         searchFormSubmitted.fire();
+    },
+
+    onAllClick: function(component, event, helper) {
+        component.set('v.productName', '');
+        component.set('v.categoryName', 'Everywhere');
+
+        const searchFormSubmitted = component.getEvent('searchFormSubmitted');
+        searchFormSubmitted.setParams({
+            productName: '',
+            categoryName: '',
+            mode: 'all'
+        });
+        searchFormSubmitted.fire();
+    },
+
+    resetValidity: function(component, event, helper) {
+        const productNameInput = component.find('productNameInput');
+        productNameInput.setCustomValidity('');
+        productNameInput.reportValidity();
     },
 
     onCategoryClick: function (component, event, helper) {
@@ -30,6 +63,6 @@
         });
 
         searchFormSubmitted.fire();
-    }
+    },
 
-})
+});

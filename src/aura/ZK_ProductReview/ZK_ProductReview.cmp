@@ -2,6 +2,7 @@
 
     <aura:attribute name="review" type="Object"/>
     <aura:attribute name="currentUser" type="String"/>
+    <aura:attribute name="profilesSetting" type="Object"/>
     <aura:attribute name="currentProfile" type="Object"/>
 
     <aura:registerEvent name="reviewEdited" type="c:ZK_ReviewEdited"/>
@@ -10,7 +11,7 @@
 
     <div class="box-host slds-box slds-is-relative">
 
-        <aura:if isTrue="{!or(v.currentProfile.Name == 'System Administrator', v.currentUser == v.review.CreatedBy.Id)}">
+        <aura:if isTrue="{!or(v.currentProfile.Name == v.profilesSetting.Admin__c, v.currentUser == v.review.CreatedBy.Id)}">
             <div class="slds-is-absolute tools-box slds-grid">
                 <div class="slds-col_bump-left slds-grid slds slds-m-top_small">
                     <div class="slds-m-right_small cursor-pointer"

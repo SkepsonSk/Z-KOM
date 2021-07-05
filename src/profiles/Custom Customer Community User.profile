@@ -24,7 +24,7 @@
         <apexClass>ZK_ProductsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>false</custom>
+    <custom>true</custom>
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.Description</field>

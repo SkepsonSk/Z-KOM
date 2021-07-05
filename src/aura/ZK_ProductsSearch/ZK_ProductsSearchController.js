@@ -10,6 +10,9 @@
         const categoryName = event.getParam('categoryName');
         const mode = event.getParam('mode');
 
+        const productSearchForm = component.find('productSearchForm');
+        productSearchForm.resetValidity();
+
         if (mode === 'all') {
             helper.fetchAllProducts(component);
         }
