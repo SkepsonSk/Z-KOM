@@ -4,11 +4,11 @@
     <aura:attribute name="position" type="Boolean" default="absolute"/>
 
     <aura:if isTrue="{!v.visible}">
-        <div class="spinner slds-grid slds-grid_vertical-align-center slds-grid_align-center"
-             style="{!'position: ' + v.position}">
+        <div class="spinner slds-grid slds-grid_vertical-align-center slds-grid_align-center">
 
             <div>
                 <lightning:spinner size="medium"
+                                   class="{!v.position == 'fixed' ? 'fixed' : 'auto'}"
                                    variant="brand"
                                    alternativeText="{!$Label.c.ZK_Loading}"/>
             </div>
