@@ -4,6 +4,7 @@
         const productId = component.get('v.recordId');
 
         helper.fetchCurrentProfile(component);
+        helper.fetchCurrentUserId(component);
         helper.fetchReviews(component, productId);
     },
 

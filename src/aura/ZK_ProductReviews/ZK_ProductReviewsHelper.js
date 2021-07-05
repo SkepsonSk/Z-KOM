@@ -1,4 +1,17 @@
 ({
+    fetchCurrentUserId: function(component) {
+        const action = component.get('c.getCurrentUserId');
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+                component.set('v.currentUser', res.getReturnValue());
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
     fetchCurrentProfile: function(component) {
         const action = component.get('c.getCurrentProfile');
         action.setCallback(this, function (res) {

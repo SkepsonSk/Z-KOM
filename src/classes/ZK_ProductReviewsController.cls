@@ -13,4 +13,16 @@ public with sharing class ZK_ProductReviewsController {
         return profile;
     }
 
+    @AuraEnabled
+    public static String getCurrentUserId() {
+        String userId = UserInfo.getUserId();
+        return userId;
+    }
+
+    @AuraEnabled
+    public static Boolean deleteReview(Id reviewId) {
+        Database.DeleteResult res = Database.delete(reviewId);
+        return res.success;
+    }
+
 }

@@ -3,7 +3,7 @@
                 implements="forceCommunity:availableForAllPageTypes,force:hasRecordId,flexipage:availableForAllPageTypes">
 
     <aura:attribute name="currentProfile" type="Object"/>
-    <aura:attribute name="currentUser" type="Object"/>
+    <aura:attribute name="currentUser" type="String"/>
     <aura:attribute name="reviews" type="Object[]"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -39,6 +39,7 @@
             <aura:iteration items="{!v.reviews}" var="review">
                 <div class="slds-m-top_small">
                     <c:ZK_ProductReview review="{!review}"
+                                        currentUser="{!v.currentUser}"
                                         currentProfile="{!v.currentProfile}"/>
                 </div>
             </aura:iteration>

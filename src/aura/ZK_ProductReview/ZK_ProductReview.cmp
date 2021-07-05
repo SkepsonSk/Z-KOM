@@ -1,26 +1,29 @@
 <aura:component description="ZK_ProductReview">
 
     <aura:attribute name="review" type="Object"/>
+    <aura:attribute name="currentUser" type="String"/>
     <aura:attribute name="currentProfile" type="Object"/>
 
     <aura:registerEvent name="reviewEdited" type="c:ZK_ReviewEdited"/>
 
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
     <div class="box-host slds-box slds-is-relative">
 
-        <div class="slds-is-absolute tools-box slds-grid">
-
-            <div class="slds-col_bump-left slds-grid slds slds-m-top_small">
-                <div class="slds-m-right_small cursor-pointer"
-                     onclick="{!c.onEditClick}">
-                    <lightning:icon iconName="action:edit" alternativeText="Edit" size="x-small"/>
-                </div>
-                <div class="slds-m-right_small cursor-pointer"
-                     onclick="{!c.onDeleteClick}">
-                    <lightning:icon iconName="action:delete" alternativeText="Delete" size="x-small"/>
+        <aura:if isTrue="{!or(v.currentProfile.Name == 'System Administrator', v.currentUser == v.review.CreatedBy.Id)}">
+            <div class="slds-is-absolute tools-box slds-grid">
+                <div class="slds-col_bump-left slds-grid slds slds-m-top_small">
+                    <div class="slds-m-right_small cursor-pointer"
+                         onclick="{!c.onEditClick}">
+                        <lightning:icon iconName="action:edit" alternativeText="Edit" size="x-small"/>
+                    </div>
+                    <div class="slds-m-right_small cursor-pointer"
+                         onclick="{!c.onDeleteClick}">
+                        <lightning:icon iconName="action:delete" alternativeText="Delete" size="x-small"/>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </aura:if>
 
         <div class="slds-grid slds-grid_vertical-align-center">
 

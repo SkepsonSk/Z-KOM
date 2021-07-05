@@ -1,0 +1,28 @@
+<aura:component description="ZK_DeleteReviewModal"
+                controller="ZK_ProductReviewsController">
+
+    <aura:attribute name="reviewId" type="Id"/>
+
+    <aura:registerEvent name="ZK_ReviewsUpdated" type="c:ZK_ReviewsUpdated"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibInner"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <footer class="slds-modal__footer">
+        <lightning:button label="{!$Label.c.ZK_Button_Cancel}" onclick="{!c.cancelDelete}"/>
+        <lightning:button label="{!$Label.c.ZK_Button_Delete}" variant="brand" onclick="{!c.confirmDelete}" />
+    </footer>
+
+</aura:component>
