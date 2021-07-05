@@ -4,12 +4,16 @@
 
     <aura:attribute name="userProfile" type="Object"/>
     <aura:attribute name="profilesSetting" type="Object"/>
+    <aura:attribute name="loading" type="Boolean" default="{!false}"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
-    <aura:if isTrue="{!v.userProfile.Name != 'ZKOM Service Profile'}">
+    <c:ZK_Spinner visible="{!v.loading}"
+                  position="fixed"/>
+
+    <aura:if isTrue="{!v.userProfile.Name != v.profilesSetting.Guest__c}">
         <div>
-            <c:ZK_ProductShopTopBar/>
+            <c:ZK_ProductShopTopBar loading="{!v.loading}"/>
         </div>
     </aura:if>
 
