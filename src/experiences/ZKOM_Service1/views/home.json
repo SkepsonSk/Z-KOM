@@ -1,0 +1,61 @@
+{
+  "appPageId" : "188a6c51-f4ea-4516-8ebc-9a6e0eb6113e",
+  "componentName" : "siteforce:sldsTwoCol84SidebarFeaturedLayout",
+  "id" : "fb2ad784-2ce7-488e-a933-61d68d5be6bb",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "bannerText" : "A place where you'll find everything your PCMR dreams require!",
+        "bannerTextWithKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineArticles\">articles</a> and <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+        "bannerTextWithoutKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+        "pageType" : "",
+        "showSubTopics" : true,
+        "title" : "Welcome!",
+        "uniqueNameOrId" : ""
+      },
+      "componentName" : "forceCommunity:headline",
+      "id" : "ab5b3395-d4b9-4c99-892a-581b8776c8fd",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "e63651c0-1da4-48d4-bf65-eee84cd27c48",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "a7826f14-2cbb-43e4-8619-b6db7bd9bb1c",
+    "regionName" : "featured",
+    "type" : "region"
+  }, {
+    "id" : "7da04e27-8f3a-483f-acd9-f30f1847a6e4",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "5e25112e-8850-477d-8143-c3ac632ef3be",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "68121020-f1dc-47c3-9ece-16e29f4725dd",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "575378f7-b4b1-483c-8336-f74296b14977",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b6b7b1bd-dc09-4a57-b9fa-16c4af500a89",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

@@ -1,0 +1,77 @@
+{
+  "appPageId" : "188a6c51-f4ea-4516-8ebc-9a6e0eb6113e",
+  "componentName" : "siteforce:sldsTwoCol84SidebarFeaturedLayout",
+  "id" : "0464185d-19e6-48d3-812e-1299ecd630d6",
+  "label" : "Product Detail",
+  "regions" : [ {
+    "id" : "44ea8085-d54f-436c-be43-3cc399d3613d",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "e35e508a-209e-41e5-81f3-8069f0af43cf",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:ZK_ProductDescription",
+      "id" : "9f7e3691-84ca-42d4-9fe6-d6571037a0af",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:ZK_ProductReviews",
+      "id" : "9f942511-4161-47b0-8c13-710b9caeb721",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "2932bb0a-986f-4e02-ae5d-8fcb0bea3428",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "4c2be2bd-12c5-4fd1-ac0d-93772b8ae147",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "b9f88459-c0d6-495e-b38f-e7ec0b4dcd6b",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "386e10b2-4840-4b88-9b1a-3c247180f014",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:ZK_ProductImages",
+      "id" : "fab2b40e-9e0f-416d-bd04-19a2da11dbbd",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "c30f5bb1-47f5-455c-9f98-4357f5964970",
+    "regionName" : "featured",
+    "type" : "region"
+  }, {
+    "id" : "e79f14ed-44c6-46d9-9d34-9768f18bca98",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-01t"
+}
