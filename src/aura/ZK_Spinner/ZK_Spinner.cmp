@@ -1,10 +1,11 @@
 <aura:component description="ZK_Spinner">
 
     <aura:attribute name="visible" type="Boolean" default="{!true}"/>
+    <aura:attribute name="position" type="Boolean" default="absolute"/>
 
     <aura:if isTrue="{!v.visible}">
-        <div class="slds-is-absolute slds-grid slds-grid_vertical-align-center slds-grid_align-center"
-             style="width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(255, 255, 255, 0.8); z-index: 1000">
+        <div class="spinner slds-grid slds-grid_vertical-align-center slds-grid_align-center"
+             style="{!'position: ' + v.position}">
 
             <div>
                 <lightning:spinner size="medium"
