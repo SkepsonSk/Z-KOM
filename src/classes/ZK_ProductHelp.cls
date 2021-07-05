@@ -12,6 +12,8 @@ public with sharing class ZK_ProductHelp {
             return productDataList;
         }
 
+        List<Discount_Entry__c> discountEntries = [SELECT Product__r.Name,Discounts__r.Name,Discounts__r.Type__c,Discounts__r.Discount_Percent__c FROM Discount_Entry__c];
+
         List<ContentDocumentLink> documents
                 = [SELECT ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId IN :ids];
 
@@ -28,8 +30,17 @@ public with sharing class ZK_ProductHelp {
                 }
             }
 
-            productDataList.add(productData);
+            for (Discount_Entry__c discountEntry : discountEntries) {
+                if (discountEntry.Product__c == entry.Product2.Id) {
+                    productData.discountName = discountEntry.Discounts__r.Name;
+                    productData.discountPercent = discountEntry.Discounts__r.Discount_Percent__c;
+                    productData.discountType = discountEntry.Discounts__r.Type__c;
+                    productData.unitPriceDiscount = entry.UnitPrice - entry.UnitPrice * (productData.discountPercent/100);
+                    break;
+                }
+            }
 
+            productDataList.add(productData);
         }
 
         return productDataList;

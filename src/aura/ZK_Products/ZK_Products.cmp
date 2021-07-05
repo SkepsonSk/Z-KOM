@@ -24,6 +24,10 @@
                 <c:ZK_Product product="{!product.product}"
                               images="{!product.images}"
                               currency="{!v.currency}"
+                              discountName="{!product.discountName}"
+                              discountPercent="{!product.discountPercent}"
+                              unitPriceDiscount="{!product.unitPriceDiscount}"
+                              discountType="{!product.discountType}"
                               destination="{!v.destination}"
                               unitPrice="{!product.unitPrice}"/>
             </div>

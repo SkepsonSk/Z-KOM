@@ -4,6 +4,12 @@
 
     <aura:attribute name="product" type="Product2" required="true"/>
     <aura:attribute name="unitPrice" type="Decimal" required="true"/>
+
+    <aura:attribute name="unitPriceDiscount" type="Decimal" required="true"/>
+    <aura:attribute name="discountName" type="Decimal" required="true"/>
+    <aura:attribute name="discountType" type="String" required="true"/>
+    <aura:attribute name="discountPercent" type="Decimal" required="true"/>
+
     <aura:attribute name="images" type="String[]" required="true"/>
     <aura:attribute name="currency" type="String" required="true"/>
 
@@ -13,7 +19,6 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
-    <!-- TODO Labelki -->
     <div class="slds-size_1-of-1 slds-p-around_small">
         <div class="rounded shadow">
             <div style="{!'background-image: url(\'' + (v.image != null ? v.image : $Resource.ZK_NoPhotoAvailable) + '\');height: 300px'}"
@@ -47,7 +52,31 @@
 
                 <div class="slds-grid_vertical slds-text-heading_small">
                     <h2 class="slds-m-bottom_x-small"><a onclick="{!c.goToProduct}"> {!v.product.Name} </a></h2>
-                    <lightning:formattedNumber style="currency" value="{!v.unitPrice}" currencyCode="{!v.currency}"/>
+
+                    <aura:if isTrue="{!v.discountPercent != null}">
+                        <div>
+                            <h4 style="font-weight: bold">
+                                <aura:if isTrue="{!v.discountType != 'Single Product'}">
+                                    <span class="slds-m-right_x-small"> {!v.discountName} </span>
+                                </aura:if>
+
+                                {!v.discountPercent}% OFF!
+                            </h4>
+                        </div>
+                    </aura:if>
+
+                    <span style="{!v.discountPercent != null ? 'text-decoration: line-through' : ''}">
+                        <lightning:formattedNumber style="currency" value="{!v.unitPrice}" currencyCode="{!v.currency}"/>
+                    </span>
+
+                    <aura:if isTrue="{!v.discountPercent != null}">
+                        <span style="color: #29a329;font-weight: bold" class="slds-m-left_small">
+                            <lightning:formattedNumber style="currency"
+                                                       value="{!v.unitPriceDiscount}"
+                                                       currencyCode="{!v.currency}"/>
+                        </span>
+                    </aura:if>
+
                 </div>
                 <div class="slds-col_bump-left">
                     <aura:if isTrue="{!v.destination == 'client'}">

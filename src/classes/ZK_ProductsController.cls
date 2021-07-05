@@ -4,6 +4,10 @@ public with sharing class ZK_ProductsController {
         @AuraEnabled public Product2 product;
         @AuraEnabled public List<ContentDocumentLink> images;
         @AuraEnabled public Decimal unitPrice;
+        @AuraEnabled public String discountName;
+        @AuraEnabled public Decimal discountPercent;
+        @AuraEnabled public String discountType;
+        @AuraEnabled public Decimal unitPriceDiscount;
     }
 
     @AuraEnabled
