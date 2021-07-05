@@ -1,0 +1,10 @@
+{
+  "activeViewId" : "085cada9-653b-4827-9292-e25c026253e5",
+  "appPageId" : "188a6c51-f4ea-4516-8ebc-9a6e0eb6113e",
+  "id" : "d096dc0d-dd1e-41e9-a9c6-ee74232aaa7e",
+  "label" : "Explore Products",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-explore-products",
+  "type" : "route",
+  "urlPrefix" : "explore-products"
+}
