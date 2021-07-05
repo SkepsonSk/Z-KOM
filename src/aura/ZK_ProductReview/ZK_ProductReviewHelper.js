@@ -12,9 +12,11 @@
 
         $A.createComponent('c:ZK_DeleteReviewModal', {reviewId: reviewId}, function(component, status) {
 
+            const titleLabel = $A.get('$Label.c.ZK_Title_Delete_Review');
+
             if (status === 'SUCCESS') {
                 overlay.showCustomModal({
-                    header: 'Delete review?',
+                    header: titleLabel,
                     body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
