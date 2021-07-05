@@ -29,7 +29,8 @@
     <logoutUrl>https://z-kom-developer-edition.eu40.force.com</logoutUrl>
     <networkMemberGroups>
         <profile>admin</profile>
-        <profile>customer community user</profile>
+        <profile>Customer Community User</profile>
+        <profile>Custom Customer Community User</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>

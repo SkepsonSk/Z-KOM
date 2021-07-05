@@ -101,6 +101,9 @@
         <componentInstances>
             <componentName>ZK_ProductImages</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>ZK_ProductReviews</componentName>
+        </componentInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>

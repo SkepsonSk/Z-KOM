@@ -757,11 +757,46 @@
         <value>Image has been removed.</value>
     </labels>
     <labels>
+        <fullName>ZK_Action_Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Action_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Action Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Alternative_Add_to_Cart</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alternative Add to Cart</shortDescription>
+        <value>Add to Cart</value>
+    </labels>
+    <labels>
         <fullName>ZK_Alternative_Close_Icon</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alternative Close Icon</shortDescription>
         <value>X</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_Add_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Add Review</shortDescription>
+        <value>Add Review</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Button_All</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button All</shortDescription>
+        <value>All</value>
     </labels>
     <labels>
         <fullName>ZK_Button_Cancel</fullName>
@@ -799,6 +834,13 @@
         <value>Next</value>
     </labels>
     <labels>
+        <fullName>ZK_Button_Post_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button Post Review</shortDescription>
+        <value>Post Review</value>
+    </labels>
+    <labels>
         <fullName>ZK_Button_Previous</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -818,6 +860,34 @@
         <protected>true</protected>
         <shortDescription>Button Search</shortDescription>
         <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Column_Product_Category</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column Product Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Column_Product_Code</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column Product Code</shortDescription>
+        <value>Product Code</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Column_Product_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column Product Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Column_Product_Warranty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column Product Warranty</shortDescription>
+        <value>Warranty (months)</value>
     </labels>
     <labels>
         <fullName>ZK_Delete_Assurance</fullName>
@@ -883,6 +953,20 @@
         <value>Upload Images for the product</value>
     </labels>
     <labels>
+        <fullName>ZK_Label_Rating</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label Rating</shortDescription>
+        <value>Rating</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Label_Text_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label Text Review</shortDescription>
+        <value>Text Review</value>
+    </labels>
+    <labels>
         <fullName>ZK_Loading</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -918,11 +1002,32 @@
         <value>Please, contact the administrator.</value>
     </labels>
     <labels>
+        <fullName>ZK_Message_Error_Fetching_Products</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Error Fetching Products</shortDescription>
+        <value>Unable to fetch products, please, contact an administrator.</value>
+    </labels>
+    <labels>
         <fullName>ZK_Message_No_Products_Found</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Message No Products Found</shortDescription>
         <value>No products found.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_No_Reviews</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message No Reviews</shortDescription>
+        <value>No reviews posted.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Message_No_Warranty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message No Warranty</shortDescription>
+        <value>no warranty</value>
     </labels>
     <labels>
         <fullName>ZK_Message_Proceed_to_Cash</fullName>
@@ -953,6 +1058,20 @@
         <value>Total Cart Price:</value>
     </labels>
     <labels>
+        <fullName>ZK_Message_Warranty_Months</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message Warranty Months</shortDescription>
+        <value>months</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Option_Everything</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Option Everything</shortDescription>
+        <value>Everything</value>
+    </labels>
+    <labels>
         <fullName>ZK_Option_Everywhere</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -965,6 +1084,13 @@
         <protected>true</protected>
         <shortDescription>Placeholder Product Search</shortDescription>
         <value>What product are you looking for?</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Product_Creator</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Product Creator</shortDescription>
+        <value>Product Creator</value>
     </labels>
     <labels>
         <fullName>ZK_Step_Basic_Info</fullName>
@@ -1002,6 +1128,20 @@
         <value>All Products</value>
     </labels>
     <labels>
+        <fullName>ZK_Title_Delete_Product</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Delete Product</shortDescription>
+        <value>Delete product</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Delete_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Delete Review</shortDescription>
+        <value>Delete Review?</value>
+    </labels>
+    <labels>
         <fullName>ZK_Title_Explore_Product</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -1016,6 +1156,20 @@
         <value>Products</value>
     </labels>
     <labels>
+        <fullName>ZK_Title_Review_Creator</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Review Creator</shortDescription>
+        <value>Review Creator</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Title_Reviews</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title Reviews</shortDescription>
+        <value>Reviews</value>
+    </labels>
+    <labels>
         <fullName>ZK_Title_Search_Product</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -1028,5 +1182,19 @@
         <protected>true</protected>
         <shortDescription>Title Your Cart</shortDescription>
         <value>Your Cart</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Toast_Review_Posted</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast Review Posted</shortDescription>
+        <value>Review has been posted.</value>
+    </labels>
+    <labels>
+        <fullName>ZK_Toast_Thanks_For_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast Thanks For Review</shortDescription>
+        <value>Thank you for your review.</value>
     </labels>
 </CustomLabels>
