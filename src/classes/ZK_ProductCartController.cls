@@ -1,6 +1,11 @@
 public with sharing class ZK_ProductCartController {
 
     @AuraEnabled
+    public static ZK_Profiles__c getProfilesSetting() {
+        return ZK_Profiles__c.getOrgDefaults();
+    }
+
+    @AuraEnabled
     public static Profile getCurrentProfile() {
         String profileId = UserInfo.getProfileId();
         Profile profile = [SELECT Name FROM Profile WHERE Id=:profileId LIMIT 1];

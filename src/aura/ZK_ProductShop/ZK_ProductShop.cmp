@@ -3,6 +3,7 @@
                 implements="forceCommunity:availableForAllPageTypes">
 
     <aura:attribute name="userProfile" type="Object"/>
+    <aura:attribute name="profilesSetting" type="Object"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
@@ -13,7 +14,7 @@
     </aura:if>
 
     <div class="slds-m-top_medium">
-        <c:ZK_ProductsSearch destination="{!v.userProfile.Name != 'ZKOM Service Profile' ? 'client' : 'guest'}"
+        <c:ZK_ProductsSearch destination="{!v.userProfile.Name != v.profilesSetting.Guest__c ? 'client' : 'guest'}"
                              size="small"/>
     </div>
 
