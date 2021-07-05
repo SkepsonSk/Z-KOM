@@ -1,10 +1,5 @@
 global with sharing class ZK_GoogleRegistrationHandler implements Auth.RegistrationHandler {
 
-    private static final String ORG_SUFFIX = '.sso.britenet.com.pl';
-    private static final String DEFAULT_ACCOUNTNAME = 'Customers';
-    private static final String EXTERNAL_USER_PROFILE = 'Custom Customer Community User'; //TODO Add Custom Setting
-    private static final String INTERNAL_USER_PROFILE = 'Standard User';
-
     global boolean canCreateUser(Auth.UserData data) {
         Boolean retVal = (data != null
                 && data.email != null
@@ -15,24 +10,33 @@ global with sharing class ZK_GoogleRegistrationHandler implements Auth.Registrat
     }
 
     global User createUser(Id portalId, Auth.UserData data){
+        RegistrationData__c regData = RegistrationData__c.getOrgDefaults();
+
         if(!canCreateUser(data)) {
             return null;
         }
 
         if(data.attributeMap.containsKey('sfdc_networkid')) {
+            String externalUserProfile = regData.External_User_Profile__c;
+            String defaultAccountName = regData.Default_Account_Name__c;
+            String orgSuffix = regData.Org_Suffix__c;
+
             Id contactId;
-            contactId = createContact(data);
+            contactId = createContact(data, defaultAccountName);
 
-            Profile p = [SELECT Id FROM profile WHERE name=:EXTERNAL_USER_PROFILE];
+            Profile p = [SELECT Id FROM profile WHERE name=:externalUserProfile];
 
-            User u = createUser(data,p);
+            User u = createUser(data, p, orgSuffix);
 
             u.contactId = contactId;
             return u;
 
         } else {
-            Profile p = [SELECT Id FROM profile WHERE name=:INTERNAL_USER_PROFILE];
-            User u = createUser(data,p);
+            String internalUserProfile = regData.Internal_User_Profile__c;
+            String orgSuffix = regData.Org_Suffix__c;
+
+            Profile p = [SELECT Id FROM profile WHERE name=:internalUserProfile];
+            User u = createUser(data, p, orgSuffix);
 
             return u;
         }
@@ -47,7 +51,7 @@ global with sharing class ZK_GoogleRegistrationHandler implements Auth.Registrat
         update(u);
     }
 
-    private Id createContact(Auth.UserData data){
+    private Id createContact(Auth.UserData data, String defaultAccountName){
         Contact contact = new Contact();
         contact.LastName = data.lastName;
         contact.FirstName = data.firstName;
@@ -56,7 +60,7 @@ global with sharing class ZK_GoogleRegistrationHandler implements Auth.Registrat
         if (data.attributemap.get('accountId') != null){
             contact.accountId = data.attributemap.get('accountId');
         } else {
-            List<Account> accounts = [select Id from Account where Name =:DEFAULT_ACCOUNTNAME];
+            List<Account> accounts = [select Id from Account where Name =:defaultAccountName];
 
             contact.accountId = accounts[0].Id;
         }
@@ -65,9 +69,9 @@ global with sharing class ZK_GoogleRegistrationHandler implements Auth.Registrat
         return contact.id;
     }
 
-    private User createUser(Auth.UserData data, Profile p) {
+    private User createUser(Auth.UserData data, Profile p, String orgSuffix) {
         User u = new User();
-        u.username = data.email + ORG_SUFFIX;
+        u.username = data.email + orgSuffix;
         u.email = data.email;
         u.lastName = data.lastName;
         u.firstName = data.firstName;
