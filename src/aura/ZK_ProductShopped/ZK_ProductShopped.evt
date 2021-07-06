@@ -2,4 +2,5 @@
     <aura:attribute name="product" type="Object"/>
     <aura:attribute name="image" type="String"/>
     <aura:attribute name="unitPrice" type="Decimal"/>
+    <aura:attribute name="unitPriceDiscount" type="Decimal"/>
 </aura:event>
