@@ -2,6 +2,8 @@
 
     doInit: function(component, event, helper) {
         component.set('v.currency', $A.get('$locale.currency'));
+        helper.fetchProfilesSetting(component);
+        helper.fetchCurrentUserProfile(component);
         helper.fetchAllProducts(component);
     },
 
