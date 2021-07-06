@@ -32,6 +32,7 @@ public with sharing class ZK_ProductHelp {
 
             for (Discount_Entry__c discountEntry : discountEntries) {
                 if (discountEntry.Product__c == entry.Product2.Id) {
+                    productData.discountId = discountEntry.Discounts__r.Id;
                     productData.discountName = discountEntry.Discounts__r.Name;
                     productData.discountPercent = discountEntry.Discounts__r.Discount_Percent__c;
                     productData.discountType = discountEntry.Discounts__r.Type__c;
