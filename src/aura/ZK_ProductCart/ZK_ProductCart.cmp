@@ -45,8 +45,17 @@
                                     <h3 class="slds-text-heading_small">{!product.Name}</h3>
                                 </a>
 
-                                <lightning:formattedNumber value="{!product.Amount * product.UnitPrice}"
-                                                           style="currency"/>
+                                <span style="{!product.UnitPriceDiscount != null ? 'text-decoration: line-through' : ''}">
+                                    <lightning:formattedNumber value="{!product.Amount * product.UnitPrice}"
+                                                               style="currency"/>
+                                </span>
+
+                                <aura:if isTrue="{!product.UnitPriceDiscount != null}">
+                                    <span style="color: #29a329;font-weight: bold" class="slds-m-left_small">
+                                        <lightning:formattedNumber value="{!product.Amount * product.UnitPriceDiscount}"
+                                                                   style="currency"/>
+                                    </span>
+                                </aura:if>
                             </div>
 
                             <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center">
@@ -85,7 +94,7 @@
 
                         <div class="slds-col_bump-left">
                             <lightning:button variant="brand" class="slds-text-heading_small slds-p-around_small">
-                                {!$Label.c.ZK_Message_Proceed_to_Cash}
+                                    {!$Label.c.ZK_Message_Proceed_to_Cash}
                             </lightning:button>
                         </div>
 

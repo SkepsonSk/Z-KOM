@@ -1,6 +1,8 @@
 ({
     doInit: function(component, event, helper) {
         helper.fetchCart(component);
+        helper.fetchProfilesSetting(component);
+        helper.fetchCurrentUserProfile(component);
     },
 
     onCartClick: function(component, event, helper){
@@ -11,7 +13,8 @@
         const product = event.getParam('product');
         const image = event.getParam('image');
         const unitPrice = event.getParam('unitPrice');
+        const unitPriceDiscount = event.getParam('unitPriceDiscount');
 
-        helper.addProductToCart(component, product, image, unitPrice);
+        helper.addProductToCart(component, product, image, unitPrice, unitPriceDiscount);
     }
 });

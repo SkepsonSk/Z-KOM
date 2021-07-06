@@ -1,4 +1,30 @@
 ({
+    fetchProfilesSetting: function (component) {
+        const action = component.get('c.getProfilesSetting');
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+                component.set('v.profilesSetting', res.getReturnValue());
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
+    fetchCurrentUserProfile: function (component) {
+        const action = component.get('c.getCurrentProfile');
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+                component.set('v.userProfile', res.getReturnValue());
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
     fetchCart: function (component, event, helper) {
         const action = component.get('c.getProductsCart');
         action.setCallback(this, function (res) {
@@ -30,7 +56,7 @@
         $A.enqueueAction(action);
     },
 
-    addProductToCart: function (component, product, image, unitPrice) {
+    addProductToCart: function (component, product, image, unitPrice, unitPriceDiscount) {
         const products = component.get('v.productsInCart');
         const cartSize = component.get('v.cartSize');
 
@@ -59,6 +85,7 @@
             product.Amount = 1;
             productsAmount = product.Amount
             product.UnitPrice = unitPrice;
+            product.UnitPriceDiscount = unitPriceDiscount;
             products.push(product);
         }
 

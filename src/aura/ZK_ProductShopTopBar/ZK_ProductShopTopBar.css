@@ -2,6 +2,12 @@
     cursor: pointer;
 }
 
+.THIS.floating-cart {
+    top: 0;
+    right: 0;
+    z-index: 1000000;
+}
+
 .THIS .cart-items-indicator {
     display: flex;
     align-items: center;

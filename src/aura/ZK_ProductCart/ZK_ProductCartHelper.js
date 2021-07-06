@@ -1,5 +1,4 @@
 ({
-
     changeProductQuantity: function(component, productId, byQuantity) {
         component.set('v.loading', true);
 
@@ -118,7 +117,13 @@
 
         for (let p in products) {
             const product = products[p];
-            totalPrice += product.Amount * product.UnitPrice;
+
+            if (product.UnitPriceDiscount != null) {
+                totalPrice += product.Amount * product.UnitPriceDiscount;
+            }
+            else {
+                totalPrice += product.Amount * product.UnitPrice;
+            }
         }
 
         component.set('v.totalPrice', totalPrice);

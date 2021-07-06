@@ -1,5 +1,9 @@
 <aura:component description="ZK_ProductShopTopBar"
+                implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes"
                 controller="ZK_ProductCartController">
+
+    <aura:attribute name="userProfile" type="Object"/>
+    <aura:attribute name="profilesSetting" type="Object"/>
 
     <aura:attribute name="cartSize" type="Integer" default="0"/>
     <aura:attribute name="productsInCart" type="Object[]" default="[]"/>
@@ -9,24 +13,27 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_ProductShopped" action="{!c.onProductShopped}"/>
 
-    <div class="slds-size_1-of-1 slds-box slds-is-relative">
+    <div style="{!v.userProfile.Name != v.profilesSetting.Guest__c ? 'opacity: 1' : 'opacity: 0'}"
+         class="slds-is-fixed floating-cart slds-m-top_medium">
+        <div class="slds-size_1-of-1 slds-is-relative">
 
-        <c:ZK_ProductCart aura:id="productCart"
-                          cartVisible="{!v.cartVisible}"
-                          cartSize="{!v.cartSize}"
-                          products="{!v.productsInCart}"/>
+            <c:ZK_ProductCart aura:id="productCart"
+                              cartVisible="{!v.cartVisible}"
+                              cartSize="{!v.cartSize}"
+                              products="{!v.productsInCart}"/>
 
-        <div class="slds-grid slds-p-horizontal_medium">
+            <div class="slds-grid slds-p-horizontal_medium">
 
-            <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center cursor-pointer"
-                 onclick="{!c.onCartClick}">
-                <lightning:icon iconName="utility:cart" size="medium"/>
-                <p class="slds-m-left_medium slds-text-heading_small cart-items-indicator">
-                        {!greaterthanorequal(v.cartSize, 10) ? '9+' : v.cartSize}
-                </p>
+                <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center cursor-pointer"
+                     onclick="{!c.onCartClick}">
+                    <lightning:icon iconName="utility:cart" size="medium"/>
+                    <p class="slds-m-left_medium slds-text-heading_small cart-items-indicator">
+                            {!greaterthanorequal(v.cartSize, 10) ? '9+' : v.cartSize}
+                    </p>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
 </aura:component>
