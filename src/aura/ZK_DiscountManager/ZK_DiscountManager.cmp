@@ -1,0 +1,38 @@
+<aura:component description="ZK_DiscountManager"
+                controller="ZK_DiscountManagerController"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="discounts" type="Object[]"/>
+    <aura:attribute name="columns" type="Object"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:ZK_DiscountsChanged" action="{!c.onDiscountsChanged}"/>
+
+    <lightning:layout class="slds-page-header no-b-rounded slds-page-header_object-home slds-m-around_none">
+        <lightning:layoutItem>
+            <lightning:icon iconName="standard:product" alternativeText="Discounts Manager"/>
+        </lightning:layoutItem>
+
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading_label">Discounts Manager</h1>
+                <h2 class="slds-text-heading_medium">All Discounts</h2>
+            </div>
+        </lightning:layoutItem>
+
+        <lightning:layoutItem class="slds-col_bump-left">
+            <lightning:button variant="neutral" onclick="{!c.onNewSingleClick}"> New Group Discount </lightning:button>
+            <lightning:button variant="neutral" onclick="{!c.onNewGroupClick}"> New Single Product Discount </lightning:button>
+        </lightning:layoutItem>
+
+    </lightning:layout>
+
+    <lightning:datatable data="{!v.discounts}"
+                         keyField="id"
+                         onrowaction="{!c.onRowAction}"
+                         showRowNumberColumn="true"
+                         columns="{!v.columns}"/>
+
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="ZK_DiscountProductSelected">
+    <aura:attribute name="selected" type="Boolean"/>
+    <aura:attribute name="productId" type="Id"/>
+</aura:event>

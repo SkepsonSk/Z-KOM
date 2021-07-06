@@ -1,0 +1,31 @@
+<aura:component description="ZK_DiscountDeleteModal"
+                controller="ZK_DiscountManagerController">
+
+    <aura:attribute name="discountId" type="Id"/>
+    <aura:attribute name="discountName" type="String"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibInner"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-p-around_small">
+        <p class="slds-text-heading_small slds-text-align_center"> Are you sure you want to delete '{!v.discountName}'? </p>
+    </div>
+
+    <footer class="slds-modal__footer">
+        <lightning:button label="Cancel" variant="neutral" class="slds-m-right_x-small" onclick="{!c.cancelDelete}"/>
+        <lightning:button label="Delete" variant="brand" onclick="{!c.confirmDelete}"/>
+    </footer>
+
+</aura:component>

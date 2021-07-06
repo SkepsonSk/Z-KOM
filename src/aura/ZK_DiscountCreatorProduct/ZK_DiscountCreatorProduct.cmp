@@ -1,0 +1,41 @@
+<aura:component description="ZK_DiscountCreatorProduct">
+
+    <aura:attribute name="discountId" type="Id"/>
+    <aura:attribute name="productData" type="Object" required="true"/>
+    <aura:attribute name="selectedProducts" type="Object[]" required="true"/>
+    <aura:attribute name="image" type="String"/>
+    <aura:attribute name="canBeSelected" type="Boolean" default="true"/>
+    <aura:attribute name="selected" type="Boolean" default="false"/>
+
+    <aura:registerEvent name="productSelected" type="c:ZK_DiscountProductSelected"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="{!(v.selected ? 'selected' : 'not-selected') + ' cursor-pointer slds-m-around_x-small slds-is-relative'}"
+         onclick="{!c.onSelect}">
+
+        <aura:if isTrue="{!and(v.discountId != v.productData.discountId, v.productData.discountPercent != null)}">
+            <div class="already-discounted slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+                <div class="slds-grid_vertical">
+                    <h2 class="slds-text-heading_small slds-text-align_center">
+                            <span class="slds-m-right_small">{!v.productData.discountName}</span>
+                            {!v.productData.discountPercent}% OFF </h2>
+                    <h2 class="slds-text-heading_small slds-m-left_small slds-text-align_center"> Cannot discount </h2>
+                </div>
+
+            </div>
+        </aura:if>
+
+
+        <div class="slds-box">
+
+            <div style="{!'background-image: url(\'' + (v.image != null ? v.image : $Resource.ZK_NoPhotoAvailable) + '\');height: 200px'}"
+                 class="bg-image">
+            </div>
+
+            <h2> {!v.productData.product.Name} </h2>
+
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,93 @@
+<aura:component description="ZK_DiscountCreator"
+                controller="ZK_DiscountManagerController">
+
+    <aura:attribute name="currentStep" type="String" default="1"/>
+
+    <aura:attribute name="discountId" type="String"/>
+    <aura:attribute name="discount" type="Object"/>
+
+    <aura:attribute name="discountName" type="String"/>
+    <aura:attribute name="discountValue" type="Decimal"/>
+    <aura:attribute name="products" type="Object[]"/>
+    <aura:attribute name="selectedProducts" type="Object[]" default="[]"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibInner"/>
+
+    <aura:registerEvent name="ZK_DiscountsChanged" type="c:ZK_DiscountsChanged"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="productSelected" event="c:ZK_DiscountProductSelected" action="{!c.onDiscountProductSelected}"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <div class="slds-p-around_small">
+
+        <lightning:progressIndicator currentStep="{!v.currentStep}"
+                                     type="path"
+                                     variant="base">
+            <lightning:progressStep label="Name and value" value="1"/>
+            <lightning:progressStep label="Products" value="2"/>
+        </lightning:progressIndicator>
+
+        <aura:if isTrue="{!v.currentStep == '1'}">
+
+            <lightning:layout horizontalAlign="center"
+                              class="slds-m-vertical_medium">
+
+                <lightning:layoutItem size="6">
+                    <lightning:input value="{!v.discountName}"
+                                     label="Discount Name"
+                                     class="slds-text-heading_small slds-m-right_small"
+                                     placeholder="e.g. Black Fridays Sale"/>
+                </lightning:layoutItem>
+
+                <lightning:layoutItem size="6">
+                    <lightning:input value="{!v.discountValue}"
+                                     label="Discount Value (%)"
+                                     class="slds-text-heading_small slds-m-left_small"
+                                     placeholder="e.g. 30%"/>
+                </lightning:layoutItem>
+
+            </lightning:layout>
+
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentStep == '2'}">
+            <div class="slds-grid slds-wrap">
+                <aura:iteration items="{!v.products}" var="product">
+                    <div class="slds-size_1-of-3">
+                        <c:ZK_DiscountCreatorProduct productData="{!product}"
+                                                     discountId="{!v.discountId}"
+                                                     selectedProducts="{!v.selectedProducts}"/>
+                    </div>
+                </aura:iteration>
+            </div>
+        </aura:if>
+
+    </div>
+
+    <footer class="slds-modal__footer">
+
+        <aura:if isTrue="{!v.currentStep == '1'}">
+            <lightning:button label="Next" variant="brand" onclick="{!c.onGoToProducts}"/>
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentStep == '2'}">
+            <lightning:button label="Previous" variant="neutral" class="slds-m-right_x-small" onclick="{!c.onGoBackToInformation}"/>
+            <lightning:button label="Finish" variant="brand" onclick="{!c.onFinish}"/>
+        </aura:if>
+
+    </footer>
+
+</aura:component>
