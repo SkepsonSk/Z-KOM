@@ -5,7 +5,9 @@
     <aura:attribute name="currentProfile" type="Object"/>
     <aura:attribute name="currentUser" type="String"/>
     <aura:attribute name="profilesSetting" type="Object"/>
+
     <aura:attribute name="reviews" type="Object[]"/>
+    <aura:attribute name="averageRating" type="Integer"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_ReviewsUpdated" action="{!c.onReviewUpdated}"/>
@@ -14,6 +16,14 @@
     <lightning:overlayLibrary aura:id="overlayLib"/>
 
     <lightning:card>
+
+        <aura:if isTrue="{!v.reviews.length != 0}">
+            <div class="slds-p-horizontal_medium slds-m-bottom_medium">
+                <h2 class="slds-text-heading_small">Average Rating</h2>
+                <c:ZK_RatingInput rating="{!v.averageRating}" readOnly="{!true}"/>
+            </div>
+        </aura:if>
+
         <div class="slds-grid slds-size_1-of-1 slds-p-horizontal_medium slds-grid_vertical-align-center">
 
             <div>
