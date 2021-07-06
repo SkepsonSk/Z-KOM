@@ -10,7 +10,9 @@
     },
 
     onGoToProducts: function (component, event, helper) {
-        component.set('v.currentStep', '2');
+        if (helper.validateNameAndValue(component)) {
+            component.set('v.currentStep', '2');
+        }
     },
 
     onGoBackToInformation: function (component, event, helper) {
@@ -18,10 +20,14 @@
     },
 
     onFinish: function (component, event, helper) {
+        const selectedProducts = component.get('v.selectedProducts');
+        if (!helper.validateSelectedProducts(selectedProducts)){
+            return;
+        }
+
         const discountId = component.get('v.discountId');
         const discountName = component.get('v.discountName');
         const discountValue = component.get('v.discountValue');
-        const selectedProducts = component.get('v.selectedProducts');
 
         if (discountId == null) {
             helper.saveDiscount(component, discountName, discountValue, selectedProducts);

@@ -17,15 +17,22 @@
     },
 
     prepareDataTable: function (component) {
+        const editLabel = $A.get('$Label.c.ZK_Action_Edit');
+        const deleteLabel = $A.get('$Label.c.ZK_Action_Delete');
+
         const actions = [
-            {label: 'Edit', name: 'edit'},
-            {label: 'Delete', name: 'delete'}
+            {label: editLabel, name: 'edit'},
+            {label: deleteLabel, name: 'delete'}
         ];
 
+        const nameLabel = $A.get('$Label.c.ZK_Action_Discount_Name');
+        const percentLabel = $A.get('$Label.c.ZK_Action_Discount_Percent');
+        const typeLabel = $A.get('$Label.c.ZK_Action_Discount_Type');
+
         component.set('v.columns', [
-            {label: 'Discount Name', fieldName: 'Name', type: 'text'},
-            {label: 'Discount Percent (%)', fieldName: 'Discount_Percent__c', type: 'percentage'},
-            {label: 'Discount Type', fieldName: 'Type__c', type: 'text'},
+            {label: nameLabel, fieldName: 'Name', type: 'text'},
+            {label: percentLabel, fieldName: 'Discount_Percent__c', type: 'percentage'},
+            {label: typeLabel, fieldName: 'Type__c', type: 'text'},
 
             {type: 'action', typeAttributes: {rowActions: actions }}
         ]);
@@ -37,9 +44,11 @@
 
         $A.createComponent('c:ZK_DiscountCreator', {discountId: discountId}, function(component, status) {
 
+            const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Creator');
+
             if (status === 'SUCCESS') {
                 overlay.showCustomModal({
-                    header: 'Discount Creator',
+                    header: titleLabel,
                     body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
@@ -54,9 +63,11 @@
 
         $A.createComponent('c:ZK_SingleProductDiscountCreator', {discountId: discountId}, function(component, status) {
 
+            const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Creator');
+
             if (status === 'SUCCESS') {
                 overlay.showCustomModal({
-                    header: 'Discount Creator',
+                    header: titleLabel,
                     body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',
@@ -71,9 +82,11 @@
 
         $A.createComponent('c:ZK_DiscountDeleteModal', {discountId: discountId, discountName: discountName}, function(component, status) {
 
+            const titleLabel = $A.get('$Label.c.ZK_Title_Delete');
+
             if (status === 'SUCCESS') {
                 overlay.showCustomModal({
-                    header: 'Delete ' + discountName + '?',
+                    header: titleLabel + ' ' + discountName + '?',
                     body: component,
                     showCloseButton: true,
                     cssClass: 'slds-modal_medium',

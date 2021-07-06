@@ -12,19 +12,19 @@
 
     <lightning:layout class="slds-page-header no-b-rounded slds-page-header_object-home slds-m-around_none">
         <lightning:layoutItem>
-            <lightning:icon iconName="standard:product" alternativeText="Discounts Manager"/>
+            <lightning:icon iconName="standard:product" alternativeText="{!$Label.c.ZK_Title_Discounts_Manager}"/>
         </lightning:layoutItem>
 
         <lightning:layoutItem padding="horizontal-small">
             <div class="page-section page-header">
-                <h1 class="slds-text-heading_label">Discounts Manager</h1>
-                <h2 class="slds-text-heading_medium">All Discounts</h2>
+                <h1 class="slds-text-heading_label">{!$Label.c.ZK_Title_Discounts_Manager}</h1>
+                <h2 class="slds-text-heading_medium">{!$Label.c.ZK_Title_All_Discounts}</h2>
             </div>
         </lightning:layoutItem>
 
         <lightning:layoutItem class="slds-col_bump-left">
-            <lightning:button variant="neutral" onclick="{!c.onNewSingleClick}"> New Group Discount </lightning:button>
-            <lightning:button variant="neutral" onclick="{!c.onNewGroupClick}"> New Single Product Discount </lightning:button>
+            <lightning:button variant="neutral" onclick="{!c.onNewSingleClick}"> {!$Label.c.ZK_Button_New_Group_Discount} </lightning:button>
+            <lightning:button variant="neutral" onclick="{!c.onNewGroupClick}"> {!$Label.c.ZK_Button_New_Single_Product_Discount} </lightning:button>
         </lightning:layoutItem>
 
     </lightning:layout>

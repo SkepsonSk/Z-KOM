@@ -30,16 +30,34 @@
 
                 this.fetchProducts(component);
             }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
-            }
+
         });
 
         $A.enqueueAction(action);
     },
 
+    validateDiscountValue: function(component){
+        const discountValue = component.get('v.discountValue');
+        const discountValueInput = component.find('discountValueInput');
+        if (!discountValue || (isNaN(discountValue) || isNaN(parseFloat(discountValue))) ||
+            (parseFloat(discountValue) < 1 || parseFloat(discountValue) > 99)) {
+
+            const errorLabel = $A.get('$Label.c.ZK_Error_Discount_Value');
+            discountValueInput.setCustomValidity(errorLabel);
+            discountValueInput.reportValidity();
+            return false;
+        }
+        else {
+            discountValueInput.setCustomValidity('');
+            discountValueInput.reportValidity();
+        }
+    },
+
     saveDiscount: function (component, discountValue, productId) {
+        if (!this.validateDiscountValue(component)) {
+            return;
+        }
+
         const action = component.get('c.createSingleDiscount');
         action.setParams({
             discountValue: discountValue,
@@ -55,10 +73,10 @@
 
                 const overlayLib = component.find('overlayLibInner');
                 overlayLib.notifyClose();
-            }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+
+                const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Created');
+                const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Created');
+                this.sendMessage(titleLabel, messageLabel, 'success');
             }
         });
 
@@ -66,6 +84,10 @@
     },
 
     updateDiscount: function (component, discountId, discountValue, productId) {
+        if (!this.validateDiscountValue(component)) {
+            return;
+        }
+
         const action = component.get('c.updateSingleDiscount');
         action.setParams({
             discountId: discountId,
@@ -82,13 +104,24 @@
 
                 const overlayLib = component.find('overlayLibInner');
                 overlayLib.notifyClose();
+
+                const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Created');
+                const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Updated');
+                this.sendMessage(titleLabel, messageLabel, 'success');
             }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
-            }
+
         });
 
         $A.enqueueAction(action);
+    },
+
+    sendMessage: function(title, message, type) {
+        const messageToast = $A.get('e.force:showToast');
+        messageToast.setParams({
+            title: title,
+            message: message,
+            type: type
+        });
+        messageToast.fire();
     }
 });

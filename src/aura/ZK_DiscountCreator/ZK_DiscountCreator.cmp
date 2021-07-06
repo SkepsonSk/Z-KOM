@@ -36,8 +36,8 @@
         <lightning:progressIndicator currentStep="{!v.currentStep}"
                                      type="path"
                                      variant="base">
-            <lightning:progressStep label="Name and value" value="1"/>
-            <lightning:progressStep label="Products" value="2"/>
+            <lightning:progressStep label="{!$Label.c.ZK_Creator_Step_Name_And_Value}" value="1"/>
+            <lightning:progressStep label="{!$Label.c.ZK_Step_Select_Products}" value="2"/>
         </lightning:progressIndicator>
 
         <aura:if isTrue="{!v.currentStep == '1'}">
@@ -46,17 +46,19 @@
                               class="slds-m-vertical_medium">
 
                 <lightning:layoutItem size="6">
-                    <lightning:input value="{!v.discountName}"
-                                     label="Discount Name"
+                    <lightning:input aura:id="discountNameInput"
+                                     value="{!v.discountName}"
+                                     label="{!$Label.c.ZK_Field_Discount_Name}"
                                      class="slds-text-heading_small slds-m-right_small"
-                                     placeholder="e.g. Black Fridays Sale"/>
+                                     placeholder="{!$Label.c.ZK_Placeholder_Discount_Name}"/>
                 </lightning:layoutItem>
 
                 <lightning:layoutItem size="6">
-                    <lightning:input value="{!v.discountValue}"
-                                     label="Discount Value (%)"
+                    <lightning:input aura:id="discountValueInput"
+                                     value="{!v.discountValue}"
+                                     label="{!$Label.c.ZK_Field_Discount_Value}"
                                      class="slds-text-heading_small slds-m-left_small"
-                                     placeholder="e.g. 30%"/>
+                                     placeholder="{!$Label.c.ZK_Placeholder_Discount_Value}"/>
                 </lightning:layoutItem>
 
             </lightning:layout>
@@ -80,12 +82,12 @@
     <footer class="slds-modal__footer">
 
         <aura:if isTrue="{!v.currentStep == '1'}">
-            <lightning:button label="Next" variant="brand" onclick="{!c.onGoToProducts}"/>
+            <lightning:button label="{!$Label.c.ZK_Button_Next}" variant="brand" onclick="{!c.onGoToProducts}"/>
         </aura:if>
 
         <aura:if isTrue="{!v.currentStep == '2'}">
-            <lightning:button label="Previous" variant="neutral" class="slds-m-right_x-small" onclick="{!c.onGoBackToInformation}"/>
-            <lightning:button label="Finish" variant="brand" onclick="{!c.onFinish}"/>
+            <lightning:button label="{!$Label.c.ZK_Button_Previous}" variant="neutral" class="slds-m-right_x-small" onclick="{!c.onGoBackToInformation}"/>
+            <lightning:button label="{!$Label.c.ZK_Button_Finish}" variant="brand" onclick="{!c.onFinish}"/>
         </aura:if>
 
     </footer>

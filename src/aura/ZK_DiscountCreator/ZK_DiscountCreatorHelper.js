@@ -32,13 +32,54 @@
 
                 this.fetchProducts(component);
             }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
-            }
+
         });
 
         $A.enqueueAction(action);
+    },
+
+    validateNameAndValue: function(component) {
+        const discountName = component.get('v.discountName');
+        const discountNameInput = component.find('discountNameInput');
+        if (!discountName) {
+
+            const errorLabel = $A.get('$Label.c.ZK_Error_Discount_Name');
+            discountNameInput.setCustomValidity(errorLabel);
+            discountNameInput.reportValidity();
+            return false;
+        }
+        else {
+            discountNameInput.setCustomValidity('');
+            discountNameInput.reportValidity();
+        }
+
+        const discountValue = component.get('v.discountValue');
+        const discountValueInput = component.find('discountValueInput');
+        if (!discountValue || (isNaN(discountValue) || isNaN(parseFloat(discountValue))) ||
+            (parseFloat(discountValue) < 1 || parseFloat(discountValue) > 99)) {
+
+            const errorLabel = $A.get('$Label.c.ZK_Error_Discount_Value');
+            discountValueInput.setCustomValidity(errorLabel);
+            discountValueInput.reportValidity();
+            return false;
+        }
+        else {
+            discountValueInput.setCustomValidity('');
+            discountValueInput.reportValidity();
+        }
+
+        return true;
+    },
+
+    validateSelectedProducts: function(selectedProducts) {
+        if (selectedProducts.length === 0) {
+            const titleLabel = $A.get('$Label.c.ZK_Title_Error');
+            const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Product_Not_Selected');
+
+            this.sendMessage(titleLabel, messageLabel, 'error');
+            return false;
+        }
+        return true;
     },
 
     saveDiscount: function (component, discountName, discountValue, selectedProducts) {
@@ -58,6 +99,10 @@
 
                 const overlayLib = component.find('overlayLibInner');
                 overlayLib.notifyClose();
+
+                const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Created');
+                const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Created');
+                this.sendMessage(titleLabel, messageLabel, 'success');
             }
         });
 
@@ -82,6 +127,10 @@
 
                 const overlayLib = component.find('overlayLibInner');
                 overlayLib.notifyClose();
+
+                const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Created');
+                const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Updated');
+                this.sendMessage(titleLabel, messageLabel, 'success');
             }
         });
 
@@ -98,5 +147,15 @@
             selectedProducts.splice(selectedProducts.indexOf(productId), 1);
             component.set('v.selectedProducts', selectedProducts);
         }
+    },
+
+    sendMessage: function(title, message, type) {
+        const messageToast = $A.get('e.force:showToast');
+        messageToast.setParams({
+            title: title,
+            message: message,
+            type: type
+        });
+        messageToast.fire();
     }
 });

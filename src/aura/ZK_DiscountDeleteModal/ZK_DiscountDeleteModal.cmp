@@ -4,6 +4,8 @@
     <aura:attribute name="discountId" type="Id"/>
     <aura:attribute name="discountName" type="String"/>
 
+    <aura:registerEvent name="ZK_DiscountsChanged" type="c:ZK_DiscountsChanged"/>
+
     <lightning:overlayLibrary aura:id="overlayLibInner"/>
 
     <aura:html tag="style">
@@ -20,12 +22,12 @@
     </aura:html>
 
     <div class="slds-p-around_small">
-        <p class="slds-text-heading_small slds-text-align_center"> Are you sure you want to delete '{!v.discountName}'? </p>
+        <p class="slds-text-heading_small slds-text-align_center"> {!$Label.c.ZK_Question_Delete_Discount} '{!v.discountName}'? </p>
     </div>
 
     <footer class="slds-modal__footer">
-        <lightning:button label="Cancel" variant="neutral" class="slds-m-right_x-small" onclick="{!c.cancelDelete}"/>
-        <lightning:button label="Delete" variant="brand" onclick="{!c.confirmDelete}"/>
+        <lightning:button label="{!$Label.c.ZK_Button_Cancel}" variant="neutral" class="slds-m-right_x-small" onclick="{!c.cancelDelete}"/>
+        <lightning:button label="{!$Label.c.ZK_Button_Delete}" variant="brand" onclick="{!c.confirmDelete}"/>
     </footer>
 
 </aura:component>
