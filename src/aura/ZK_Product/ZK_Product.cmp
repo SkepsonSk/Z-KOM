@@ -9,6 +9,7 @@
     <aura:attribute name="discountName" type="Decimal" required="true"/>
     <aura:attribute name="discountType" type="String" required="true"/>
     <aura:attribute name="discountPercent" type="Decimal" required="true"/>
+    <aura:attribute name="averageRating" type="Decimal" required="true" default="0"/>
 
     <aura:attribute name="images" type="String[]" required="true"/>
     <aura:attribute name="currency" type="String" required="true"/>
@@ -51,6 +52,11 @@
             <div class="slds-grid slds-grid_vertical-align-end slds-p-around_medium">
 
                 <div class="slds-grid_vertical slds-text-heading_small">
+
+                    <div class="slds-m-vertical_small">
+                        <c:ZK_RatingInput rating="{!v.averageRating}" readOnly="{!true}"/>
+                    </div>
+
                     <h2 class="slds-m-bottom_x-small"><a onclick="{!c.goToProduct}"> {!v.product.Name} </a></h2>
 
                     <aura:if isTrue="{!v.discountPercent != null}">

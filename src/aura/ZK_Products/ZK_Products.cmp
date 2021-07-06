@@ -28,6 +28,7 @@
                               discountPercent="{!product.discountPercent}"
                               unitPriceDiscount="{!product.unitPriceDiscount}"
                               discountType="{!product.discountType}"
+                              averageRating="{!product.averageRating != null ? product.averageRating : 0}"
                               destination="{!v.destination}"
                               unitPrice="{!product.unitPrice}"/>
             </div>
