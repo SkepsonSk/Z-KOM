@@ -114,12 +114,15 @@
 
                     let conflictMessage = '';
 
+                    const titleLabel = $A.get('$Label.c.ZK_Title_Conflicting_Discounts');
+                    const inLabel = $A.get('$Label.c.ZK_Info_Conflict_In_Discount');
+
                     const keys = Object.keys(response.collidingProducts);
                     keys.forEach(key => {
-                        conflictMessage += key + ' in discount ' + response.collidingProducts[key] + '\n';
+                        conflictMessage += key + ' ' + inLabel + ' ' + response.collidingProducts[key] + '\n';
                     });
 
-                    this.sendMessage('Conflicting Discounts', conflictMessage, 'error', 60*1000);
+                    this.sendMessage(titleLabel, conflictMessage, 'error', 60*1000);
                     return;
                 }
 
@@ -139,25 +142,6 @@
         });
 
         $A.enqueueAction(action);
-    },
-
-    handleRowActions: function (component, event) {
-        const action = event.getParam('action').name;
-        const discountId = event.getParam('row').Id;
-
-        if (action === 'edit') {
-            const type = event.getParam('row').Type__c;
-
-            if (type === 'Single Product') {
-                this.showSingleCreatorModal(component, discountId);
-            }
-            else{
-                this.showCreatorModal(component, discountId);
-            }
-        }
-        else if (action === 'delete') {
-
-        }
     },
 
     sendMessage: function (title, message, type, duration) {

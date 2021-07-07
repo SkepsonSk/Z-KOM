@@ -70,12 +70,10 @@
 
             <div class="slds-grid slds-m-around_small slds-grid_vertical-align-center">
                 <p class="slds-size_1-of-3">
-                    If you want to mark a discount as available for all products,
-                    select 'Mark as discount for all products'. After selection, discount will be
-                    applied to all newly created products.
+                    {!$Label.c.ZK_Info_All_Products_Discount}
                 </p>
-                <lightning:buttonStateful labelWhenOff="Mark as discount for all products"
-                                          labelWhenOn="Mark as discount for group of products"
+                <lightning:buttonStateful labelWhenOff="{!$Label.c.ZK_Button_Discount_For_All}"
+                                          labelWhenOn="{!$Label.c.ZK_Button_Discount_For_Group}"
                                           onclick="{!c.onAllProductsDiscountSelected}"
                                           variant="brand"
                                           state="{!v.allProductsDiscount}"/>

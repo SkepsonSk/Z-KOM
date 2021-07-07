@@ -15,21 +15,6 @@
     <div class="{!(and(v.changeSelectionBorder, v.selected) ? 'selected' : 'not-selected') + ' cursor-pointer slds-m-around_x-small slds-is-relative'}"
          onclick="{!c.onSelect}">
 
-        <aura:if isTrue="{!and(v.discountId != v.productData.discountId, v.productData.discountPercent != null)}">
-            <div class="already-discounted slds-grid slds-grid_vertical-align-center slds-grid_align-center">
-                <div class="slds-grid_vertical">
-                    <h2 class="slds-text-heading_small slds-text-align_center">
-                            <span class="slds-m-right_small">{!v.productData.discountName}</span>
-                            {!v.productData.discountPercent}{!$Label.c.ZK_Message_Percent_Off} </h2>
-                    <h2 class="slds-text-heading_small slds-m-left_small slds-text-align_center">
-                            {!$Label.c.ZK_Message_Cannot_Discount}
-                    </h2>
-                </div>
-
-            </div>
-        </aura:if>
-
-
         <div class="slds-box">
 
             <div style="{!'background-image: url(\'' + (v.image != null ? v.image : $Resource.ZK_NoPhotoAvailable) + '\');height: 200px'}"

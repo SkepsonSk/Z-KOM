@@ -27,7 +27,7 @@
 
             <div class="slds-box slds-grid slds-grid_vertical-align-center slds-m-top_small">
 
-                <div class="slds-m-right_small"
+                <div class="slds-m-right_small cursor-pointer"
                      id="{!discount.Id}"
                      onclick="{!c.onDiscountEdit}">
                     <lightning:icon iconName="utility:edit"
@@ -35,7 +35,7 @@
                                     size="x-small"/>
                 </div>
 
-                <div class="slds-m-right_small"
+                <div class="slds-m-right_small cursor-pointer"
                      id="{!discount.Id}"
                      data-value="{!discount.Name}"
                      onclick="{!c.onDiscountDelete}">
@@ -45,7 +45,11 @@
                                     size="x-small"/>
                 </div>
 
-                <h3 class="slds-text-heading_small"> {!discount.Name} </h3>
+                <h3 class="slds-text-heading_small">
+                    {!discount.Name}
+                    <span class="slds-m-left_small text-bold">{!discount.Discount_Percent__c}%</span>
+                    <span class="slds-m-left_small text-bold">{!discount.All_Products__c ? $Label.c.ZK_Discount_Type_All : $Label.c.ZK_Discount_Type_Group}</span>
+                </h3>
 
                 <div class="slds-col_bump-left">
                     <div id="{!discount.Id}"

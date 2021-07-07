@@ -8,14 +8,6 @@
         }
     },
 
-    determineCanBeSelected: function(component) {
-        const discountId = component.get('v.discountId');
-        const productData = component.get('v.productData');
-        if (productData.discountId != null && productData.discountId !== discountId) {
-            component.set('v.canBeSelected', false);
-        }
-    },
-
     prepareImage: function (component, productData) {
         const product = productData.product;
         const images = productData.images;

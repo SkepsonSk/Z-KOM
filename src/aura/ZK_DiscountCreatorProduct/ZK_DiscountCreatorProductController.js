@@ -2,7 +2,6 @@
     doInit: function (component, event, helper) {
         const product = component.get('v.productData');
 
-        helper.determineCanBeSelected(component);
         helper.determineSelected(component, product);
         helper.prepareImage(component, product);
     },
