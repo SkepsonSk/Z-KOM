@@ -1,6 +1,7 @@
 ({
     determineSelected: function(component, product) {
         const selected = component.get('v.selectedProducts');
+
         const productId = product.product.Id;
         if (selected.indexOf(productId) !== -1){
             component.set('v.selected', true);

@@ -97,6 +97,50 @@
         });
     },
 
+    switchActivity: function(component, discountId) {
+        const action = component.get('c.switchDiscount');
+        action.setParams({
+            discountId: discountId
+        });
+
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+
+                const response = res.getReturnValue();
+
+                if (response.success !== true) {
+
+                    let conflictMessage = '';
+
+                    const keys = Object.keys(response.collidingProducts);
+                    keys.forEach(key => {
+                        conflictMessage += key + ' in discount ' + response.collidingProducts[key] + '\n';
+                    });
+
+                    this.sendMessage('Conflicting Discounts', conflictMessage, 'error', 60*1000);
+                    return;
+                }
+
+                const discounts = component.get('v.discounts');
+                for (let i = 0 ; i < discounts.length ; i++) {
+                    const discount = discounts[i];
+                    if (discount.Id === discountId) {
+                        discount.IsActive = !discount.IsActive;
+                        break;
+                    }
+                }
+
+                component.set('v.discounts', discounts);
+
+                this.sendMessage('Success', 'Activity switched.', 'success', 5000);
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
     handleRowActions: function (component, event) {
         const action = event.getParam('action').name;
         const discountId = event.getParam('row').Id;
@@ -112,10 +156,19 @@
             }
         }
         else if (action === 'delete') {
-            const name = event.getParam('row').Name;
-            const id = event.getParam('row').Id;
-            this.showDeleteModal(component, name, id);
+
         }
+    },
+
+    sendMessage: function (title, message, type, duration) {
+        const toastMessage = $A.get('e.force:showToast');
+        toastMessage.setParams({
+            title: title,
+            message: message,
+            type: type,
+            duration: duration
+        });
+        toastMessage.fire();
     }
 
 });

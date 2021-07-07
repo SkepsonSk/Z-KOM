@@ -9,6 +9,11 @@
         }
     },
 
+    onAllProductsDiscountSelected: function(component, event, helper) {
+        const allProductsDiscount = component.get('v.allProductsDiscount');
+        component.set('v.allProductsDiscount', !allProductsDiscount);
+    },
+
     onGoToProducts: function (component, event, helper) {
         if (helper.validateNameAndValue(component)) {
             component.set('v.currentStep', '2');
@@ -21,7 +26,9 @@
 
     onFinish: function (component, event, helper) {
         const selectedProducts = component.get('v.selectedProducts');
-        if (!helper.validateSelectedProducts(selectedProducts)){
+        const allProductsDiscount = component.get('v.allProductsDiscount');
+
+        if (!helper.validateSelectedProducts(selectedProducts, allProductsDiscount)){
             return;
         }
 
@@ -30,10 +37,10 @@
         const discountValue = component.get('v.discountValue');
 
         if (discountId == null) {
-            helper.saveDiscount(component, discountName, discountValue, selectedProducts);
+            helper.saveDiscount(component, discountName, discountValue, selectedProducts, allProductsDiscount);
         }
         else {
-            helper.updateDiscount(component, discountId, discountName, discountValue, selectedProducts);
+            helper.updateDiscount(component, discountId, discountName, discountValue, selectedProducts, allProductsDiscount);
         }
     },
 

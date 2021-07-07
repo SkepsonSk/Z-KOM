@@ -23,8 +23,10 @@
 
             if (state === 'SUCCESS') {
                 const discount = res.getReturnValue();
+                const allProductsDiscount = discount.discounts.All_Products__c;
 
                 component.set('v.discount', res.getReturnValue());
+                component.set('v.allProductsDiscount', allProductsDiscount);
 
                 component.set('v.discountName', discount.discounts.Name);
                 component.set('v.discountValue', discount.discounts.Discount_Percent__c);
@@ -71,8 +73,8 @@
         return true;
     },
 
-    validateSelectedProducts: function(selectedProducts) {
-        if (selectedProducts.length === 0) {
+    validateSelectedProducts: function(selectedProducts, allProductsDiscount) {
+        if (selectedProducts.length === 0 && !allProductsDiscount) {
             const titleLabel = $A.get('$Label.c.ZK_Title_Error');
             const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Product_Not_Selected');
 
@@ -82,12 +84,13 @@
         return true;
     },
 
-    saveDiscount: function (component, discountName, discountValue, selectedProducts) {
+    saveDiscount: function (component, discountName, discountValue, selectedProducts, allProductsDiscount) {
         const action = component.get('c.createDiscount');
+
         action.setParams({
             discountName: discountName,
             discountValue: discountValue,
-            products: selectedProducts
+            products: allProductsDiscount ? [] : selectedProducts
         });
 
         action.setCallback(this, function (res) {
@@ -104,18 +107,22 @@
                 const messageLabel = $A.get('$Label.c.ZK_Message_Discount_Created');
                 this.sendMessage(titleLabel, messageLabel, 'success');
             }
+            else {
+                alert(state);
+                alert(JSON.stringify(res.getError()));
+            }
         });
 
         $A.enqueueAction(action);
     },
 
-    updateDiscount: function(component, discountId, discountName, discountValue, selectedProducts){
+    updateDiscount: function(component, discountId, discountName, discountValue, selectedProducts, allProductsDiscount){
         const action = component.get('c.updateDiscount');
         action.setParams({
             discountId: discountId,
             discountName: discountName,
             discountValue: discountValue,
-            products: selectedProducts
+            products: allProductsDiscount ? [] : selectedProducts
         });
 
         action.setCallback(this, function (res) {

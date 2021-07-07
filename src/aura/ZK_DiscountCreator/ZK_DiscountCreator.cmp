@@ -10,6 +10,7 @@
     <aura:attribute name="discountValue" type="Decimal"/>
     <aura:attribute name="products" type="Object[]"/>
     <aura:attribute name="selectedProducts" type="Object[]" default="[]"/>
+    <aura:attribute name="allProductsDiscount" type="Boolean" default="false"/>
 
     <lightning:overlayLibrary aura:id="overlayLibInner"/>
 
@@ -66,14 +67,31 @@
         </aura:if>
 
         <aura:if isTrue="{!v.currentStep == '2'}">
-            <div class="slds-grid slds-wrap">
-                <aura:iteration items="{!v.products}" var="product">
-                    <div class="slds-size_1-of-3">
-                        <c:ZK_DiscountCreatorProduct productData="{!product}"
-                                                     discountId="{!v.discountId}"
-                                                     selectedProducts="{!v.selectedProducts}"/>
-                    </div>
-                </aura:iteration>
+
+            <div class="slds-grid slds-m-around_small slds-grid_vertical-align-center">
+                <p class="slds-size_1-of-3">
+                    If you want to mark a discount as available for all products,
+                    select 'Mark as discount for all products'. After selection, discount will be
+                    applied to all newly created products.
+                </p>
+                <lightning:buttonStateful labelWhenOff="Mark as discount for all products"
+                                          labelWhenOn="Mark as discount for group of products"
+                                          onclick="{!c.onAllProductsDiscountSelected}"
+                                          variant="brand"
+                                          state="{!v.allProductsDiscount}"/>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-is-relative">
+
+                <aura:if isTrue="{!not(v.allProductsDiscount)}">
+                    <aura:iteration items="{!v.products}" var="product">
+                        <div class="slds-size_1-of-3">
+                            <c:ZK_DiscountCreatorProduct productData="{!product}"
+                                                         discountId="{!v.discountId}"
+                                                         selectedProducts="{!v.selectedProducts}"/>
+                        </div>
+                    </aura:iteration>
+                </aura:if>
             </div>
         </aura:if>
 
@@ -86,7 +104,8 @@
         </aura:if>
 
         <aura:if isTrue="{!v.currentStep == '2'}">
-            <lightning:button label="{!$Label.c.ZK_Button_Previous}" variant="neutral" class="slds-m-right_x-small" onclick="{!c.onGoBackToInformation}"/>
+            <lightning:button label="{!$Label.c.ZK_Button_Previous}" variant="neutral" class="slds-m-right_x-small"
+                              onclick="{!c.onGoBackToInformation}"/>
             <lightning:button label="{!$Label.c.ZK_Button_Finish}" variant="brand" onclick="{!c.onFinish}"/>
         </aura:if>
 

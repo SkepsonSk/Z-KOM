@@ -1,7 +1,12 @@
 public with sharing class ZK_DiscountManagerController {
 
+    public class ActivationResult {
+        @AuraEnabled public Boolean success;
+        @AuraEnabled public Map<String, String> collidingProducts;
+    }
+
     public class DiscountsData {
-        @AuraEnabled public Discounts__c discounts;
+        @AuraEnabled public Pricebook2 discounts;
         @AuraEnabled public List<Id> selected;
     }
 
@@ -11,13 +16,73 @@ public with sharing class ZK_DiscountManagerController {
     }
 
     @AuraEnabled
-    public static List<Discounts__c> getDiscounts() {
-        return [SELECT Id,Name,Discount_Percent__c,Active__c,Type__c FROM Discounts__c];
+    public static List<Pricebook2> getDiscounts() {
+        List<Pricebook2> priceBooks = [SELECT Id,Name,Discount_Percent__c,IsActive FROM Pricebook2 WHERE IsStandard=false];
+        return priceBooks;
+    }
+
+    @AuraEnabled
+    public static ActivationResult switchDiscount(Id discountId) {
+        ActivationResult result = new ActivationResult();
+
+        List<Pricebook2> priceBooks = [SELECT Id,IsActive,All_Products__c FROM Pricebook2 WHERE Id=:discountId];
+        if (priceBooks.isEmpty()) {
+            result.success = false;
+            return result;
+        }
+
+        Pricebook2 pricebook = priceBooks[0];
+        if (!pricebook.IsActive) {
+
+            List<Pricebook2> allProducts = [SELECT Id,IsActive,Name FROM Pricebook2 WHERE IsActive=true AND All_Products__c=true];
+            if (!allProducts.isEmpty()) {
+                Pricebook2 allPricebook2 = allProducts[0];
+                result.success = false;
+                result.collidingProducts = new Map<String, String>();
+                result.collidingProducts.put('All', allPricebook2.Name);
+                return result;
+            }
+
+            List<PricebookEntry> thisDiscountEntries = [SELECT Product2Id, Product2.Name FROM PricebookEntry
+            WHERE Pricebook2.Id=:discountId];
+
+            List<PricebookEntry> activeEntries = [SELECT Product2.Name,Product2Id,Pricebook2.Name FROM PricebookEntry
+            WHERE Pricebook2.IsActive=true AND Pricebook2.IsStandard=false];
+
+            result.collidingProducts = new Map<String, String>();
+            if (pricebook.All_Products__c) {
+                for (PricebookEntry activeEntry : activeEntries) {
+                    result.collidingProducts.put(activeEntry.Product2.Name, activeEntry.Pricebook2.Name);
+                }
+            }
+            else {
+                for (PricebookEntry entry : thisDiscountEntries) {
+                    for (PricebookEntry activeEntry : activeEntries) {
+                        if (entry.Product2Id == activeEntry.Product2Id) {
+                            result.collidingProducts.put(entry.Product2.Name, activeEntry.Pricebook2.Name);
+                        }
+                    }
+                }
+            }
+
+            result.success = result.collidingProducts.isEmpty();
+            if (!result.success) {
+                return result;
+            }
+
+        }
+
+        pricebook.IsActive = !pricebook.IsActive;
+        update pricebook;
+
+        result.success = true;
+
+        return result;
     }
 
     @AuraEnabled
     public static DiscountsData getDiscount(Id id) {
-        List<Discounts__c> discounts = [SELECT Id,Name,Discount_Percent__c,Active__c,Type__c FROM Discounts__c WHERE Id=:id];
+        List<Pricebook2> discounts = [SELECT Id,Name,Discount_Percent__c,All_Products__c FROM Pricebook2 WHERE Id=:id];
         if (discounts.isEmpty()){
             return null;
         }
@@ -25,30 +90,48 @@ public with sharing class ZK_DiscountManagerController {
         DiscountsData discountsData = new DiscountsData();
         discountsData.discounts = discounts[0];
 
-        List<Discount_Entry__c> entries = [SELECT Product__c FROM Discount_Entry__c WHERE Discounts__c=:id];
+        if (discounts[0].All_Products__c) {
+            discountsData.selected = new List<Id>();
+            return discountsData;
+        }
+
+        List<PricebookEntry> entries = [SELECT Product2Id FROM PricebookEntry WHERE Pricebook2.Id=:id];
         discountsData.selected = new List<Id>();
-        for (Discount_Entry__c ent : entries) {
-            discountsData.selected.add(ent.Product__c);
+        for (PricebookEntry ent : entries) {
+            discountsData.selected.add(ent.Product2Id);
         }
 
         return discountsData;
     }
 
-
     @AuraEnabled
     public static Boolean createDiscount(String discountName, Decimal discountValue, List<Id> products) {
-        Discounts__c discounts = new Discounts__c();
-        discounts.Name = discountName;
-        discounts.Type__c = 'Products Group';
-        discounts.Discount_Percent__c = discountValue;
-        insert discounts;
+        Pricebook2 pricebook2 = new Pricebook2();
+        pricebook2.Name = discountName;
+        pricebook2.Discount_Percent__c = discountValue;
+        pricebook2.IsActive = false;
 
-        List<Discount_Entry__c> entries = new List<Discount_Entry__c>();
-        for (Id productId : products) {
-            Discount_Entry__c entry = new Discount_Entry__c();
-            entry.Discounts__c = discounts.Id;
-            entry.Product__c = productId;
-            entries.add(entry);
+        if (products.isEmpty()) {
+            pricebook2.All_Products__c = true;
+            insert pricebook2;
+            return true;
+        }
+
+        insert pricebook2;
+
+        ZK_Main_Price_Book__c mainPriceBook = ZK_Main_Price_Book__c.getOrgDefaults();
+        String mainPriceBookName = mainPriceBook.Name__c;
+
+        List<PricebookEntry> pricebookEntries = [SELECT Product2Id,UnitPrice FROM PricebookEntry WHERE Pricebook2.Name=:mainPriceBookName];
+        List<PricebookEntry> entries = new List<PricebookEntry>();
+        for (PricebookEntry pricebookEntry : pricebookEntries) {
+            if (products.contains(pricebookEntry.Product2Id)){
+                PricebookEntry entry = new PricebookEntry();
+                entry.Pricebook2Id = pricebook2.Id;
+                entry.Product2Id = pricebookEntry.Product2Id;
+                entry.UnitPrice = pricebookEntry.UnitPrice - pricebookEntry.UnitPrice * (discountValue/100);
+                entries.add(entry);
+            }
         }
 
         insert entries;
@@ -58,25 +141,38 @@ public with sharing class ZK_DiscountManagerController {
 
     @AuraEnabled
     public static Boolean updateDiscount(Id discountId, String discountName, Decimal discountValue, List<Id> products) {
-        List<Discounts__c> discounts = [SELECT Id, Name, Discount_Percent__c FROM Discounts__c WHERE Id=:discountId];
+        List<Pricebook2> discounts = [SELECT Id,Name,Discount_Percent__c,All_Products__c FROM Pricebook2 WHERE Id=:discountId];
         if (discounts.isEmpty()) {
             return false;
         }
 
-        Discounts__c d = discounts[0];
+        Pricebook2 d = discounts[0];
         d.Name = discountName;
         d.Discount_Percent__c = discountValue;
+        d.All_Products__c = products.isEmpty();
+        d.IsActive = false;
         update d;
 
-        List<Discount_Entry__c> entries = [SELECT Id FROM Discount_Entry__c WHERE Discounts__c=:discountId];
-        delete entries;
+        List<PricebookEntry> entriesToDelete = [SELECT Id FROM PricebookEntry WHERE Pricebook2Id=:discountId];
+        delete entriesToDelete;
 
-        entries = new List<Discount_Entry__c>();
-        for (Id productId : products) {
-            Discount_Entry__c entry = new Discount_Entry__c();
-            entry.Discounts__c = discountId;
-            entry.Product__c = productId;
-            entries.add(entry);
+        if (d.All_Products__c) {
+            return true;
+        }
+
+        ZK_Main_Price_Book__c mainPriceBook = ZK_Main_Price_Book__c.getOrgDefaults();
+        String mainPriceBookName = mainPriceBook.Name__c;
+
+        List<PricebookEntry> pricebookEntries = [SELECT Product2Id,UnitPrice FROM PricebookEntry WHERE Pricebook2.Name=:mainPriceBookName];
+        List<PricebookEntry> entries = new List<PricebookEntry>();
+        for (PricebookEntry pricebookEntry : pricebookEntries) {
+            if (products.contains(pricebookEntry.Product2Id)){
+                PricebookEntry entry = new PricebookEntry();
+                entry.Pricebook2Id = discountId;
+                entry.Product2Id = pricebookEntry.Product2Id;
+                entry.UnitPrice = pricebookEntry.UnitPrice - pricebookEntry.UnitPrice * (discountValue/100);
+                entries.add(entry);
+            }
         }
 
         insert entries;
@@ -86,62 +182,8 @@ public with sharing class ZK_DiscountManagerController {
     }
 
     @AuraEnabled
-    public static Boolean createSingleDiscount(Decimal discountValue, Id productId) {
-        List<Product2> products = [SELECT Name FROM Product2 WHERE Id=:productId];
-        if (products.isEmpty()) {
-            return false;
-        }
-
-        Product2 product = products[0];
-
-        Discounts__c discounts = new Discounts__c();
-        discounts.Name = product.Name;
-        discounts.Type__c = 'Single Product';
-        discounts.Discount_Percent__c = discountValue;
-        insert discounts;
-
-        Discount_Entry__c entry = new Discount_Entry__c();
-        entry.Discounts__c = discounts.Id;
-        entry.Product__c = productId;
-        insert entry;
-
-        return true;
-    }
-
-    @AuraEnabled
-    public static Boolean updateSingleDiscount(Id discountId, Decimal discountValue, Id productId) {
-        List<Product2> products = [SELECT Name FROM Product2 WHERE Id=:productId];
-        if (products.isEmpty()) {
-            return false;
-        }
-
-        Product2 product = products[0];
-
-        List<Discounts__c> discounts = [SELECT Id, Name, Discount_Percent__c FROM Discounts__c WHERE Id=:discountId];
-        if (discounts.isEmpty()) {
-            return false;
-        }
-
-        Discounts__c d = discounts[0];
-        d.Name = product.Name;
-        d.Discount_Percent__c = discountValue;
-        update d;
-
-        List<Discount_Entry__c> entries = [SELECT Id,Product__c FROM Discount_Entry__c WHERE Discounts__c=:discountId];
-        if (entries.isEmpty()) {
-            return false;
-        }
-
-        Discount_Entry__c entry = entries[0];
-        entry.Product__c = productId;
-        update entry;
-
-        return true;
-    }
-
-    @AuraEnabled
     public static Boolean deleteDiscount(Id id) {
-        List<Discount_Entry__c> entries = [SELECT Id FROM Discount_Entry__c WHERE Discounts__c=:id];
+        List<PricebookEntry> entries = [SELECT Id FROM PricebookEntry WHERE Pricebook2Id=:id];
         delete entries;
 
         Database.DeleteResult res = Database.delete(id);

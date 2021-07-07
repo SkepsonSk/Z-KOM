@@ -10,29 +10,53 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_DiscountsChanged" action="{!c.onDiscountsChanged}"/>
 
-    <lightning:layout class="slds-page-header no-b-rounded slds-page-header_object-home slds-m-around_none">
-        <lightning:layoutItem>
-            <lightning:icon iconName="standard:product" alternativeText="{!$Label.c.ZK_Title_Discounts_Manager}"/>
-        </lightning:layoutItem>
+    <div class="slds-grid_vertical slds-grid_vertical-align-center slds-card slds-p-around_small">
 
-        <lightning:layoutItem padding="horizontal-small">
-            <div class="page-section page-header">
-                <h1 class="slds-text-heading_label">{!$Label.c.ZK_Title_Discounts_Manager}</h1>
-                <h2 class="slds-text-heading_medium">{!$Label.c.ZK_Title_All_Discounts}</h2>
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <h2 class="slds-text-heading_small"> Discounts </h2>
+            <lightning:button class="slds-col_bump-left" label="New Discount" onclick="{!c.onNewDiscountClick}"/>
+        </div>
+
+        <aura:if isTrue="{!v.discounts.length == 0}">
+            <h2 class="slds-text-heading_small slds-text-align_center">No discounts.</h2>
+        </aura:if>
+
+        <aura:iteration items="{!v.discounts}" var="discount">
+
+            <div class="slds-box slds-grid slds-grid_vertical-align-center slds-m-top_small">
+
+                <div class="slds-m-right_small"
+                     id="{!discount.Id}"
+                     onclick="{!c.onDiscountEdit}">
+                    <lightning:icon iconName="utility:edit"
+                                    alternativeText="{!$Label.c.ZK_Action_Edit}"
+                                    size="x-small"/>
+                </div>
+
+                <div class="slds-m-right_small"
+                     id="{!discount.Id}"
+                     data-value="{!discount.Name}"
+                     onclick="{!c.onDiscountDelete}">
+                    <lightning:icon iconName="utility:delete"
+                                    alternativeText="{!$Label.c.ZK_Action_Delete}"
+                                    variant="error"
+                                    size="x-small"/>
+                </div>
+
+                <h3 class="slds-text-heading_small"> {!discount.Name} </h3>
+
+                <div class="slds-col_bump-left">
+                    <div id="{!discount.Id}"
+                         onclick="{!c.onActivitySwitch}">
+                        <lightning:buttonStateful labelWhenOn="Deactivate"
+                                                  labelWhenOff="Activate"
+                                                  variant="brand"
+                                                  state="{!discount.IsActive}"/>
+                    </div>
+                </div>
             </div>
-        </lightning:layoutItem>
 
-        <lightning:layoutItem class="slds-col_bump-left">
-            <lightning:button variant="neutral" onclick="{!c.onNewSingleClick}"> {!$Label.c.ZK_Button_New_Group_Discount} </lightning:button>
-            <lightning:button variant="neutral" onclick="{!c.onNewGroupClick}"> {!$Label.c.ZK_Button_New_Single_Product_Discount} </lightning:button>
-        </lightning:layoutItem>
-
-    </lightning:layout>
-
-    <lightning:datatable data="{!v.discounts}"
-                         keyField="id"
-                         onrowaction="{!c.onRowAction}"
-                         showRowNumberColumn="true"
-                         columns="{!v.columns}"/>
+        </aura:iteration>
+    </div>
 
 </aura:component>
