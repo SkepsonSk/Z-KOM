@@ -7,7 +7,6 @@
         let productIndex;
 
         for (let p in products) {
-
             const product = products[p];
             if (product.Id === productId) {
                 product.Amount += byQuantity;
@@ -15,7 +14,6 @@
                 productIndex = p;
                 break;
             }
-
         }
 
         if (finalAmount < 1) {
@@ -129,9 +127,28 @@
         component.set('v.totalPrice', totalPrice);
     },
 
+    displayOrderModal: function(component) {
+        const cart = component.get('v.products');
+        const overlay = component.find('overlayLib');
+
+        $A.createComponent('c:ZK_Order', {cart: cart}, function(component, status) {
+
+            if (status === 'SUCCESS') {
+                overlay.showCustomModal({
+                    header: 'Order',
+                    body: component,
+                    showCloseButton: true,
+                    cssClass: 'slds-modal_large',
+                    closeCallback: function() {}
+                });
+
+            }
+        });
+    },
+
     sendErrorMessage: function () {
-        const titleLabel = $A.get("$Label.c.ZK_Message_Title_Error");
-        const messageLabel = $A.get("$Label.c.ZK_Message_Contact_Admin");
+        const titleLabel = $A.get('$Label.c.ZK_Message_Title_Error');
+        const messageLabel = $A.get('$Label.c.ZK_Message_Contact_Admin');
 
         const toastEvent = $A.get('e.force:showToast');
         toastEvent.setParams({

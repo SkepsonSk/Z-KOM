@@ -21,6 +21,10 @@
         helper.determineTotalPrice(component);
     },
 
+    onProceedToCashClick: function(component, event, helper) {
+        helper.displayOrderModal(component);
+    },
+
     goToProduct: function (component, event, helper) {
         event.stopPropagation();
 
