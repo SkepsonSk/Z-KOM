@@ -16,6 +16,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="searchFormSubmitted" event="c:ZK_ProductSearchFormSubmitted"
                   action="{!c.onSearchFormSubmitted}"/>
+    <aura:handler event="c:ZK_ProductsReloadRequested" action="{!c.onReloadRequested}"/>
 
     <lightning:card>
         <c:ZK_Spinner visible="{!v.loading}"/>
@@ -24,7 +25,8 @@
 
     <lightning:card>
         <c:ZK_Spinner visible="{!v.loading}"/>
-        <c:ZK_Products size="{!v.size}"
+        <c:ZK_Products aura:id="productsComponent"
+                       size="{!v.size}"
                        destination="{!v.userProfile.Name == v.profilesSetting.Guest__c ? 'guest' : 'client'}"
                        products="{!v.products}"
                        currency="{!v.currency}"/>

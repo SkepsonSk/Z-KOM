@@ -7,6 +7,10 @@
         helper.fetchAllProducts(component);
     },
 
+    onReloadRequested: function(component, event, helper) {
+        helper.fetchAllProducts(component);
+    },
+
     onSearchFormSubmitted: function (component, event, helper) {
         const productName = event.getParam('productName');
         const categoryName = event.getParam('categoryName');
