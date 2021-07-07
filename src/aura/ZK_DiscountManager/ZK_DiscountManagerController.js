@@ -11,6 +11,9 @@
     onActivitySwitch: function(component, event, helper) {
         const discountId = event.target.id;
         helper.switchActivity(component, discountId);
+
+        const reloadRequested = $A.get('e.c:ZK_ProductsReloadRequested');
+        reloadRequested.fire();
     },
 
     onDiscountEdit: function(component, event, helper) {
@@ -25,11 +28,10 @@
         helper.showDeleteModal(component, name, id);
     },
 
-    onRowAction: function (component, event, helper) {
-        helper.handleRowActions(component, event);
-    },
-
     onDiscountsChanged: function (component, event, helper) {
         helper.fetchDiscounts(component);
+
+        const reloadRequested = $A.get('e.c:ZK_ProductsReloadRequested');
+        reloadRequested.fire();
     }
 });
