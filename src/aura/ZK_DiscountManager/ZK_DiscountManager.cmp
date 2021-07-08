@@ -15,12 +15,14 @@
     <div class="slds-grid_vertical slds-grid_vertical-align-center slds-card slds-p-around_small">
 
         <div class="slds-grid slds-grid_vertical-align-center">
-            <h2 class="slds-text-heading_small"> Discounts </h2>
-            <lightning:button class="slds-col_bump-left" label="New Discount" onclick="{!c.onNewDiscountClick}"/>
+            <h2 class="slds-text-heading_small"> {!$Label.c.ZK_Title_Discounts} </h2>
+            <lightning:button class="slds-col_bump-left"
+                              label="{!$Label.c.ZK_Button_New_Discount}"
+                              onclick="{!c.onNewDiscountClick}"/>
         </div>
 
         <aura:if isTrue="{!v.discounts.length == 0}">
-            <h2 class="slds-text-heading_small slds-text-align_center">No discounts.</h2>
+            <h2 class="slds-text-heading_small slds-text-align_center">{!$Label.c.ZK_Message_No_Discounts}</h2>
         </aura:if>
 
         <aura:iteration items="{!v.discounts}" var="discount">
@@ -48,14 +50,16 @@
                 <h3 class="slds-text-heading_small">
                     {!discount.Name}
                     <span class="slds-m-left_small text-bold">{!discount.Discount_Percent__c}%</span>
-                    <span class="slds-m-left_small text-bold">{!discount.All_Products__c ? $Label.c.ZK_Discount_Type_All : $Label.c.ZK_Discount_Type_Group}</span>
+                    <span class="slds-m-left_small text-bold">
+                            {!discount.All_Products__c ? $Label.c.ZK_Discount_Type_All : $Label.c.ZK_Discount_Type_Group}
+                    </span>
                 </h3>
 
                 <div class="slds-col_bump-left">
                     <div id="{!discount.Id}"
                          onclick="{!c.onActivitySwitch}">
-                        <lightning:buttonStateful labelWhenOn="Deactivate"
-                                                  labelWhenOff="Activate"
+                        <lightning:buttonStateful labelWhenOn="{!$Label.c.ZK_Button_Discount_Deactivate}"
+                                                  labelWhenOff="{!$Label.c.ZK_Button_Discount_Activate}"
                                                   variant="brand"
                                                   state="{!discount.IsActive}"/>
                     </div>

@@ -7,10 +7,6 @@
             if (state === 'SUCCESS') {
                 component.set('v.discounts', res.getReturnValue());
             }
-            else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
-            }
         });
 
         $A.enqueueAction(action);
@@ -58,25 +54,7 @@
             }
         });
     },
-    showSingleCreatorModal: function (component, discountId) {
-        const overlay = component.find('overlayLib');
 
-        $A.createComponent('c:ZK_SingleProductDiscountCreator', {discountId: discountId}, function(component, status) {
-
-            const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Creator');
-
-            if (status === 'SUCCESS') {
-                overlay.showCustomModal({
-                    header: titleLabel,
-                    body: component,
-                    showCloseButton: true,
-                    cssClass: 'slds-modal_medium',
-                    closeCallback: function() {}
-                });
-
-            }
-        });
-    },
     showDeleteModal: function (component, discountName, discountId) {
         const overlay = component.find('overlayLib');
 
@@ -137,7 +115,10 @@
 
                 component.set('v.discounts', discounts);
 
-                this.sendMessage('Success', 'Activity switched.', 'success', 5000);
+                const titleLabel = $A.get('$Label.c.ZK_Title_Discount_Created');
+                const messageLabel = $A.get('$Label.c.ZK_Message_Activity_Switched');
+
+                this.sendMessage(titleLabel, messageLabel, 'success', 5000);
             }
         });
 
