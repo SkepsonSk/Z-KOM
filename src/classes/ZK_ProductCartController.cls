@@ -32,7 +32,8 @@ public with sharing class ZK_ProductCartController {
             return null;
         }
 
-        return (List<Object>) sessionPart.get('cart');
+        List<Object> cart = (List<Object>) sessionPart.get('cart');
+        return cart;
     }
 
 }

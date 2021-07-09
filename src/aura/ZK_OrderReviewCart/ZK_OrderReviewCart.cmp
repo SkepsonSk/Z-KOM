@@ -6,6 +6,8 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+    <aura:method name="calculateTotalPrice" action="{!c.calculateTotalPrice}"/>
+
     <aura:iteration items="{!v.cart}" var="product">
         <c:ZK_OrderReviewCartProduct product="{!product}"/>
     </aura:iteration>

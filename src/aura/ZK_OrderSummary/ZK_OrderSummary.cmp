@@ -74,14 +74,14 @@
             </div>
 
             <div class="slds-m-top_medium">
-                <h4> {!$Label.c.ZK_Title_Total_Price} </h4>
-                <div style="{!v.product.totalPriceWithDiscounts != 0 ? 'text-decoration: line-through' : ''}">
+                <h4 class="slds-text-heading_medium"> {!$Label.c.ZK_Title_Total_Price} </h4>
+                <div style="{!v.product.totalPriceWithDiscounts != 0 ? 'text-decoration: line-through' : ''}" class="slds-text-heading_small">
                     <lightning:formattedNumber value="{!v.totalPrice}"
                                                style="currency"/>
                 </div>
 
                 <aura:if isTrue="{!v.totalPriceWithDiscounts != 0 }">
-                    <div style="color: #29a329;font-weight: bold">
+                    <div style="color: #29a329;font-weight: bold" class="slds-text-heading_small">
                         <lightning:formattedNumber value="{!v.totalPriceWithDiscounts}"
                                                    style="currency"/>
                     </div>

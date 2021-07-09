@@ -13,10 +13,32 @@ public with sharing class ZK_OrderController {
         @AuraEnabled public String country { get; set; }
     }
 
-    //TODO Clean up this function
-    //TODO Add Custom Setting
     @AuraEnabled
     public static Id createOpportunity(List<OrderProduct> cart) {
+        return handleOpportunityCreation(cart);
+    }
+
+    @AuraEnabled
+    public static String createOrder(Id opportunityId) {
+        return handleOrderCreation(opportunityId);
+    }
+
+    @AuraEnabled
+    public static void close(Id opportunityId, Id orderId) {
+        handleClose(opportunityId, orderId);
+    }
+
+    @AuraEnabled
+    public static void updateProducts(Id opportunityId, List<OrderProduct> cart) {
+        handleProductsUpdate(opportunityId, cart);
+    }
+
+    @AuraEnabled
+    public static void updateContactAddress(String addressType, AddressWrapper address) {
+        handleContactAddressUpdate(addressType, address);
+    }
+
+    private static Id handleOpportunityCreation(List<OrderProduct> cart) {
         List<Id> productIds = new List<Id>();
         for (OrderProduct item : cart) {
             productIds.add(item.Id);
@@ -92,8 +114,7 @@ public with sharing class ZK_OrderController {
         return opportunity.Id;
     }
 
-    @AuraEnabled
-    public static String createOrder(Id opportunityId) {
+    private static String handleOrderCreation(Id opportunityId) {
         Opportunity opportunity = [
                 SELECT Amount FROM Opportunity
                 WHERE Id=:opportunityId
@@ -143,8 +164,7 @@ public with sharing class ZK_OrderController {
         return order.Id;
     }
 
-    @AuraEnabled
-    public static void close(Id opportunityId, Id orderId) {
+    private static void handleClose(Id opportunityId, Id orderId) {
         Opportunity opportunity = [
                 SELECT Id FROM Opportunity
                 WHERE Id=:opportunityId
@@ -162,8 +182,7 @@ public with sharing class ZK_OrderController {
         update order;
     }
 
-    @AuraEnabled
-    public static void updateProducts(Id opportunityId, List<OrderProduct> cart) {
+    private static void handleProductsUpdate(Id opportunityId, List<OrderProduct> cart) {
         List<OpportunityLineItem> oldItems = [
                 SELECT Id FROM OpportunityLineItem
                 WHERE OpportunityId = :opportunityId
@@ -234,8 +253,7 @@ public with sharing class ZK_OrderController {
 
     }
 
-    @AuraEnabled
-    public static void updateContactAddress(String addressType, AddressWrapper address) {
+    private static void handleContactAddressUpdate(String addressType, AddressWrapper address){
         String email = UserInfo.getUserEmail();
         Contact contact = [
                 SELECT Id FROM Contact

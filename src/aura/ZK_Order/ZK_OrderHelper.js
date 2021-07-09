@@ -12,7 +12,6 @@
             }
         }
         component.set('v.cart', cart);
-
     },
 
     switchStep: function (component, currentStep) {

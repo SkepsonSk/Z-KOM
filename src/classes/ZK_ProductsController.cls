@@ -4,6 +4,24 @@ public with sharing class ZK_ProductsController {
         @AuraEnabled public Product2 product;
         @AuraEnabled public List<ContentDocumentLink> images;
         @AuraEnabled public Decimal unitPrice;
+        @AuraEnabled public String discountId;
+        @AuraEnabled public Integer averageRating;
+        @AuraEnabled public String discountName;
+        @AuraEnabled public Decimal discountPercent;
+        @AuraEnabled public String discountType;
+        @AuraEnabled public Decimal unitPriceDiscount;
+    }
+
+    @AuraEnabled
+    public static ZK_Profiles__c getProfilesSetting() {
+        return ZK_Profiles__c.getOrgDefaults();
+    }
+
+    @AuraEnabled
+    public static Profile getCurrentProfile() {
+        String profileId = UserInfo.getProfileId();
+        Profile profile = [SELECT Name FROM Profile WHERE Id=:profileId LIMIT 1];
+        return profile;
     }
 
     @AuraEnabled

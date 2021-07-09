@@ -9,6 +9,7 @@
         const productId = event.getParam('productId');
         const modificationType = event.getParam('modificationType');
         helper.modifyProduct(component, productId, modificationType, event);
+        component.find('orderReviewCart').calculateTotalPrice();
     },
 
     goToAddressAndPayment: function (component, event, helper) {
@@ -34,6 +35,9 @@
 
         helper.close(component, opportunityId, orderId);
         component.set('v.finalized', true);
+
+        const finalizedEvent = $A.get('e.c:ZK_OrderFinalizedEvent');
+        finalizedEvent.fire();
     },
 
     onOrderDataCollected: function (component, event, helper) {
