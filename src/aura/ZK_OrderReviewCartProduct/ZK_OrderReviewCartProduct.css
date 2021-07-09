@@ -1,0 +1,23 @@
+.THIS .product-image{
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.THIS .cursor-pointer {
+    cursor: pointer;
+}
+
+.THIS .quantity-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #D4D4D4;
+    border-radius: 50%;
+    font-size: 18px;
+    user-select: none;
+}

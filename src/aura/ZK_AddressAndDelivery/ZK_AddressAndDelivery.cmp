@@ -1,0 +1,30 @@
+<aura:component description="ZK_AddressAndDelivery">
+
+    <aura:attribute name="anotherDeliveryAddress" type="Boolean" default="false"/>
+
+    <aura:handler name="anotherDeliveryAddressChecked" event="c:ZK_AnotherDeliveryAddressChecked" action="{!c.onAnotherDeliveryChecked}"/>
+
+    <aura:method name="collectData" action="{!c.onDataCollect}"/>
+
+    <div class="slds-grid slds-p-around_small">
+
+        <div class="slds-size_1-of-3 slds-m-right_x-small">
+            <h2 class="slds-text-heading_small slds-m-bottom_small"> {!$Label.c.ZK_Title_Order_Address} </h2>
+            <c:ZK_OrderAddress aura:id="orderAddress" displayAnotherDeliveryAddress="true"/>
+        </div>
+
+        <aura:if isTrue="{!v.anotherDeliveryAddress}">
+            <div class="slds-size_1-of-3 slds-m-right_x-small">
+                <h2 class="slds-text-heading_small slds-m-bottom_small"> {!$Label.c.ZK_Title_Delivery_Address} </h2>
+                <c:ZK_OrderAddress isDeliveryAddress="true" aura:id="deliveryAddress"/>
+            </div>
+        </aura:if>
+
+        <div class="slds-col">
+            <h2 class="slds-text-heading_small slds-m-bottom_small"> {!$Label.c.ZK_Title_Payment_Information} </h2>
+            <c:ZK_OrderPayment aura:id="orderPayment"/>
+        </div>
+
+    </div>
+
+</aura:component>

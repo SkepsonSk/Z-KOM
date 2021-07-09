@@ -1,0 +1,95 @@
+<aura:component description="ZK_OrderSummary">
+
+    <aura:attribute name="cart" type="Object[]" required="true"/>
+    <aura:attribute name="paymentMethodName" type="String" required="true"/>
+    <aura:attribute name="paymentData" type="Object" required="true"/>
+    <aura:attribute name="orderAddress" type="Object" required="true"/>
+    <aura:attribute name="deliveryAddress" type="Object" required="true"/>
+
+    <aura:attribute name="totalPrice" type="Decimal"/>
+    <aura:attribute name="totalPriceWithDiscounts" type="Decimal"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.paymentData}" action="{!c.truncateCodeNumber}"/>
+
+    <div class="slds-grid">
+
+        <div class="slds-size_2-of-3 slds-p-right_x-small">
+            <div class="slds-box">
+                <h2> {!$Label.c.ZK_Title_Ordered_Products} </h2>
+                <aura:iteration items="{!v.cart}" var="product">
+                    <c:ZK_OrderReviewCartProduct readOnly="true" product="{!product}"/>
+                </aura:iteration>
+            </div>
+        </div>
+
+        <div class="slds-col slds-box">
+
+            <h2> {!$Label.c.ZK_Title_Order_Summary} </h2>
+
+            <div class="slds-grid">
+
+                <div class="slds-col">
+                    <h3 class="slds-m-top_medium"> {!$Label.c.ZK_Title_Order_Address} </h3>
+                    <div>
+                        <p><span class="slds-m-right_small">{!v.orderAddress.street}</span> {!v.orderAddress.city} </p>
+                        <p><span class="slds-m-right_small">{!v.orderAddress.postalCode}</span> {!v.orderAddress.city}
+                        </p>
+                        <p><span class="slds-m-right_small">{!v.orderAddress.state}</span> {!v.orderAddress.country}</p>
+                    </div>
+                </div>
+
+                <aura:if isTrue="{!v.deliveryAddress != null}">
+                    <div class="slds-col">
+                        <h3 class="slds-m-top_medium"> {!$Label.c.ZK_Title_Delivery_Address} </h3>
+                        <div>
+                            <p><span
+                                    class="slds-m-right_small">{!v.deliveryAddress.street}</span> {!v.deliveryAddress.city}
+                            </p>
+                            <p><span
+                                    class="slds-m-right_small">{!v.deliveryAddress.postalCode}</span> {!v.deliveryAddress.city}
+                            </p>
+                            <p><span
+                                    class="slds-m-right_small">{!v.deliveryAddress.state}</span> {!v.deliveryAddress.country}
+                            </p>
+                        </div>
+                    </div>
+                </aura:if>
+
+            </div>
+
+            <div class="slds-m-top_medium">
+                <h3> {!$Label.c.ZK_Title_Payment_Method} </h3>
+
+                <aura:if isTrue="{!v.paymentMethodName == 'banking'}">
+                    <h3> {!$Label.c.ZK_Title_Bank_Online} </h3>
+                    <div style="{!'background-image: url(\'' + v.paymentData.image + '\')'}"
+                         class="bg-image"></div>
+                </aura:if>
+                <aura:if isTrue="{!v.paymentMethodName == 'other'}">
+                    <aura:if isTrue="{!v.paymentData == 'transfer'}"><h3> {!$Label.c.ZK_Option_Traditional_Transfer} </h3></aura:if>
+                    <aura:if isTrue="{!v.paymentData == 'onDelivery'}"><h3> {!$Label.c.ZK_Option_On_Delivery} </h3></aura:if>
+                </aura:if>
+
+            </div>
+
+            <div class="slds-m-top_medium">
+                <h4> {!$Label.c.ZK_Title_Total_Price} </h4>
+                <div style="{!v.product.totalPriceWithDiscounts != 0 ? 'text-decoration: line-through' : ''}">
+                    <lightning:formattedNumber value="{!v.totalPrice}"
+                                               style="currency"/>
+                </div>
+
+                <aura:if isTrue="{!v.totalPriceWithDiscounts != 0 }">
+                    <div style="color: #29a329;font-weight: bold">
+                        <lightning:formattedNumber value="{!v.totalPriceWithDiscounts}"
+                                                   style="currency"/>
+                    </div>
+                </aura:if>
+            </div>
+
+        </div>
+
+    </div>
+
+</aura:component>

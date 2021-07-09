@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="ZK_AnotherDeliveryAddressChecked">
+    <aura:attribute name="anotherDeliveryAddress" type="Boolean" required="true"/>
+</aura:event>

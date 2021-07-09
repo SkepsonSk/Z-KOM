@@ -1,0 +1,33 @@
+<aura:component description="ZK_OrderReviewCart">
+
+    <aura:attribute name="cart" type="Object[]" required="true"/>
+    <aura:attribute name="totalPrice" type="Decimal"/>
+    <aura:attribute name="totalPriceWithDiscounts" type="Decimal"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:iteration items="{!v.cart}" var="product">
+        <c:ZK_OrderReviewCartProduct product="{!product}"/>
+    </aura:iteration>
+
+    <div class="slds-grid">
+        <div class="slds-col_bump-left slds-m-top_small">
+            <h4 class="slds-text-heading_medium"> {!$Label.c.ZK_Title_Total_Price} </h4>
+            <div class="slds-text-heading_small slds-text-align_right"
+                 style="{!v.product.totalPriceWithDiscounts != 0 ? 'text-decoration: line-through' : ''}">
+                <lightning:formattedNumber value="{!v.totalPrice}"
+                                           style="currency"/>
+            </div>
+
+            <aura:if isTrue="{!v.totalPriceWithDiscounts != 0 }">
+                <div class="slds-text-heading_small slds-text-align_right"
+                     style="color: #29a329;font-weight: bold">
+                    <lightning:formattedNumber value="{!v.totalPriceWithDiscounts}"
+                                               style="currency"/>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+
+
+</aura:component>

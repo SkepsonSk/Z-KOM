@@ -1,0 +1,101 @@
+<aura:component description="ZK_Order" controller="ZK_OrderController">
+
+    <aura:attribute name="cart" type="Object[]"/>
+    <aura:attribute name="cartOriginal" type="Object[]"/>
+
+    <aura:attribute name="currentStep" type="String" default="1"/>
+
+    <aura:attribute name="hasOrderAddress" type="Boolean" default="false"/>
+    <aura:attribute name="hasPayment" type="Boolean" default="false"/>
+
+    <aura:attribute name="paymentMethodName" type="String"/>
+    <aura:attribute name="paymentData" type="Object"/>
+    <aura:attribute name="orderAddress" type="Object"/>
+    <aura:attribute name="deliveryAddress" type="Object"/>
+
+    <aura:attribute name="opportunityId" type="String"/>
+    <aura:attribute name="orderId" type="String"/>
+
+    <aura:attribute name="finalized" type="Boolean" default="false"/>
+    <aura:attribute name="redirectToBank" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:ZK_OrderProductModified" action="{!c.onOrderProductModified}"/>
+    <aura:handler event="c:ZK_OrderDataCollected" action="{!c.onOrderDataCollected}"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content {
+        height: unset !important;
+        max-height: unset !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{!v.finalized}">
+        <div class="slds-p-around_small">
+            <c:ZK_OrderFinalized redirectToBank="{!v.paymentMethodName == 'banking'}"/>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!not(v.finalized)}">
+        <div class="slds-p-around_small">
+            <lightning:layout multipleRows="true">
+
+                <lightning:layoutItem size="12" class="slds-m-bottom_small">
+                    <lightning:progressIndicator currentStep="{!v.currentStep}" type="path" variant="base">
+                        <lightning:progressStep label="Review Cart" value="1"/>
+                        <lightning:progressStep label="Delivery and Payment" value="2"/>
+                        <lightning:progressStep label="Summary" value="3"/>
+                    </lightning:progressIndicator>
+                </lightning:layoutItem>
+
+                <lightning:layoutItem size="12">
+
+                    <aura:if isTrue="{!v.currentStep == '1'}">
+                        <c:ZK_OrderReviewCart cart="{!v.cart}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.currentStep == '2'}">
+                        <c:ZK_AddressAndDelivery aura:id="addressAndPayment"/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.currentStep == '3'}">
+                        <c:ZK_OrderSummary cart="{!v.cart}"
+                                           paymentMethodName="{!v.paymentMethodName}"
+                                           paymentData="{!v.paymentData}"
+                                           orderAddress="{!v.orderAddress}"
+                                           deliveryAddress="{!v.deliveryAddress}"/>
+                    </aura:if>
+
+                </lightning:layoutItem>
+
+            </lightning:layout>
+        </div>
+
+        <footer class="slds-modal__footer">
+
+            <aura:if isTrue="{!v.currentStep == '1'}">
+                <lightning:button label="{!$Label.c.ZK_Order_Proceed_to_Delivery_and_Payment}"
+                                  onclick="{!c.goToAddressAndPayment}"
+                                  variant="brand"/>
+            </aura:if>
+
+            <aura:if isTrue="{!v.currentStep == '2'}">
+                <lightning:button label="{!$Label.c.ZK_Button_Review_Order}"
+                                  onclick="{!c.goToReviewOrder}"
+                                  variant="brand"/>
+            </aura:if>
+
+            <aura:if isTrue="{!v.currentStep == '3'}">
+                <lightning:button label="{!$Label.c.ZK_Button_Finalize}"
+                                  onclick="{!c.finalizeOrder}"
+                                  variant="brand"/>
+            </aura:if>
+
+        </footer>
+    </aura:if>
+
+</aura:component>

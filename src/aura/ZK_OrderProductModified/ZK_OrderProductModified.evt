@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="ZK_OrderProductModified">
+    <aura:attribute name="productId" type="Id"/>
+    <aura:attribute name="modificationType" type="String"/>
+    <aura:attribute name="amount" type="Integer"/>
+</aura:event>

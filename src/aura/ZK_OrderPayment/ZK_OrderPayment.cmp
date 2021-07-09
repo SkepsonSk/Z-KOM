@@ -1,0 +1,62 @@
+<aura:component description="ZK_OrderPayment">
+
+    <aura:attribute name="selectedPaymentMethod" type="String" default="banking"/>
+    <aura:attribute name="selectedPaymentMethodData" type="Object"/>
+
+    <aura:attribute name="cardCode" type="String"/>
+    <aura:attribute name="cardOwner" type="String"/>
+    <aura:attribute name="cardExpiration" type="String"/>
+
+    <aura:attribute name="banks" type="Object[]"/>
+
+    <aura:registerEvent name="ZK_OrderDataCollected" type="c:ZK_OrderDataCollected"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:method name="requestDataCollection" action="{!c.onDataCollectRequest}"/>
+
+    <div class="slds-box slds-scrollable_y">
+
+        <lightning:tabSet selectedTabId="{!v.selectedPaymentMethod}"
+                          onselect="{!c.onTabChange}">
+
+            <lightning:tab label="{!$Label.c.ZK_Tab_Online_Banking}" id="banking">
+                <div class="slds-grid slds-wrap slds-grid_align-spread">
+
+                    <aura:iteration items="{!v.banks}" var="bank">
+                        <div data-value="{!bank.id}"
+                             style="{!'background-image: url(\'' + bank.image + '\')'}"
+                             onclick="{!c.onBankSelected}"
+                             class="{!'bg-image slds-m-top_x-small cursor-pointer '
+                                     + (v.selectedPaymentMethodData == bank.id ?
+                                     'payment-selected' : 'payment-not-selected')}">
+                        </div>
+                    </aura:iteration>
+
+                </div>
+            </lightning:tab>
+
+            <lightning:tab label="{!$Label.c.ZK_Tab_Other}" id="other">
+
+                <div class="slds-grid slds-wrap">
+                    <div data-value="transfer"
+                         onclick="{!c.onOtherSelected}"
+                         class="{!'bg-image slds-m-top_x-small cursor-pointer slds-p-right_x-small '
+                                 + (v.selectedPaymentMethodData == 'transfer' ? 'payment-selected' : 'payment-not-selected')}">
+                        <p> {!$Label.c.ZK_Option_Traditional_Transfer} </p>
+                    </div>
+                    <div data-value="onDelivery"
+                         onclick="{!c.onOtherSelected}"
+                         class="{!'bg-image slds-m-top_x-small cursor-pointer '
+                                 + (v.selectedPaymentMethodData == 'onDelivery' ? 'payment-selected' : 'payment-not-selected')}">
+                        <p> {!$Label.c.ZK_Option_On_Delivery} </p>
+                    </div>
+                </div>
+
+            </lightning:tab>
+
+        </lightning:tabSet>
+
+    </div>
+
+</aura:component>

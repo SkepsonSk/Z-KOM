@@ -1,0 +1,61 @@
+<aura:component description="ZK_OrderAddress">
+
+    <aura:attribute name="address" type="Object"/>
+    <aura:attribute name="anotherDeliveryAddress" type="Boolean" default="false"/>
+
+    <aura:attribute name="isDeliveryAddress" type="Boolean" default="false"/>
+    <aura:attribute name="displayAnotherDeliveryAddress" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:registerEvent name="anotherDeliveryAddressChecked" type="c:ZK_AnotherDeliveryAddressChecked"/>
+    <aura:registerEvent name="ZK_OrderDataCollected" type="c:ZK_OrderDataCollected"/>
+
+    <aura:method name="requestDataCollection" action="{!c.onDataCollectRequest}"/>
+
+    <div class="slds-box">
+        <lightning:layout multipleRows="true">
+
+            <lightning:layoutItem size="12">
+                <lightning:input aura:id="streetInp" required="true" label="{!$Label.c.ZK_Label_Street}"
+                                 type="text" placeholder="{!$Label.c.ZK_Label_Street + '...'}" value="{!v.address.street}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="6">
+                <lightning:input aura:id="postalCodeInp" label="{!$Label.c.ZK_Input_Postal_Code}"
+                                 class="slds-m-right_x-small" type="text"
+                                 placeholder="{!$Label.c.ZK_Input_Postal_Code + '...'}" required="true"
+                                 value="{!v.address.postalCode}"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="6">
+                <lightning:input aura:id="cityInp" label="{!$Label.c.ZK_Input_City}" type="text"
+                                 class="slds-m-left_x-small"
+                                 placeholder="{!$Label.c.ZK_Input_City + '...'}" required="true"
+                                 value="{!v.address.city}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12">
+                <lightning:input aura:id="stateInp" label="{!$Label.c.ZK_Input_State}"
+                                 type="text" placeholder="{!$Label.c.ZK_Input_State + '...'}"
+                                 value="{!v.address.state}" required="true"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12">
+                <lightning:input aura:id="countryInp" required="true" label="{!$Label.c.ZK_Input_Country}"
+                                 type="text" placeholder="{!$Label.c.ZK_Input_Country + '...'}" value="{!v.address.country}"/>
+            </lightning:layoutItem>
+
+            <aura:if isTrue="{!v.displayAnotherDeliveryAddress}">
+                <lightning:layoutItem size="12" class="slds-m-top_medium">
+                    <lightning:input aura:id="anotherDeliveryAddressCheckbox"
+                                     type="checkbox"
+                                     label="{!$Label.c.ZK_Input_Another_Delivery_Address}"
+                                     onchange="{!c.onAnotherDeliveryAddressChecked}"
+                                     value="{!v.anotherDeliveryAddress}"/>
+                </lightning:layoutItem>
+            </aura:if>
+
+        </lightning:layout>
+    </div>
+
+</aura:component>

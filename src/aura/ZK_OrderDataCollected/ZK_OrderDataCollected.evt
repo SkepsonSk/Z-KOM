@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="ZK_OrderDataCollected">
+    <aura:attribute name="dataType" type="String"/>
+    <aura:attribute name="data" type="Object"/>
+</aura:event>
