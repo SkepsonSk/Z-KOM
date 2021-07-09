@@ -1,0 +1,31 @@
+<aura:component description="ZK_RecentProducts"
+                implements="forceCommunity:availableForAllPageTypes"
+                controller="ZK_RecentProductsController">
+
+    <aura:attribute name="products" type="Object[]"/>
+    <aura:attribute name="currency" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div>
+
+        <h2 class="slds-text-heading_small slds-text-align_center"> {!$Label.c.ZK_Title_Recent_Products} </h2>
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.products}" var="product">
+                <div class="slds-size_1-of-3">
+                    <c:ZK_Product product="{!product.product}"
+                                  unitPrice="{!product.unitPrice}"
+                                  unitPriceDiscount="{!product.unitPriceDiscount}"
+                                  discountName="{!product.discountName}"
+                                  discountPercent="{!product.discountPercent}"
+                                  averageRating="{!product.averageRating != null ? product.averageRating : 0}"
+                                  destination="client"
+                                  images="{!product.images}"
+                                  currency="{!v.currency}"/>
+                </div>
+            </aura:iteration>
+        </div>
+
+    </div>
+
+</aura:component>
