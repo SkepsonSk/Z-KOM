@@ -5,7 +5,9 @@
 
     <aura:attribute name="currentStep" type="String" default="1"/>
 
+    <aura:attribute name="hasAnotherDeliveryAddress" type="Boolean" default="false"/>
     <aura:attribute name="hasOrderAddress" type="Boolean" default="false"/>
+    <aura:attribute name="hasDeliveryAddress" type="Boolean" default="false"/>
     <aura:attribute name="hasPayment" type="Boolean" default="false"/>
 
     <aura:attribute name="paymentMethodName" type="String"/>
@@ -22,6 +24,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_OrderProductModified" action="{!c.onOrderProductModified}"/>
     <aura:handler event="c:ZK_OrderDataCollected" action="{!c.onOrderDataCollected}"/>
+    <aura:handler name="anotherDeliveryAddressChecked" event="c:ZK_AnotherDeliveryAddressChecked" action="{!c.onAnotherDeliveryChecked}"/>
 
     <aura:registerEvent name="ZK_OrderFinalizedEvent" type="c:ZK_OrderFinalizedEvent"/>
 

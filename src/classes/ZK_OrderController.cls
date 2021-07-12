@@ -19,8 +19,8 @@ public with sharing class ZK_OrderController {
     }
 
     @AuraEnabled
-    public static String createOrder(Id opportunityId) {
-        return handleOrderCreation(opportunityId);
+    public static String createOrder(Id opportunityId, AddressWrapper billingAddress, AddressWrapper shippingAddress) {
+        return handleOrderCreation(opportunityId, billingAddress, shippingAddress);
     }
 
     @AuraEnabled
@@ -56,7 +56,7 @@ public with sharing class ZK_OrderController {
         return opportunity.Id;
     }
 
-    private static String handleOrderCreation(Id opportunityId) {
+    private static String handleOrderCreation(Id opportunityId, AddressWrapper billingAddress, AddressWrapper shippingAddress) {
         Opportunity opportunity = [
                 SELECT Amount FROM Opportunity
                 WHERE Id=:opportunityId
@@ -85,6 +85,21 @@ public with sharing class ZK_OrderController {
         order.EffectiveDate = Date.today();
         order.Pricebook2Id = pricebook2.Id;
         order.Status = 'Order in Progress';
+
+        order.BillingStreet = billingAddress.street;
+        order.BillingCity = billingAddress.city;
+        order.BillingPostalCode = billingAddress.postalCode;
+        order.BillingState = billingAddress.state;
+        order.BillingCountry = billingAddress.country;
+
+        if (shippingAddress != null) {
+            order.ShippingStreet = shippingAddress.street;
+            order.ShippingCity = shippingAddress.city;
+            order.ShippingPostalCode = shippingAddress.postalCode;
+            order.ShippingState = shippingAddress.state;
+            order.ShippingCountry = shippingAddress.country;
+        }
+
         insert order;
 
         for (OpportunityLineItem item : items) {

@@ -20,8 +20,17 @@
 
     canProceedToOrderReview: function(component) {
         const hasOrderAddress = component.get('v.hasOrderAddress');
+        const hasDeliveryAddress = component.get('v.hasDeliveryAddress');
+        const hasAnotherDeliveryAddress = component.get('v.hasAnotherDeliveryAddress');
         const hasPayment = component.get('v.hasPayment');
-        return hasOrderAddress && hasPayment;
+
+        if (!hasAnotherDeliveryAddress) {
+            return hasOrderAddress && hasPayment;
+        }
+        else {
+            return hasOrderAddress && hasDeliveryAddress && hasPayment;
+        }
+
     },
 
     handleDataCollected: function (component, dataType, data) {
@@ -38,6 +47,7 @@
         else if (dataType === 'deliveryAddress') {
             component.set('v.deliveryAddress', data);
             this.updateContactAddress(component, dataType, data);
+            component.set('v.hasDeliveryAddress', true);
         }
 
         if (this.canProceedToOrderReview(component)) {
@@ -90,9 +100,14 @@
     },
 
     createOrder: function(component, opportunityId) {
+        const billingAddress = component.get('v.orderAddress');
+        const shippingAddress = component.get('v.deliveryAddress');
+
         const action = component.get('c.createOrder');
         action.setParams({
-            opportunityId: opportunityId
+            opportunityId: opportunityId,
+            billingAddress: billingAddress,
+            shippingAddress: shippingAddress
         });
 
         action.setCallback(this, function (res) {

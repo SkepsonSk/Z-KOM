@@ -5,6 +5,11 @@
         helper.createOpportunity(component, cart);
     },
 
+    onAnotherDeliveryChecked: function(component, event, helper) {
+        const anotherAddress = event.getParam('anotherDeliveryAddress');
+        component.set('v.hasAnotherDeliveryAddress', anotherAddress);
+    },
+
     onOrderProductModified: function (component, event, helper) {
         const productId = event.getParam('productId');
         const modificationType = event.getParam('modificationType');
