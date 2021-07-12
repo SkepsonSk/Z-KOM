@@ -17,15 +17,15 @@
         </div>
 
         <div class="slds-text-heading_small slds-size_3-of-12">
-            Amount: x{!v.orderItem.item.Quantity}
+            {!$Label.c.ZK_Title_Amount}: x{!v.orderItem.item.Quantity}
             <p>
                 <lightning:formattedNumber style="currency" value="{!v.orderItem.item.UnitPrice}"/>
-                per unit
+                {!$Label.c.ZK_Info_Per_Unit}
             </p>
         </div>
 
         <div class="slds-text-heading_small slds-col slds-col_bump-left">
-            Total Price
+            {!$Label.c.ZK_Title_Total_Price}
             <p>
                 <lightning:formattedNumber style="currency" value="{!v.orderItem.item.Quantity * v.orderItem.item.UnitPrice}"/>
             </p>

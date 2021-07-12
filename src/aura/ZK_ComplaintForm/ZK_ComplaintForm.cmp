@@ -1,0 +1,49 @@
+<aura:component description="ZK_ComplaintForm"
+                controller="ZK_SupportController"
+                implements="forceCommunity:availableForAllPageTypes">
+
+    <aura:attribute name="orderId" type="Id"/>
+
+    <aura:attribute name="subject" type="String"/>
+    <aura:attribute name="description" type="String"/>
+    <aura:attribute name="type" type="String"/>
+    <aura:attribute name="types" type="String[]"/>
+
+    <aura:registerEvent name="ZK_CaseCreatedEvent" type="c:ZK_CaseCreatedEvent"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLibInner"/>
+
+    <lightning:card>
+
+        <lightning:layout multipleRows="true">
+
+            <lightning:layoutItem size="12">
+                <lightning:select label="Type" value="{!v.type}">
+                    <aura:iteration items="{!v.types}" var="type">
+                        <option value="{!type}">{!type}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12">
+                <lightning:input aura:id="subjectInput" type="text" label="{!$Label.c.ZK_Input_Subject}"
+                                 value="{!v.subject}" placeholder="{!$Label.c.ZK_Input_Subject + '...'}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12">
+                <lightning:textarea aura:id="descriptionInput" label="{!$Label.c.ZK_Input_Description}"
+                                    value="{!v.description}" placeholder="{!$Label.c.ZK_Input_Description + '...'}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem class="slds-col_bump-left slds-m-top_small">
+                <lightning:button variant="brand" onclick="{!c.onCreateCaseClick}"
+                                  label="{!$Label.c.ZK_Button_Create_Case}"/>
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+    </lightning:card>
+
+</aura:component>

@@ -26,7 +26,7 @@
         <div class="slds-grid slds-m-top_small">
 
             <div class="slds-m-right_xx-large">
-                <h2> Order Address </h2>
+                <h2> {!$Label.c.ZK_Title_Order_Address} </h2>
                 <lightning:formattedAddress city="{!v.orderPosition.order.BillingAddress.city}"
                                             postalCode="{!v.orderPosition.order.BillingAddress.postalCode}"
                                             province="{!v.orderPosition.order.BillingAddress.state}"
@@ -36,7 +36,7 @@
 
             <aura:if isTrue="{!v.orderPosition.order.ShippingAddress != null}">
                 <div>
-                    <h2> Delivery Address </h2>
+                    <h2> {!$Label.c.ZK_Title_Delivery_Address} </h2>
                     <lightning:formattedAddress city="{!v.orderPosition.order.ShippingAddress.city}"
                                                 postalCode="{!v.orderPosition.order.ShippingAddress.postalCode}"
                                                 province="{!v.orderPosition.order.ShippingAddress.state}"
@@ -48,14 +48,14 @@
         </div>
 
         <div class="slds-m-top_small">
-            <h2> Products </h2>
+            <h2> {!$Label.c.ZK_Title_Products} </h2>
             <aura:iteration items="{!v.orderPosition.items}" var="item">
                 <c:ZK_OrderItemPosition orderItem="{!item}"/>
             </aura:iteration>
         </div>
 
         <div class="slds-m-top_small">
-            <h2 class="slds-text-heading_small"> Total Amount </h2>
+            <h2 class="slds-text-heading_small"> {!$Label.c.ZK_Title_Total_Amount} </h2>
             <h2 class="slds-text-heading_small">
                 <lightning:formattedNumber style="currency" value="{!v.orderPosition.order.TotalAmount}"/>
             </h2>
