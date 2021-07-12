@@ -47,17 +47,36 @@
                                     <h3 class="slds-text-heading_small">{!product.Name}</h3>
                                 </a>
 
-                                <span style="{!product.UnitPriceDiscount != null ? 'text-decoration: line-through' : ''}">
+                                <div class="slds-m-top_x-small">
+                                    Unit Price:
+                                    <span style="{!product.UnitPriceDiscount != null ? 'text-decoration: line-through' : ''}">
+                                    <lightning:formattedNumber value="{!product.UnitPrice}"
+                                                               style="currency"/>
+                                    </span>
+
+                                    <aura:if isTrue="{!product.UnitPriceDiscount != null}">
+                                        <span style="color: #29a329;font-weight: bold" class="slds-m-left_small">
+                                            <lightning:formattedNumber value="{!product.UnitPriceDiscount}"
+                                                                       style="currency"/>
+                                        </span>
+                                    </aura:if>
+                                </div>
+
+                                <div>
+                                    Total Price:
+                                    <span style="{!product.UnitPriceDiscount != null ? 'text-decoration: line-through' : ''}">
                                     <lightning:formattedNumber value="{!product.Amount * product.UnitPrice}"
                                                                style="currency"/>
-                                </span>
-
-                                <aura:if isTrue="{!product.UnitPriceDiscount != null}">
-                                    <span style="color: #29a329;font-weight: bold" class="slds-m-left_small">
-                                        <lightning:formattedNumber value="{!product.Amount * product.UnitPriceDiscount}"
-                                                                   style="currency"/>
                                     </span>
-                                </aura:if>
+
+                                    <aura:if isTrue="{!product.UnitPriceDiscount != null}">
+                                        <span style="color: #29a329;font-weight: bold" class="slds-m-left_small">
+                                            <lightning:formattedNumber value="{!product.Amount * product.UnitPriceDiscount}"
+                                                                       style="currency"/>
+                                        </span>
+                                    </aura:if>
+                                </div>
+
                             </div>
 
                             <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-center">
