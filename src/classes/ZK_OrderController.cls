@@ -39,35 +39,10 @@ public with sharing class ZK_OrderController {
     }
 
     private static Id handleOpportunityCreation(List<OrderProduct> cart) {
-        List<Id> productIds = new List<Id>();
-        for (OrderProduct item : cart) {
-            productIds.add(item.Id);
-        }
-
         String firstName = UserInfo.getFirstName();
         String lastName = UserInfo.getLastName();
 
         Pricebook2 pricebook2 = [SELECT Id FROM Pricebook2 WHERE IsStandard = true AND IsActive = true LIMIT 1];
-        List<PricebookEntry> products = [
-                SELECT Product2.Id, UnitPrice
-                FROM PricebookEntry
-                WHERE Product2.Id IN :productIds
-                AND Pricebook2.IsStandard = true
-                AND Pricebook2.IsActive = true
-        ];
-
-        List<PricebookEntry> discounts = [
-                SELECT Product2Id,Pricebook2.Id,UnitPrice,Pricebook2.Discount_Percent__c,Pricebook2.All_Products__c
-                FROM PricebookEntry
-                WHERE Pricebook2.IsStandard = false AND Pricebook2.IsActive = true
-        ];
-        List<Pricebook2> allProductsDiscounts = [
-                SELECT Discount_Percent__c FROM Pricebook2
-                WHERE IsActive = true
-                AND IsStandard = false
-                AND All_Products__c = true
-                LIMIT 1
-        ];
 
         Opportunity opportunity = new Opportunity();
         opportunity.Name = firstName + ' ' + lastName;
@@ -76,40 +51,7 @@ public with sharing class ZK_OrderController {
         opportunity.Pricebook2Id = pricebook2.Id;
         insert opportunity;
 
-        for (OrderProduct cartItem : cart) {
-
-            for (PricebookEntry pricebookEntry : products) {
-
-                Decimal discount = 0;
-                if (!allProductsDiscounts.isEmpty()) {
-                    discount = allProductsDiscounts[0].Discount_Percent__c;
-                }
-                else {
-                    for (PricebookEntry discountEntry : discounts) {
-                        if (discountEntry.Product2Id == cartItem.Id) {
-                            discount = discountEntry.Pricebook2.Discount_Percent__c;
-                            break;
-                        }
-                    }
-                }
-
-                if (pricebookEntry.Product2Id == cartItem.Id) {
-                    OpportunityLineItem item = new OpportunityLineItem();
-                    item.OpportunityId = opportunity.Id;
-                    item.Product2Id = cartItem.Id;
-                    item.UnitPrice = pricebookEntry.UnitPrice;
-                    item.Quantity = cartItem.Amount;
-
-                    if (discount > 0) {
-                        item.Discount = discount;
-                    }
-
-                    insert item;
-                    break;
-                }
-            }
-
-        }
+        handleProductsUpdate(opportunity.Id, cart);
 
         return opportunity.Id;
     }

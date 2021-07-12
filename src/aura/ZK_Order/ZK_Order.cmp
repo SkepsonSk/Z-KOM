@@ -50,9 +50,9 @@
 
                 <lightning:layoutItem size="12" class="slds-m-bottom_small">
                     <lightning:progressIndicator currentStep="{!v.currentStep}" type="path" variant="base">
-                        <lightning:progressStep label="Review Cart" value="1"/>
-                        <lightning:progressStep label="Delivery and Payment" value="2"/>
-                        <lightning:progressStep label="Summary" value="3"/>
+                        <lightning:progressStep label="{!$Label.c.ZK_Path_Review_Cart}" value="1"/>
+                        <lightning:progressStep label="{!$Label.c.ZK_Path_Delivery_and_Payment}" value="2"/>
+                        <lightning:progressStep label="{!$Label.c.ZK_Path_Summary}" value="3"/>
                     </lightning:progressIndicator>
                 </lightning:layoutItem>
 
