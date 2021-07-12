@@ -1,0 +1,38 @@
+<aura:component description="ZK_OrderHistoryPosition">
+
+    <aura:attribute name="orderPosition" type="Object" required="true"/>
+
+    <div>
+
+        <div class="slds-grid slds-grid_vertical-align-start">
+
+            <div>
+                <h2 class="slds-text-heading_medium">
+                    <lightning:formattedDateTime value="{!v.orderPosition.order.EffectiveDate}"/>
+                </h2>
+
+                <h3 class="slds-text-heading_small slds-m-top_x-small"> Status: {!v.orderPosition.order.Status} </h3>
+            </div>
+
+            <lightning:button class="slds-col_bump-left"
+                              variant="brand"
+                              label="Create Case"/>
+
+        </div>
+
+        <div>
+
+            <aura:iteration items="{!v.orderPosition.items}" var="item">
+                <c:ZK_OrderItemPosition orderItem="{!item}"/>
+            </aura:iteration>
+
+        </div>
+
+        <div class="slds-m-top_small">
+            <h2 class="slds-text-heading_small"> Total Amount </h2>
+            <h2 class="slds-text-heading_small"> <lightning:formattedNumber style="currency" value="{!v.orderPosition.order.TotalAmount}"/> </h2>
+        </div>
+
+    </div>
+
+</aura:component>
