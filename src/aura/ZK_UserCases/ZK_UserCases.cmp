@@ -1,0 +1,65 @@
+<aura:component description="ZK_UserCases"
+                controller="ZK_SupportController"
+                implements="forceCommunity:availableForAllPageTypes">
+
+    <aura:attribute name="currentUserId" type="Id"/>
+
+    <aura:attribute name="cases" type="Object[]"/>
+    <aura:attribute name="openCases" type="Object[]"/>
+    <aura:attribute name="closedCases" type="Object[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:ZK_CaseCreatedEvent" action="{!c.onCaseCreated}"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <lightning:card class="slds-p-around_small">
+
+        <div>
+            <h2 class="slds-text-heading_small"> {!$Label.c.ZK_Title_Open_Cases} </h2>
+
+            <aura:if isTrue="{!v.openCases == null || v.openCases.length == 0}">
+                <p class="slds-m-top_small"> {!$Label.c.ZK_Message_No_Open_Cases} </p>
+            </aura:if>
+
+            <div class="slds-grid slds-wrap slds-m-top_small">
+                <aura:iteration items="{!v.openCases}" var="case">
+
+                    <div data-value="{!case.Id}"
+                         class="slds-box slds-m-right_x-small case-box slds-m-top_small"
+                         onclick="{!c.onCaseClick}">
+                        <h3> {!case.Subject} </h3>
+                        <h4> {!case.Status} </h4>
+                        <p> {!case.Type} </p>
+                        <p> {!case.CreatedDate} </p>
+                    </div>
+
+                </aura:iteration>
+            </div>
+        </div>
+
+        <div class="slds-m-top_medium">
+            <h2 class="slds-text-heading_small"> {!$Label.c.ZK_Message_Closed_Cases} </h2>
+
+            <aura:if isTrue="{!v.closedCases == null || v.closedCases.length == 0}">
+                <p class="slds-m-top_small"> {!$Label.c.ZK_Message_No_Closed_Cases} </p>
+            </aura:if>
+
+            <div class="slds-grid slds-wrap slds-m-top_small">
+                <aura:iteration items="{!v.closedCases}" var="case">
+
+                    <div data-value="{!case.Id}"
+                         class="slds-box slds-m-right_x-small case-box"
+                         onclick="{!c.onCaseClick}">
+                        <h3> {!case.Subject} </h3>
+                        <p> {!case.Type} </p>
+                        <p> {!case.CreatedDate} </p>
+                    </div>
+
+                </aura:iteration>
+            </div>
+        </div>
+
+    </lightning:card>
+
+</aura:component>

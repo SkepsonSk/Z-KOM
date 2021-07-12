@@ -1,0 +1,22 @@
+.THIS .messages-box {
+    max-height: 50%;
+}
+
+.THIS .message {
+    color: white;
+    border-radius: 10px;
+}
+
+.THIS .my-message {
+    background-color: #25407d;
+    align-self: flex-end;
+}
+
+.THIS .other-message {
+    background-color: #575757;
+    align-self: flex-start;
+}
+
+.THIS .message-avatar {
+    align-self: flex-end;
+}
