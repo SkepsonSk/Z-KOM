@@ -15,7 +15,7 @@ public with sharing class ZK_OrdersHistoryController {
         String userId = UserInfo.getUserId();
 
         List<Order> orders = [
-                SELECT EffectiveDate,Status,TotalAmount,
+                SELECT EffectiveDate,Status,TotalAmount,ShippingAddress,BillingAddress,
                        (SELECT Product2.Id,Quantity,Product2.Name,UnitPrice,Product2.Display_Image__c FROM OrderItems)
                 FROM Order
                 WHERE OwnerId = :userId
