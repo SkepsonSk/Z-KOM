@@ -9,6 +9,7 @@
 
             if (state === 'SUCCESS') {
                 const cases = res.getReturnValue();
+
                 component.set('v.cases',cases);
 
                 for (let i = 0 ; i < cases.length ; i++) {

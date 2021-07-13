@@ -37,8 +37,7 @@ public with sharing class ZK_SupportController {
         return [
                 SELECT Id,Subject,Type,CreatedDate,Description,Status
                 FROM Case
-                WHERE IsClosed = false
-                AND Contact.Email = :email
+                WHERE Contact.Email = :email
                 ORDER BY CreatedDate DESC
         ];
     }
