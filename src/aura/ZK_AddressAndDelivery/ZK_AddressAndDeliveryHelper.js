@@ -10,7 +10,7 @@
                     component.set('v.orderAddress', addresses.order);
                 }
                 if (addresses.other != null) {
-                    component.set('v.otherAddress', addresses.order);
+                    component.set('v.otherAddress', addresses.other);
                 }
             }
             else {
