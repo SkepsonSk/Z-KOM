@@ -16,5 +16,10 @@
         const unitPriceDiscount = event.getParam('unitPriceDiscount');
 
         helper.addProductToCart(component, product, image, unitPrice, unitPriceDiscount);
+    },
+
+    onOrderFinalized: function (component, event, helper) {
+        alert('Finalization detected.');
+        helper.clearCart(component);
     }
 });

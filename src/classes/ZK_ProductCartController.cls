@@ -35,4 +35,14 @@ public with sharing class ZK_ProductCartController {
         return (List<Object>) sessionPart.get('cart');
     }
 
+    @AuraEnabled
+    public static void clearProductsCart() {
+        Cache.SessionPartition sessionPart = Cache.Session.getPartition('local.ZKOM');
+        if (sessionPart == null){
+            return;
+        }
+
+        sessionPart.remove('cart');
+    }
+
 }

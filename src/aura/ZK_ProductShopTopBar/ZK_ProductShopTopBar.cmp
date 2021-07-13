@@ -12,6 +12,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:ZK_ProductShopped" action="{!c.onProductShopped}"/>
+    <aura:handler event="c:ZK_OrderFinalizedEvent" action="{!c.onOrderFinalized}"/>
 
     <div style="{!v.userProfile.Name != v.profilesSetting.Guest__c ? 'opacity: 1' : 'opacity: 0'}"
          class="slds-is-fixed floating-cart slds-m-top_medium">

@@ -56,6 +56,19 @@
         $A.enqueueAction(action);
     },
 
+    clearCart: function(component) {
+        const action = component.get('c.clearProductsCart');
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state === 'SUCCESS') {
+                component.set('v.productsInCart', []);
+                component.set('v.cartSize', 0);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
     addProductToCart: function (component, product, image, unitPrice, unitPriceDiscount) {
         const products = component.get('v.productsInCart');
         const cartSize = component.get('v.cartSize');
