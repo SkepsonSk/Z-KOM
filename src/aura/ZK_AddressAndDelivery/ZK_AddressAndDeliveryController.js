@@ -1,4 +1,8 @@
 ({
+    doInit: function(component, event, helper){
+        helper.fetchContactAddresses(component);
+    },
+
     onAnotherDeliveryChecked: function (component, event, helper) {
         const anotherDeliveryAddress = event.getParam('anotherDeliveryAddress');
         component.set('v.anotherDeliveryAddress', anotherDeliveryAddress);

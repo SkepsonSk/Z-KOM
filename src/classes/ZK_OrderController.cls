@@ -38,6 +38,23 @@ public with sharing class ZK_OrderController {
         handleContactAddressUpdate(addressType, address);
     }
 
+    @AuraEnabled
+    public static Map<String, Object> getContactAddresses() {
+        String email = UserInfo.getUserEmail();
+        Contact contact = [
+                SELECT Id,MailingAddress,OtherAddress FROM Contact
+                WHERE Email=:email
+                LIMIT 1
+        ];
+
+        Map<String, Address> addresses = new Map<String, Address>();
+
+        addresses.put('order', contact.MailingAddress);
+        addresses.put('other', contact.OtherAddress);
+
+        return addresses;
+    }
+
     private static Id handleOpportunityCreation(List<OrderProduct> cart) {
         String firstName = UserInfo.getFirstName();
         String lastName = UserInfo.getLastName();
