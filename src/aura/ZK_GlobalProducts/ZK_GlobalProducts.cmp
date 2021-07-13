@@ -1,0 +1,50 @@
+<aura:component description="ZK_Products"
+                implements="forceCommunity:availableForAllPageTypes"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="size" type="String" access="global" required="true"/>
+    <aura:attribute name="destination" type="String" access="global" default="employee"/>
+
+    <aura:attribute name="products" type="Object[]" default="[]"/>
+    <aura:attribute name="currency" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-grid slds-wrap slds-m-top_medium">
+
+        <aura:if isTrue="{!not(empty(v.products))}">
+            <div class="slds-size_1-of-1">
+
+                <h3 class="slds-text-align_center slds-text-heading_medium slds-p-bottom_large">
+                {!$Label.c.ZK_Title_Products} ({!v.products.length})
+                </h3>
+
+            </div>
+        </aura:if>
+
+        <aura:iteration items="{!v.products}" var="product">
+            <div class="{!v.size == 'normal' ? 'slds-size_1-of-4' : 'slds-size_1-of-3'}">
+                <c:ZK_Product product="{!product.product}"
+                              images="{!product.images}"
+                              currency="{!v.currency}"
+                              discountName="{!product.discountName}"
+                              discountPercent="{!product.discountPercent}"
+                              unitPriceDiscount="{!product.unitPriceDiscount}"
+                              discountType="{!product.discountType}"
+                              averageRating="{!product.averageRating != null ? product.averageRating : 0}"
+                              destination="{!v.destination}"
+                              unitPrice="{!product.unitPrice}"/>
+            </div>
+        </aura:iteration>
+
+        <aura:if isTrue="{!empty(v.products)}">
+            <div class="slds-size_1-of-1">
+                <h3 class="slds-text-align_center slds-text-heading_small slds-p-bottom_large">
+                        {!$Label.c.ZK_Message_No_Products_Found}
+                </h3>
+            </div>
+        </aura:if>
+
+    </div>
+
+</aura:component>

@@ -1,0 +1,11 @@
+<design:component>
+    <design:attribute name="size"
+                      dataSource="normal,small"
+                      label="Size"
+                      description="Size of product tiles (normal, small)"/>
+
+    <design:attribute name="destination"
+                      dataSource="employee,client"
+                      label="Destination"
+                      description="Person the component is destined to"/>
+</design:component>

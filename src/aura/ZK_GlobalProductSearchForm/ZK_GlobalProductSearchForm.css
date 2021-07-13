@@ -1,0 +1,25 @@
+.THIS .slds-form-element__label {
+    display : none;
+    visibility : hidden;
+}
+
+.THIS .height-full {
+    height: 100%;
+}
+
+
+.THIS .pointer {
+    cursor: pointer;
+}
+
+.THIS .bg-gray {
+    background-color: rgb(245, 245, 245);
+}
+
+.THIS .focusable:hover {
+    -webkit-box-shadow: 0px 0px 6px 0px #636363;
+    box-shadow: 0px 0px 6px 0px #636363;
+    transform: scale(1.1);
+    transition: all 0.2s;
+    transition-timing-function: ease-in-out;
+}

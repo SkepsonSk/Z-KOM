@@ -1,0 +1,53 @@
+<aura:component description="ZK_ProductSearchForm"
+                implements="forceCommunity:searchInterface"
+                controller="ZK_ProductsController">
+
+    <aura:attribute name="categories" type="String[]"/>
+
+    <aura:attribute name="productName" type="String"/>
+    <aura:attribute name="categoryName" type="String" default="Everywhere"/>
+
+    <aura:registerEvent name="searchFormSubmitted" type="c:ZK_ProductSearchFormSubmitted"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:method name="resetValidity" action="{!c.resetValidity}"/>
+
+    <form>
+        <lightning:layout horizontalAlign="center">
+
+            <lightning:layoutItem size="8" class="slds-p-around_xx-small">
+                <lightning:input aura:id="productNameInput"
+                                 label="Product Name"
+                                 class="slds-text-heading_small"
+                                 placeholder="{!$Label.c.ZK_Placeholder_Product_Search}"
+                                 variant="label-hidden"
+                                 messageWhenBadInput="Name cannot be empty."
+                                 value="{!v.productName}"/>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="2" class="slds-p-around_xx-small">
+                <lightning:select label="Category"
+                                  value="{!v.categoryName}"
+                                  class="slds-text-heading_small"
+                                  variant="label-hidden">
+                    <option value="Everywhere"> {!$Label.c.ZK_Option_Everywhere} </option>
+                    <aura:iteration items="{!v.categories}"
+                                    var="category">
+                        <option value="{!category}"> {!category} </option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="2" class="slds-p-around_xx-small">
+                <lightning:button class="slds-size_1-of-1 slds-text-heading_small height-full"
+                                  label="{!$Label.c.ZK_Button_Search}"
+                                  variant="brand"
+                                  onclick="{!c.onSearchClick}"/>
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+    </form>
+
+</aura:component>
