@@ -19,7 +19,6 @@
     },
 
     onOrderFinalized: function (component, event, helper) {
-        alert('Finalization detected.');
         helper.clearCart(component);
     }
 });
