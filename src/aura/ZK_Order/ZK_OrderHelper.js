@@ -53,6 +53,7 @@
         if (this.canProceedToOrderReview(component)) {
             const opportunityId = component.get('v.opportunityId');
             this.createOrder(component, opportunityId);
+            this.updateOpportunityToReviewing(component, opportunityId);
 
             component.set('v.currentStep', '3');
         }
@@ -69,8 +70,8 @@
             const state = res.getState();
 
             if (state !== 'SUCCESS') {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
             }
         });
 
@@ -90,8 +91,8 @@
                 component.set('v.opportunityId', res.getReturnValue());
             }
             else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
             }
 
         });
@@ -117,15 +118,15 @@
                 component.set('v.orderId', res.getReturnValue());
             }
             else {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
             }
         });
 
         $A.enqueueAction(action);
     },
 
-    updateOrder: function (component, opportunityId, cart) {
+    updateOpportunityProducts: function (component, opportunityId, cart) {
         const action = component.get('c.updateProducts');
         action.setParams({
             opportunityId: opportunityId,
@@ -137,10 +138,46 @@
             const state = res.getState();
 
             if (state !== 'SUCCESS') {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
             }
 
+        });
+
+        $A.enqueueAction(action);
+    },
+
+    updateOpportunityToCollectingData: function(component, opportunityId) {
+        const action = component.get('c.updateOpportunityToDataCollection');
+        action.setParams({
+            opportunityId: opportunityId
+        });
+
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state !== 'SUCCESS') {
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
+            }
+        });
+
+        $A.enqueueAction(action);
+    },
+
+    updateOpportunityToReviewing: function(component, opportunityId) {
+        const action = component.get('c.updateOpportunityToReviewing');
+        action.setParams({
+            opportunityId: opportunityId
+        });
+
+        action.setCallback(this, function (res) {
+            const state = res.getState();
+
+            if (state !== 'SUCCESS') {
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
+            }
         });
 
         $A.enqueueAction(action);
@@ -157,8 +194,8 @@
             const state = res.getState();
 
             if (state !== 'SUCCESS') {
-                alert(state);
-                alert(JSON.stringify(res.getError()));
+                const toast = component.find('toast');
+                toast.toastError(state, res.getError());
             }
 
         });

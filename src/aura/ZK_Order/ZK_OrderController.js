@@ -22,7 +22,8 @@
         const opportunityId = component.get('v.opportunityId');
 
         helper.switchStep(component, '2');
-        helper.updateOrder(component, opportunityId, cart);
+        helper.updateOpportunityProducts(component, opportunityId, cart);
+        helper.updateOpportunityToCollectingData(component, opportunityId);
     },
 
     goToReviewOrder: function (component, event, helper) {

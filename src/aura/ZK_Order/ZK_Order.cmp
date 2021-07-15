@@ -41,6 +41,8 @@
         }
     </aura:html>
 
+    <c:ZK_Toast aura:id="toast"/>
+
     <aura:if isTrue="{!v.finalized}">
         <div class="slds-p-around_small">
             <c:ZK_OrderFinalized redirectToBank="{!v.paymentMethodName == 'banking'}"/>
