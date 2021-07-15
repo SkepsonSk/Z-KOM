@@ -18,6 +18,42 @@
         }
     },
 
+    sort: function(component, sortingMode) {
+        const products = component.get('v.products');
+
+        if (sortingMode === 'lowest-price') {
+            products.sort( (a, b) => {
+                const aPrice = a.disountUnitPrice != null ? a.disountUnitPrice : a.unitPrice;
+                const bPrice = b.disountUnitPrice != null ? b.disountUnitPrice : b.unitPrice;
+
+                return aPrice > bPrice ? 1 : (bPrice < aPrice ? -1 : 0);
+            } );
+        }
+        else if (sortingMode === 'highest-price') {
+            products.sort( (a, b) => {
+                const aPrice = a.disountUnitPrice != null ? a.disountUnitPrice : a.unitPrice;
+                const bPrice = b.disountUnitPrice != null ? b.disountUnitPrice : b.unitPrice;
+
+                return aPrice < bPrice ? 1 : (bPrice > aPrice ? -1 : 0);
+            } );
+        }
+        else if (sortingMode === 'highest-rating') {
+            products.sort( (a, b) => {
+                const aRating = a.averageRating != null ? a.averageRating : 0;
+                const bRating = b.averageRating != null ? b.averageRating : 0;
+
+                return aRating < bRating ? 1 : (bRating > aRating ? -1 : 0);
+            } );
+        }
+        else if (sortingMode === 'accuracy') {
+            const searchQueryJson = sessionStorage.getItem('customSearch--recordIds');
+            const searchQuery = JSON.parse(searchQueryJson);
+            this.initializeData(component, searchQuery);
+        }
+
+        component.set('v.products', products);
+    },
+
     fetchAllProducts: function (component) {
         component.set('v.loading', true);
 
@@ -28,7 +64,12 @@
 
             if (state === 'SUCCESS') {
                 component.set('v.products', res.getReturnValue());
-
+            }
+            else {
+                const toast = component.find('toast');
+                toast.toast('An error occurred', 'Unable to fetch products', 'error');
+                console.log(state);
+                console.log(JSON.stringify(res.getError()));
             }
 
             component.set('v.loading', false);
@@ -55,6 +96,12 @@
                 component.set('v.products', res.getReturnValue());
 
             }
+            else {
+                const toast = component.find('toast');
+                toast.toast('An error occurred', 'Unable to fetch products', 'error');
+                console.log(state);
+                console.log(JSON.stringify(res.getError()));
+            }
 
             component.set('v.loading', false);
 
@@ -78,6 +125,12 @@
 
             if (state === 'SUCCESS') {
                 component.set('v.products', res.getReturnValue());
+            }
+            else {
+                const toast = component.find('toast');
+                toast.toast('An error occurred', 'Unable to fetch products', 'error');
+                console.log(state);
+                console.log(JSON.stringify(res.getError()));
             }
 
             component.set('v.loading', false);
@@ -103,6 +156,12 @@
 
             if (state === 'SUCCESS') {
                 component.set('v.products', res.getReturnValue());
+            }
+            else {
+                const toast = component.find('toast');
+                toast.toast('An error occurred', 'Unable to fetch products', 'error');
+                console.log(state);
+                console.log(JSON.stringify(res.getError()));
             }
 
             component.set('v.loading', false);

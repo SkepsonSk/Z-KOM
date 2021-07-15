@@ -8,16 +8,32 @@
     <aura:attribute name="products" type="Object[]" default="[]"/>
     <aura:attribute name="currency" type="String"/>
 
+    <aura:attribute name="sorting" type="String" default="accuracy"/>
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <c:ZK_Toast aura:id="toast"/>
 
     <div class="slds-grid slds-wrap slds-m-top_medium">
 
         <aura:if isTrue="{!not(empty(v.products))}">
             <div class="slds-size_1-of-1">
 
-                <h3 class="slds-text-align_center slds-text-heading_medium slds-p-bottom_large">
+                <h3 class="slds-text-align_center slds-text-heading_large slds-p-bottom_large">
                 {!$Label.c.ZK_Title_Products} ({!v.products.length})
                 </h3>
+
+                <div class="slds-grid">
+                    <lightning:select label="{!$Label.c.ZK_Title_Sorting}"
+                                      class="slds-col_bump-left"
+                                      onchange="{!c.onSortingChanged}"
+                                      value="{!v.sorting}">
+                        <option value="accuracy"> {!$Label.c.ZK_Option_Accuracy} </option>
+                        <option value="lowest-price"> {!$Label.c.ZK_Option_Lowest_Price} </option>
+                        <option value="highest-price"> {!$Label.c.ZK_Option_Highest_Price} </option>
+                        <option value="highest-rating"> {!$Label.c.ZK_Option_Highly_Rated} </option>
+                    </lightning:select>
+                </div>
 
             </div>
         </aura:if>
